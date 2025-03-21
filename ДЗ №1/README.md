@@ -16,8 +16,8 @@
 + P2P links - 172.17.0.0/16
 3. Таблица адресов
   
-| Hostname | Interface |  	IP/MASK  |	Description |
-|----------|-----------|-------------|--------------|
+| Hostname | Interface |  	IP/MASK    |	Description |
+|----------|-----------|---------------|--------------|
 |spine-1   |Eth1/1     |172.17.0.0/31  |-L- leaf-1    |
 |spine-1   |Eth1/2     |172.17.0.2/31  |-L- leaf-2    |
 |spine-1   |Eth1/3     |172.17.0.4/31  |-L- leaf-3    |
