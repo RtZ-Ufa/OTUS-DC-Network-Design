@@ -5,10 +5,12 @@ hostname leaf-1
 interface Ethernet1
 no switchport
 ip address 172.18.1.1/31
+description -S- spine-1
 
 interface Ethernet2
 no switchport
 ip address 172.18.2.1/31
+description -S- spine-2
 
 interface Loopback1
 ip address 172.16.201.1/32
