@@ -1,51 +1,33 @@
-! Command: show running-config
-! device: spine-2 (vEOS-lab, EOS-4.29.2F)
-!
-! boot system flash:/vEOS-lab.swi
-!
-no aaa root
-!
-transceiver qsfp default-mode 4x10G
-!
-service routing protocols model ribd
-!
+enable
+conf t
 hostname spine-2
-!
-spanning-tree mode mstp
-!
+
 interface Ethernet1
-   no switchport
-   ip address 172.18.2.0/31
-!
+no switchport
+ip address 172.18.2.0/31
+description -L- leaf-1
+
 interface Ethernet2
-   no switchport
-   ip address 172.18.2.2/31
-!
+no switchport
+ip address 172.18.2.2/31
+description -L- leaf-2
+
 interface Ethernet3
-   no switchport
-   ip address 172.18.2.4/31
-!
-interface Ethernet4
-!
-interface Ethernet5
-!
-interface Ethernet6
-!
-interface Ethernet7
-!
-interface Ethernet8
-!
+no switchport
+ip address 172.18.2.4/31
+description -L- leaf-3
+
 interface Loopback0
-   ip address 2.2.2.2/32
-!
+ip address 2.2.2.2/32
+
 interface Loopback1
-   ip address 172.16.102.1/32
-!
+ip address 172.16.102.1/32
+
 interface Loopback2
-   ip address 172.17.102.1/32
-!
-interface Management1
-!
+ip address 172.17.102.1/32
+exit
+
 ip routing
-!
-end
+exit
+exit
+wr mem
