@@ -26,5 +26,4 @@ exit
 
 ip routing
 exit
-exit
 wr mem
