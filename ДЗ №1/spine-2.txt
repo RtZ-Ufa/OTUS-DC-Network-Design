@@ -17,9 +17,6 @@ no switchport
 ip address 172.18.2.4/31
 description -L- leaf-3
 
-interface Loopback0
-ip address 2.2.2.2/32
-
 interface Loopback1
 ip address 172.16.102.1/32
 
