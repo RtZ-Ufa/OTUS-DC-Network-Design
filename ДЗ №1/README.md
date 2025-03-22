@@ -44,3 +44,30 @@
 |leaf-3    |L02        |172.17.203.1/32|              |
 
 3. Конфигурация оборудования приложена в файлах leaf-x.txt и spine-x.txt.
+**spine-1**
+`
+hostname spine-1
+
+interface Ethernet1
+   description -L- leaf-1
+   no switchport
+   ip address 172.18.1.0/31
+
+interface Ethernet2
+   description -L- leaf-2
+   no switchport
+   ip address 172.18.1.2/31
+
+interface Ethernet3
+   description -L- leaf-3
+   no switchport
+   ip address 172.18.1.4/31
+
+interface Loopback1
+   ip address 172.16.101.1/32
+!
+interface Loopback2
+   ip address 172.17.101.1/32
+
+ip routing
+`
