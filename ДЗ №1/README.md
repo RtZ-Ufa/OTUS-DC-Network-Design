@@ -45,6 +45,7 @@
 
 3. Конфигурация оборудования приложена в файлах leaf-x.txt и spine-x.txt.
 **spine-1**
+
 `
 hostname spine-1
 
@@ -71,3 +72,4 @@ interface Loopback2
 
 ip routing
 `
+
