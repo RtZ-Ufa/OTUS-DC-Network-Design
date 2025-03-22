@@ -103,4 +103,74 @@ interface Loopback2
 ip routing
 ```
 
+**Коммутатор leaf-1**
 
+```
+hostname leaf-1
+
+interface Ethernet1
+   description -S- spine-1
+   no switchport
+   ip address 172.18.1.1/31
+
+interface Ethernet2
+   description -S- spine-2
+   no switchport
+   ip address 172.18.2.1/31
+
+interface Loopback1
+   ip address 172.16.201.1/32
+
+interface Loopback2
+   ip address 172.17.201.1/32
+
+ip routing
+```
+
+**Коммутатор leaf-2**
+
+```
+hostname leaf-2
+
+interface Ethernet1
+   description -S- spine-1
+   no switchport
+   ip address 172.18.1.3/31
+
+interface Ethernet2
+   description -S- spine-2
+   no switchport
+   ip address 172.18.2.3/31
+
+interface Loopback1
+   ip address 172.16.202.1/32
+
+interface Loopback2
+   ip address 172.17.202.1/32
+
+ip routing
+```
+
+**Коммутатор leaf-3**
+
+```
+hostname leaf-3
+
+interface Ethernet1
+   description -S- spine-1
+   no switchport
+   ip address 172.18.1.5/31
+
+interface Ethernet2
+   description -S- spine-2
+   no switchport
+   ip address 172.18.2.5/31
+
+interface Loopback1
+   ip address 172.16.203.1/32
+
+interface Loopback2
+   ip address 172.17.203.1/32
+
+ip routing
+```
