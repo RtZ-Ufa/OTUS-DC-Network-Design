@@ -1,0 +1,48 @@
+! Command: show running-config
+! device: leaf-3 (vEOS-lab, EOS-4.29.2F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model ribd
+!
+logging synchronous level critical
+!
+hostname leaf-3
+!
+spanning-tree mode mstp
+!
+interface Ethernet1
+   no switchport
+   ip address 172.18.1.5/31
+!
+interface Ethernet2
+   no switchport
+   ip address 172.18.2.5/31
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+!
+interface Ethernet8
+!
+interface Loopback1
+   ip address 172.16.203.1/32
+!
+interface Loopback2
+   ip address 172.17.203.1/32
+!
+interface Management1
+!
+ip routing
+!
+end
