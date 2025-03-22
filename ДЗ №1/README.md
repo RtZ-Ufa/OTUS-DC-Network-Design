@@ -9,7 +9,7 @@
 ## Практическая часть
 #### Схема ЦОД
 1. Схема сети
-![alt-текст](https://github.com/RtZ-Ufa/OTUS-DC-Network-Design/tree/main/%D0%94%D0%97%20%E2%84%961/network.PNG "СХема сети")
+![Схема сети](https://github.com/RtZ-Ufa/OTUS-DC-Network-Design/tree/main/%D0%94%D0%97%20%E2%84%961/network.PNG)
 
 
 3. Адресное пространство для Underlay
