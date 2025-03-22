@@ -9,9 +9,9 @@
 ## Практическая часть
 #### Схема ЦОД
 1. Схема сети
-![Схема сети](https://github.com/RtZ-Ufa/OTUS-DC-Network-Design/tree/main/%D0%94%D0%97%20%E2%84%961/network.PNG)
 
 ![Схема сети](network.PNG)
+
 3. Адресное пространство для Underlay
 + Lo1 - 172.16.XNN.0/16, где X нечётный - spine, X чётный - leaf; N - номер коммутатора 
 + Lo2 - 172.17.XNN.0/16, где X нечётный - spine, X чётный - leaf; N - номер коммутатора
