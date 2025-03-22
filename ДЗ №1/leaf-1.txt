@@ -21,5 +21,4 @@ ip address 172.17.201.1/32
 exit
 ip routing
 exit
-exit
 wr mem
