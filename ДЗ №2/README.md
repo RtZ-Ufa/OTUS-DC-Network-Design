@@ -50,7 +50,7 @@
 
 ```
 spine-1#sh run
-_вывод_ _опущен_
+...
 !
 hostname spine-1
 !
@@ -77,7 +77,7 @@ interface Ethernet3
    ip ospf network point-to-point
    ip ospf area 0.0.0.0
 !
-_вывод опущен_
+...
 !
 interface Loopback1
    ip address 172.16.101.1/32
@@ -106,100 +106,202 @@ spine-1#
 **Коммутатор spine-2**
 
 ```
+spine-2#sh run
+...
+!
 hostname spine-2
-
+!
+spanning-tree mode mstp
+!
 interface Ethernet1
    description -L- leaf-1
    no switchport
    ip address 172.18.2.0/31
-
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
 interface Ethernet2
    description -L- leaf-2
    no switchport
    ip address 172.18.2.2/31
-
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
 interface Ethernet3
    description -L- leaf-3
    no switchport
    ip address 172.18.2.4/31
-
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
+...
+!
 interface Loopback1
    ip address 172.16.102.1/32
-
+   ip ospf area 0.0.0.0
+!
 interface Loopback2
    ip address 172.17.102.1/32
-
+   ip ospf area 0.0.0.0
+!
+interface Management1
+!
 ip routing
+!
+router ospf 10
+   passive-interface default
+   no passive-interface Ethernet1
+   no passive-interface Ethernet2
+   no passive-interface Ethernet3
+   max-lsa 12000
+!
+end
+spine-2#
 ```
 
 **Коммутатор leaf-1**
 
 ```
+leaf-1#sh run
+...
+!
 hostname leaf-1
-
+!
+spanning-tree mode mstp
+!
 interface Ethernet1
    description -S- spine-1
    no switchport
    ip address 172.18.1.1/31
-
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
 interface Ethernet2
    description -S- spine-2
    no switchport
    ip address 172.18.2.1/31
-
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
+...
+!
 interface Loopback1
    ip address 172.16.201.1/32
-
+   ip ospf area 0.0.0.0
+!
 interface Loopback2
    ip address 172.17.201.1/32
-
+   ip ospf area 0.0.0.0
+!
+interface Management1
+!
 ip routing
+!
+router ospf 10
+   passive-interface default
+   no passive-interface Ethernet1
+   no passive-interface Ethernet2
+   max-lsa 12000
+!
+end
+leaf-1#
+leaf-1#
 ```
 
 **Коммутатор leaf-2**
 
 ```
+leaf-2#sh run
+...
+!
 hostname leaf-2
-
+!
+spanning-tree mode mstp
+!
 interface Ethernet1
    description -S- spine-1
    no switchport
    ip address 172.18.1.3/31
-
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
 interface Ethernet2
    description -S- spine-2
    no switchport
    ip address 172.18.2.3/31
-
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
+...
+!
 interface Loopback1
    ip address 172.16.202.1/32
-
+   ip ospf area 0.0.0.0
+!
 interface Loopback2
    ip address 172.17.202.1/32
-
+   ip ospf area 0.0.0.0
+!
+interface Management1
+!
 ip routing
+!
+router ospf 10
+   passive-interface default
+   no passive-interface Ethernet1
+   no passive-interface Ethernet2
+   max-lsa 12000
+!
+end
+leaf-2#
+leaf-2#
 ```
 
 **Коммутатор leaf-3**
 
 ```
+leaf-3#sh run
+...
+!
 hostname leaf-3
-
+!
+spanning-tree mode mstp
+!
 interface Ethernet1
    description -S- spine-1
    no switchport
    ip address 172.18.1.5/31
-
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
 interface Ethernet2
    description -S- spine-2
    no switchport
    ip address 172.18.2.5/31
-
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
+...
+!
 interface Loopback1
    ip address 172.16.203.1/32
-
+   ip ospf area 0.0.0.0
+!
 interface Loopback2
    ip address 172.17.203.1/32
-
+   ip ospf area 0.0.0.0
+!
+interface Management1
+!
 ip routing
+!
+router ospf 10
+   passive-interface default
+   no passive-interface Ethernet1
+   no passive-interface Ethernet2
+   max-lsa 12000
+!
+end
+leaf-3#
+leaf-3#
 ```
