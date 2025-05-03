@@ -7,3 +7,13 @@ log-adjacency-changes
 interface Ethernet 1
 ip ospf area 0
 ip ospf network point-to-point
+interface Ethernet 2
+ip ospf area 0
+ip ospf network point-to-point
+interface Ethernet 3
+ip ospf area 0
+ip ospf network point-to-point
+interface Loopback1
+ip ospf area 0
+interface Loopback2
+ip ospf area 0
