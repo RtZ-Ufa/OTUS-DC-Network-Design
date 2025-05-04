@@ -3,6 +3,7 @@ router ospf 10
 passive-interface default
 no passive-interface Ethernet 1-2
 log-adjacency-changes
+router-id 22.22.22.22
 
 interface Ethernet 1
 ip ospf area 0
