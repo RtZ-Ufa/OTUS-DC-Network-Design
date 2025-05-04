@@ -97,6 +97,7 @@ router ospf 10
    no passive-interface Ethernet2
    no passive-interface Ethernet3
    max-lsa 12000
+   router-id 11.11.11.11
 !
 end
 spine-1#
@@ -154,6 +155,7 @@ router ospf 10
    no passive-interface Ethernet2
    no passive-interface Ethernet3
    max-lsa 12000
+   router-id 12.12.12.12
 !
 end
 spine-2#
@@ -202,6 +204,7 @@ router ospf 10
    no passive-interface Ethernet1
    no passive-interface Ethernet2
    max-lsa 12000
+   router-id 21.21.21.21
 !
 end
 leaf-1#
@@ -251,6 +254,7 @@ router ospf 10
    no passive-interface Ethernet1
    no passive-interface Ethernet2
    max-lsa 12000
+   router-id 22.22.22.22
 !
 end
 leaf-2#
@@ -300,6 +304,7 @@ router ospf 10
    no passive-interface Ethernet1
    no passive-interface Ethernet2
    max-lsa 12000
+   router-id 23.23.23.23
 !
 end
 leaf-3#
