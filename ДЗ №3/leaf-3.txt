@@ -1,0 +1,32 @@
+# базовые настройки приведены в ДЗ №1
+#leaf-3
+conf t
+router isis 10
+net 49.0001.0010.0100.2003.00
+is-type level-1
+log-adjacency-changes
+authentication mode md5
+authentication key secret
+address-family ipv4 unicast
+bfd all-interfaces
+
+
+interface Ethernet1
+isis enable 10
+isis network point-to-point
+isis bfd
+isis authentication mode md5
+isis authentication key secret
+
+interface Ethernet2
+isis enable 10
+isis network point-to-point
+isis bfd
+isis authentication mode md5
+isis authentication key secret
+
+interface Loopback1
+isis enable 10
+
+interface Loopback2
+isis enable 10
