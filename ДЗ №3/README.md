@@ -352,7 +352,7 @@ end
 leaf-3#
 ```
 
-4. Проверка связности между устройствами в OSPF домене проводилась утилитой **ping**. Проверлась связность от текущего коммутатора до интерфейсов Loopback1 и Loopback2 других коммутаторов.
+4. Проверка связности между устройствами в ISIS домене проводилась утилитой **ping**. Проверлась связность от текущего коммутатора до интерфейсов Loopback1 и Loopback2 других коммутаторов.
 
 **Коммутатор spine-1**
 
@@ -562,99 +562,99 @@ spine-2#
 ```
 leaf-1#ping 172.16.101.1
 PING 172.16.101.1 (172.16.101.1) 72(100) bytes of data.
-80 bytes from 172.16.101.1: icmp_seq=1 ttl=64 time=11.1 ms
-80 bytes from 172.16.101.1: icmp_seq=2 ttl=64 time=8.51 ms
-80 bytes from 172.16.101.1: icmp_seq=3 ttl=64 time=7.16 ms
-80 bytes from 172.16.101.1: icmp_seq=4 ttl=64 time=8.31 ms
-80 bytes from 172.16.101.1: icmp_seq=5 ttl=64 time=7.89 ms
+80 bytes from 172.16.101.1: icmp_seq=1 ttl=64 time=12.4 ms
+80 bytes from 172.16.101.1: icmp_seq=2 ttl=64 time=11.7 ms
+80 bytes from 172.16.101.1: icmp_seq=3 ttl=64 time=12.2 ms
+80 bytes from 172.16.101.1: icmp_seq=4 ttl=64 time=10.4 ms
+80 bytes from 172.16.101.1: icmp_seq=5 ttl=64 time=8.38 ms
 
 --- 172.16.101.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 57ms
-rtt min/avg/max/mdev = 7.164/8.612/11.177/1.366 ms, ipg/ewma 14.266/9.846 ms
+5 packets transmitted, 5 received, 0% packet loss, time 68ms
+rtt min/avg/max/mdev = 8.386/11.028/12.402/1.492 ms, ipg/ewma 17.203/11.608 ms
 leaf-1#
 leaf-1#ping 172.17.101.1
 PING 172.17.101.1 (172.17.101.1) 72(100) bytes of data.
-80 bytes from 172.17.101.1: icmp_seq=1 ttl=64 time=11.7 ms
-80 bytes from 172.17.101.1: icmp_seq=2 ttl=64 time=12.0 ms
-80 bytes from 172.17.101.1: icmp_seq=3 ttl=64 time=10.0 ms
-80 bytes from 172.17.101.1: icmp_seq=4 ttl=64 time=9.87 ms
-80 bytes from 172.17.101.1: icmp_seq=5 ttl=64 time=12.0 ms
+80 bytes from 172.17.101.1: icmp_seq=1 ttl=64 time=9.65 ms
+80 bytes from 172.17.101.1: icmp_seq=2 ttl=64 time=8.13 ms
+80 bytes from 172.17.101.1: icmp_seq=3 ttl=64 time=7.92 ms
+80 bytes from 172.17.101.1: icmp_seq=4 ttl=64 time=7.96 ms
+80 bytes from 172.17.101.1: icmp_seq=5 ttl=64 time=8.32 ms
 
 --- 172.17.101.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 59ms
-rtt min/avg/max/mdev = 9.872/11.147/12.066/0.972 ms, ipg/ewma 14.948/11.422 ms
+5 packets transmitted, 5 received, 0% packet loss, time 50ms
+rtt min/avg/max/mdev = 7.925/8.401/9.651/0.643 ms, ipg/ewma 12.665/9.009 ms
 leaf-1#
 leaf-1#ping 172.16.102.1
 PING 172.16.102.1 (172.16.102.1) 72(100) bytes of data.
-80 bytes from 172.16.102.1: icmp_seq=1 ttl=64 time=13.9 ms
-80 bytes from 172.16.102.1: icmp_seq=2 ttl=64 time=10.5 ms
-80 bytes from 172.16.102.1: icmp_seq=3 ttl=64 time=10.4 ms
-80 bytes from 172.16.102.1: icmp_seq=4 ttl=64 time=7.51 ms
-80 bytes from 172.16.102.1: icmp_seq=5 ttl=64 time=9.20 ms
+80 bytes from 172.16.102.1: icmp_seq=1 ttl=64 time=11.7 ms
+80 bytes from 172.16.102.1: icmp_seq=2 ttl=64 time=11.8 ms
+80 bytes from 172.16.102.1: icmp_seq=3 ttl=64 time=14.9 ms
+80 bytes from 172.16.102.1: icmp_seq=4 ttl=64 time=14.0 ms
+80 bytes from 172.16.102.1: icmp_seq=5 ttl=64 time=13.0 ms
 
 --- 172.16.102.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 67ms
-rtt min/avg/max/mdev = 7.512/10.339/13.994/2.133 ms, ipg/ewma 16.776/12.057 ms
+5 packets transmitted, 5 received, 0% packet loss, time 57ms
+rtt min/avg/max/mdev = 11.743/13.127/14.902/1.223 ms, pipe 2, ipg/ewma 14.419/12.473 ms
 leaf-1#
 leaf-1#ping 172.17.102.1
 PING 172.17.102.1 (172.17.102.1) 72(100) bytes of data.
-80 bytes from 172.17.102.1: icmp_seq=1 ttl=64 time=11.3 ms
-80 bytes from 172.17.102.1: icmp_seq=2 ttl=64 time=8.92 ms
-80 bytes from 172.17.102.1: icmp_seq=3 ttl=64 time=20.0 ms
-80 bytes from 172.17.102.1: icmp_seq=4 ttl=64 time=11.6 ms
-80 bytes from 172.17.102.1: icmp_seq=5 ttl=64 time=9.67 ms
+80 bytes from 172.17.102.1: icmp_seq=1 ttl=64 time=8.83 ms
+80 bytes from 172.17.102.1: icmp_seq=2 ttl=64 time=7.73 ms
+80 bytes from 172.17.102.1: icmp_seq=3 ttl=64 time=13.6 ms
+80 bytes from 172.17.102.1: icmp_seq=4 ttl=64 time=28.0 ms
+80 bytes from 172.17.102.1: icmp_seq=5 ttl=64 time=17.0 ms
 
 --- 172.17.102.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 58ms
-rtt min/avg/max/mdev = 8.928/12.338/20.071/4.001 ms, pipe 2, ipg/ewma 14.633/11.803 ms
+5 packets transmitted, 5 received, 0% packet loss, time 53ms
+rtt min/avg/max/mdev = 7.739/15.073/28.041/7.305 ms, pipe 2, ipg/ewma 13.410/12.338 ms
 leaf-1#
 leaf-1#ping 172.16.202.1
 PING 172.16.202.1 (172.16.202.1) 72(100) bytes of data.
-80 bytes from 172.16.202.1: icmp_seq=1 ttl=63 time=107 ms
-80 bytes from 172.16.202.1: icmp_seq=2 ttl=63 time=104 ms
-80 bytes from 172.16.202.1: icmp_seq=3 ttl=63 time=97.9 ms
-80 bytes from 172.16.202.1: icmp_seq=4 ttl=63 time=93.0 ms
-80 bytes from 172.16.202.1: icmp_seq=5 ttl=63 time=122 ms
+80 bytes from 172.16.202.1: icmp_seq=1 ttl=63 time=30.3 ms
+80 bytes from 172.16.202.1: icmp_seq=2 ttl=63 time=25.6 ms
+80 bytes from 172.16.202.1: icmp_seq=3 ttl=63 time=33.0 ms
+80 bytes from 172.16.202.1: icmp_seq=4 ttl=63 time=29.1 ms
+80 bytes from 172.16.202.1: icmp_seq=5 ttl=63 time=17.1 ms
 
 --- 172.16.202.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 50ms
-rtt min/avg/max/mdev = 93.001/105.028/122.170/9.981 ms, pipe 5, ipg/ewma 12.723/106.810 ms
+5 packets transmitted, 5 received, 0% packet loss, time 89ms
+rtt min/avg/max/mdev = 17.133/27.055/33.034/5.509 ms, pipe 3, ipg/ewma 22.447/28.439 ms
 leaf-1#
 leaf-1#ping 172.17.202.1
 PING 172.17.202.1 (172.17.202.1) 72(100) bytes of data.
-80 bytes from 172.17.202.1: icmp_seq=1 ttl=63 time=29.8 ms
-80 bytes from 172.17.202.1: icmp_seq=2 ttl=63 time=27.4 ms
-80 bytes from 172.17.202.1: icmp_seq=3 ttl=63 time=24.3 ms
-80 bytes from 172.17.202.1: icmp_seq=4 ttl=63 time=16.6 ms
-80 bytes from 172.17.202.1: icmp_seq=5 ttl=63 time=16.7 ms
+80 bytes from 172.17.202.1: icmp_seq=1 ttl=63 time=24.0 ms
+80 bytes from 172.17.202.1: icmp_seq=2 ttl=63 time=27.8 ms
+80 bytes from 172.17.202.1: icmp_seq=3 ttl=63 time=36.4 ms
+80 bytes from 172.17.202.1: icmp_seq=4 ttl=63 time=27.9 ms
+80 bytes from 172.17.202.1: icmp_seq=5 ttl=63 time=22.7 ms
 
 --- 172.17.202.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 83ms
-rtt min/avg/max/mdev = 16.647/22.984/29.843/5.442 ms, pipe 3, ipg/ewma 20.793/26.024 ms
+5 packets transmitted, 5 received, 0% packet loss, time 78ms
+rtt min/avg/max/mdev = 22.792/27.821/36.417/4.756 ms, pipe 3, ipg/ewma 19.558/25.847 ms
 leaf-1#
 leaf-1#ping 172.16.203.1
 PING 172.16.203.1 (172.16.203.1) 72(100) bytes of data.
-80 bytes from 172.16.203.1: icmp_seq=1 ttl=63 time=32.9 ms
-80 bytes from 172.16.203.1: icmp_seq=2 ttl=63 time=42.0 ms
-80 bytes from 172.16.203.1: icmp_seq=3 ttl=63 time=39.8 ms
-80 bytes from 172.16.203.1: icmp_seq=4 ttl=63 time=31.9 ms
-80 bytes from 172.16.203.1: icmp_seq=5 ttl=63 time=18.0 ms
+80 bytes from 172.16.203.1: icmp_seq=1 ttl=63 time=23.5 ms
+80 bytes from 172.16.203.1: icmp_seq=2 ttl=63 time=21.9 ms
+80 bytes from 172.16.203.1: icmp_seq=3 ttl=63 time=16.5 ms
+80 bytes from 172.16.203.1: icmp_seq=4 ttl=63 time=15.9 ms
+80 bytes from 172.16.203.1: icmp_seq=5 ttl=63 time=20.4 ms
 
 --- 172.16.203.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 97ms
-rtt min/avg/max/mdev = 18.058/32.983/42.060/8.409 ms, pipe 3, ipg/ewma 24.265/32.408 ms
+5 packets transmitted, 5 received, 0% packet loss, time 85ms
+rtt min/avg/max/mdev = 15.930/19.681/23.577/2.989 ms, pipe 2, ipg/ewma 21.296/21.536 ms
 leaf-1#
 leaf-1#ping 172.17.203.1
 PING 172.17.203.1 (172.17.203.1) 72(100) bytes of data.
-80 bytes from 172.17.203.1: icmp_seq=1 ttl=63 time=21.9 ms
-80 bytes from 172.17.203.1: icmp_seq=2 ttl=63 time=22.4 ms
-80 bytes from 172.17.203.1: icmp_seq=3 ttl=63 time=17.9 ms
-80 bytes from 172.17.203.1: icmp_seq=4 ttl=63 time=19.8 ms
-80 bytes from 172.17.203.1: icmp_seq=5 ttl=63 time=16.3 ms
+80 bytes from 172.17.203.1: icmp_seq=1 ttl=63 time=25.7 ms
+80 bytes from 172.17.203.1: icmp_seq=2 ttl=63 time=20.9 ms
+80 bytes from 172.17.203.1: icmp_seq=3 ttl=63 time=18.3 ms
+80 bytes from 172.17.203.1: icmp_seq=4 ttl=63 time=27.0 ms
+80 bytes from 172.17.203.1: icmp_seq=5 ttl=63 time=28.8 ms
 
 --- 172.17.203.1 ping statistics ---
 5 packets transmitted, 5 received, 0% packet loss, time 89ms
-rtt min/avg/max/mdev = 16.379/19.694/22.401/2.306 ms, pipe 2, ipg/ewma 22.287/20.662 ms
+rtt min/avg/max/mdev = 18.364/24.195/28.872/3.928 ms, pipe 2, ipg/ewma 22.334/25.156 ms
 leaf-1#
 ```
 
