@@ -359,99 +359,99 @@ leaf-3#
 ```
 spine-1#ping 172.16.102.1
 PING 172.16.102.1 (172.16.102.1) 72(100) bytes of data.
-80 bytes from 172.16.102.1: icmp_seq=1 ttl=63 time=74.4 ms
-80 bytes from 172.16.102.1: icmp_seq=2 ttl=63 time=100 ms
-80 bytes from 172.16.102.1: icmp_seq=3 ttl=63 time=56.8 ms
-80 bytes from 172.16.102.1: icmp_seq=4 ttl=63 time=18.6 ms
-80 bytes from 172.16.102.1: icmp_seq=5 ttl=63 time=23.7 ms
+80 bytes from 172.16.102.1: icmp_seq=1 ttl=63 time=46.2 ms
+80 bytes from 172.16.102.1: icmp_seq=2 ttl=63 time=50.2 ms
+80 bytes from 172.16.102.1: icmp_seq=3 ttl=63 time=46.5 ms
+80 bytes from 172.16.102.1: icmp_seq=4 ttl=63 time=37.5 ms
+80 bytes from 172.16.102.1: icmp_seq=5 ttl=63 time=16.3 ms
 
 --- 172.16.102.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 214ms
-rtt min/avg/max/mdev = 18.678/54.874/100.653/30.850 ms, pipe 3, ipg/ewma 53.743/62.512 ms
+5 packets transmitted, 5 received, 0% packet loss, time 87ms
+rtt min/avg/max/mdev = 16.373/39.408/50.262/12.255 ms, pipe 4, ipg/ewma 21.865/41.956 ms
 spine-1#
 spine-1#ping 172.17.102.1
 PING 172.17.102.1 (172.17.102.1) 72(100) bytes of data.
-80 bytes from 172.17.102.1: icmp_seq=1 ttl=63 time=23.6 ms
-80 bytes from 172.17.102.1: icmp_seq=2 ttl=63 time=20.9 ms
-80 bytes from 172.17.102.1: icmp_seq=3 ttl=63 time=18.2 ms
-80 bytes from 172.17.102.1: icmp_seq=4 ttl=63 time=20.3 ms
-80 bytes from 172.17.102.1: icmp_seq=5 ttl=63 time=19.2 ms
+80 bytes from 172.17.102.1: icmp_seq=1 ttl=63 time=25.2 ms
+80 bytes from 172.17.102.1: icmp_seq=2 ttl=63 time=19.6 ms
+80 bytes from 172.17.102.1: icmp_seq=3 ttl=63 time=20.3 ms
+80 bytes from 172.17.102.1: icmp_seq=4 ttl=63 time=15.9 ms
+80 bytes from 172.17.102.1: icmp_seq=5 ttl=63 time=17.6 ms
 
 --- 172.17.102.1 ping statistics ---
 5 packets transmitted, 5 received, 0% packet loss, time 88ms
-rtt min/avg/max/mdev = 18.261/20.505/23.654/1.834 ms, pipe 2, ipg/ewma 22.220/22.005 ms
+rtt min/avg/max/mdev = 15.953/19.772/25.239/3.139 ms, pipe 2, ipg/ewma 22.181/22.341 ms
 spine-1#
 spine-1#ping 172.16.201.1
 PING 172.16.201.1 (172.16.201.1) 72(100) bytes of data.
-80 bytes from 172.16.201.1: icmp_seq=1 ttl=64 time=9.65 ms
-80 bytes from 172.16.201.1: icmp_seq=2 ttl=64 time=9.99 ms
-80 bytes from 172.16.201.1: icmp_seq=3 ttl=64 time=9.12 ms
-80 bytes from 172.16.201.1: icmp_seq=4 ttl=64 time=8.30 ms
-80 bytes from 172.16.201.1: icmp_seq=5 ttl=64 time=13.5 ms
+80 bytes from 172.16.201.1: icmp_seq=1 ttl=64 time=9.29 ms
+80 bytes from 172.16.201.1: icmp_seq=2 ttl=64 time=7.98 ms
+80 bytes from 172.16.201.1: icmp_seq=3 ttl=64 time=10.0 ms
+80 bytes from 172.16.201.1: icmp_seq=4 ttl=64 time=9.47 ms
+80 bytes from 172.16.201.1: icmp_seq=5 ttl=64 time=15.1 ms
 
 --- 172.16.201.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 49ms
-rtt min/avg/max/mdev = 8.307/10.116/13.509/1.789 ms, ipg/ewma 12.388/9.964 ms
+5 packets transmitted, 5 received, 0% packet loss, time 46ms
+rtt min/avg/max/mdev = 7.980/10.379/15.111/2.463 ms, ipg/ewma 11.604/10.004 ms
 spine-1#
 spine-1#ping 172.17.201.1
 PING 172.17.201.1 (172.17.201.1) 72(100) bytes of data.
-80 bytes from 172.17.201.1: icmp_seq=1 ttl=64 time=9.40 ms
-80 bytes from 172.17.201.1: icmp_seq=2 ttl=64 time=7.46 ms
-80 bytes from 172.17.201.1: icmp_seq=3 ttl=64 time=8.72 ms
-80 bytes from 172.17.201.1: icmp_seq=4 ttl=64 time=10.2 ms
-80 bytes from 172.17.201.1: icmp_seq=5 ttl=64 time=14.2 ms
+80 bytes from 172.17.201.1: icmp_seq=1 ttl=64 time=9.99 ms
+80 bytes from 172.17.201.1: icmp_seq=2 ttl=64 time=8.51 ms
+80 bytes from 172.17.201.1: icmp_seq=3 ttl=64 time=12.2 ms
+80 bytes from 172.17.201.1: icmp_seq=4 ttl=64 time=16.5 ms
+80 bytes from 172.17.201.1: icmp_seq=5 ttl=64 time=8.71 ms
 
 --- 172.17.201.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 49ms
-rtt min/avg/max/mdev = 7.467/10.023/14.282/2.316 ms, ipg/ewma 12.300/9.879 ms
+5 packets transmitted, 5 received, 0% packet loss, time 57ms
+rtt min/avg/max/mdev = 8.514/11.212/16.539/2.986 ms, pipe 2, ipg/ewma 14.358/10.646 ms
 spine-1#
 spine-1#ping 172.16.202.1
 PING 172.16.202.1 (172.16.202.1) 72(100) bytes of data.
-80 bytes from 172.16.202.1: icmp_seq=1 ttl=64 time=13.6 ms
-80 bytes from 172.16.202.1: icmp_seq=2 ttl=64 time=8.19 ms
-80 bytes from 172.16.202.1: icmp_seq=3 ttl=64 time=8.19 ms
-80 bytes from 172.16.202.1: icmp_seq=4 ttl=64 time=8.95 ms
-80 bytes from 172.16.202.1: icmp_seq=5 ttl=64 time=8.49 ms
+80 bytes from 172.16.202.1: icmp_seq=1 ttl=64 time=12.3 ms
+80 bytes from 172.16.202.1: icmp_seq=2 ttl=64 time=22.9 ms
+80 bytes from 172.16.202.1: icmp_seq=3 ttl=64 time=27.0 ms
+80 bytes from 172.16.202.1: icmp_seq=4 ttl=64 time=16.2 ms
+80 bytes from 172.16.202.1: icmp_seq=5 ttl=64 time=9.83 ms
 
 --- 172.16.202.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 53ms
-rtt min/avg/max/mdev = 8.191/9.498/13.655/2.100 ms, ipg/ewma 13.320/11.516 ms
+5 packets transmitted, 5 received, 0% packet loss, time 72ms
+rtt min/avg/max/mdev = 9.838/17.701/27.026/6.431 ms, pipe 2, ipg/ewma 18.157/14.782 ms
 spine-1#
 spine-1#ping 172.17.202.1
 PING 172.17.202.1 (172.17.202.1) 72(100) bytes of data.
-80 bytes from 172.17.202.1: icmp_seq=1 ttl=64 time=24.6 ms
-80 bytes from 172.17.202.1: icmp_seq=2 ttl=64 time=16.6 ms
-80 bytes from 172.17.202.1: icmp_seq=3 ttl=64 time=10.7 ms
-80 bytes from 172.17.202.1: icmp_seq=4 ttl=64 time=10.1 ms
-80 bytes from 172.17.202.1: icmp_seq=5 ttl=64 time=7.51 ms
+80 bytes from 172.17.202.1: icmp_seq=1 ttl=64 time=15.0 ms
+80 bytes from 172.17.202.1: icmp_seq=2 ttl=64 time=7.92 ms
+80 bytes from 172.17.202.1: icmp_seq=3 ttl=64 time=8.70 ms
+80 bytes from 172.17.202.1: icmp_seq=4 ttl=64 time=8.12 ms
+80 bytes from 172.17.202.1: icmp_seq=5 ttl=64 time=10.2 ms
 
 --- 172.17.202.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 84ms
-rtt min/avg/max/mdev = 7.512/13.925/24.626/6.124 ms, pipe 2, ipg/ewma 21.100/18.902 ms
+5 packets transmitted, 5 received, 0% packet loss, time 61ms
+rtt min/avg/max/mdev = 7.928/10.015/15.063/2.654 ms, ipg/ewma 15.274/12.497 ms
 spine-1#
 spine-1#ping 172.16.203.1
 PING 172.16.203.1 (172.16.203.1) 72(100) bytes of data.
-80 bytes from 172.16.203.1: icmp_seq=1 ttl=64 time=13.7 ms
-80 bytes from 172.16.203.1: icmp_seq=2 ttl=64 time=12.6 ms
-80 bytes from 172.16.203.1: icmp_seq=3 ttl=64 time=9.47 ms
-80 bytes from 172.16.203.1: icmp_seq=4 ttl=64 time=11.2 ms
-80 bytes from 172.16.203.1: icmp_seq=5 ttl=64 time=8.68 ms
+80 bytes from 172.16.203.1: icmp_seq=1 ttl=64 time=12.4 ms
+80 bytes from 172.16.203.1: icmp_seq=2 ttl=64 time=16.1 ms
+80 bytes from 172.16.203.1: icmp_seq=3 ttl=64 time=16.7 ms
+80 bytes from 172.16.203.1: icmp_seq=4 ttl=64 time=8.77 ms
+80 bytes from 172.16.203.1: icmp_seq=5 ttl=64 time=10.7 ms
 
 --- 172.16.203.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 64ms
-rtt min/avg/max/mdev = 8.683/11.164/13.797/1.905 ms, pipe 2, ipg/ewma 16.054/12.366 ms
+5 packets transmitted, 5 received, 0% packet loss, time 67ms
+rtt min/avg/max/mdev = 8.770/12.978/16.784/3.085 ms, pipe 2, ipg/ewma 16.935/12.575 ms
 spine-1#
 spine-1#ping 172.17.203.1
 PING 172.17.203.1 (172.17.203.1) 72(100) bytes of data.
-80 bytes from 172.17.203.1: icmp_seq=1 ttl=64 time=9.24 ms
-80 bytes from 172.17.203.1: icmp_seq=2 ttl=64 time=12.4 ms
-80 bytes from 172.17.203.1: icmp_seq=3 ttl=64 time=11.9 ms
-80 bytes from 172.17.203.1: icmp_seq=4 ttl=64 time=11.7 ms
-80 bytes from 172.17.203.1: icmp_seq=5 ttl=64 time=8.81 ms
+80 bytes from 172.17.203.1: icmp_seq=1 ttl=64 time=11.0 ms
+80 bytes from 172.17.203.1: icmp_seq=2 ttl=64 time=9.54 ms
+80 bytes from 172.17.203.1: icmp_seq=3 ttl=64 time=13.7 ms
+80 bytes from 172.17.203.1: icmp_seq=4 ttl=64 time=16.0 ms
+80 bytes from 172.17.203.1: icmp_seq=5 ttl=64 time=11.7 ms
 
 --- 172.17.203.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 49ms
-rtt min/avg/max/mdev = 8.819/10.853/12.442/1.516 ms, pipe 2, ipg/ewma 12.366/9.997 ms
+5 packets transmitted, 5 received, 0% packet loss, time 61ms
+rtt min/avg/max/mdev = 9.548/12.431/16.033/2.256 ms, pipe 2, ipg/ewma 15.295/11.821 ms
 spine-1#
 ```
 
