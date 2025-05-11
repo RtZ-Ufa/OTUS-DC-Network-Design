@@ -629,11 +629,90 @@ Instance  VRF      System Id        Type Interface          SNPA              St
 leaf-3#
 ```
 
+6. IS-IS Level 1 Link State Database
 
+**Коммутатор spine-1**
 
+```
+spine-1#show isis database
 
+IS-IS Instance: 10 VRF: default
+  IS-IS Level 1 Link State Database
+    LSPID                   Seq Num  Cksum  Life Length IS Flags
+    spine-1.00-00                19   6384   642    179 L1 <>
+    spine-2.00-00                19  16930   606    179 L1 <>
+    leaf-1.00-00                 17  30980   849    154 L1 <>
+    leaf-2.00-00                 17  61916   528    154 L1 <>
+    leaf-3.00-00                 16  41578   769    154 L1 <>
+spine-1#
+```
 
-6. Проверка связности между устройствами в ISIS домене проводилась утилитой **ping**. Проверлась связность от текущего коммутатора до интерфейсов Loopback1 и Loopback2 других коммутаторов.
+**Коммутатор spine-2**
+
+```
+spine-2#show isis database
+
+IS-IS Instance: 10 VRF: default
+  IS-IS Level 1 Link State Database
+    LSPID                   Seq Num  Cksum  Life Length IS Flags
+    spine-1.00-00                19   6384   586    179 L1 <>
+    spine-2.00-00                19  16930   549    179 L1 <>
+    leaf-1.00-00                 17  30980   792    154 L1 <>
+    leaf-2.00-00                 18  61959  1172    154 L1 <>
+    leaf-3.00-00                 16  41578   712    154 L1 <>
+spine-2#
+```
+
+**Коммутатор leaf-1**
+
+```
+leaf-1#
+leaf-1#show isis database
+
+IS-IS Instance: 10 VRF: default
+  IS-IS Level 1 Link State Database
+    LSPID                   Seq Num  Cksum  Life Length IS Flags
+    spine-1.00-00                19   6384   554    179 L1 <>
+    spine-2.00-00                19  16930   517    179 L1 <>
+    leaf-1.00-00                 17  30980   760    154 L1 <>
+    leaf-2.00-00                 18  61959  1140    154 L1 <>
+    leaf-3.00-00                 16  41578   680    154 L1 <>
+leaf-1#
+```
+
+**Коммутатор leaf-2**
+
+```
+leaf-2#show isis database
+
+IS-IS Instance: 10 VRF: default
+  IS-IS Level 1 Link State Database
+    LSPID                   Seq Num  Cksum  Life Length IS Flags
+    spine-1.00-00                19   6384   530    179 L1 <>
+    spine-2.00-00                20  19213  1198    179 L1 <>
+    leaf-1.00-00                 17  30980   737    154 L1 <>
+    leaf-2.00-00                 18  61959  1116    154 L1 <>
+    leaf-3.00-00                 16  41578   657    154 L1 <>
+leaf-2#
+```
+
+**Коммутатор leaf-3**
+
+```
+leaf-3#show isis database
+
+IS-IS Instance: 10 VRF: default
+  IS-IS Level 1 Link State Database
+    LSPID                   Seq Num  Cksum  Life Length IS Flags
+    spine-1.00-00                20  53436  1166    179 L1 <>
+    spine-2.00-00                20  19213  1155    179 L1 <>
+    leaf-1.00-00                 17  30980   694    154 L1 <>
+    leaf-2.00-00                 18  61959  1074    154 L1 <>
+    leaf-3.00-00                 16  41578   614    154 L1 <>
+leaf-3#
+```
+
+7. Проверка связности между устройствами в ISIS домене проводилась утилитой **ping**. Проверлась связность от текущего коммутатора до интерфейсов Loopback1 и Loopback2 других коммутаторов.
 
 **Коммутатор spine-1**
 
