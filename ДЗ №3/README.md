@@ -1,7 +1,7 @@
 #  Домашнее задание №3
-# Underlay. OSPF
-## по теме №5 "Построение Underlay сети(ISIS)"
-### Цель: Настроить OSPF для Underlay сети
+# Underlay. ISIS
+## по теме №6 "Построение Underlay сети(ISIS)"
+### Цель: Настроить ISIS для Underlay сети
 ### Задачи:
 + настроить ISIS в Underlay сети, для IP связанности между всеми сетевыми устройствами;
 + зафиксировать в документации - план работы, адресное пространство, схему сети, конфигурацию устройств;
@@ -241,9 +241,8 @@ leaf-1#
 **Коммутатор leaf-2**
 
 ```
-leaf-2#sh run
+leaf-2#show run
 ...
-!
 hostname leaf-2
 !
 spanning-tree mode mstp
@@ -252,39 +251,47 @@ interface Ethernet1
    description -S- spine-1
    no switchport
    ip address 172.18.1.3/31
-   ip ospf network point-to-point
-   ip ospf area 0.0.0.0
+   isis enable 10
+   isis bfd
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 interface Ethernet2
    description -S- spine-2
    no switchport
    ip address 172.18.2.3/31
-   ip ospf network point-to-point
-   ip ospf area 0.0.0.0
+   isis enable 10
+   isis bfd
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 ...
 !
 interface Loopback1
    ip address 172.16.202.1/32
-   ip ospf area 0.0.0.0
+   isis enable 10
 !
 interface Loopback2
    ip address 172.17.202.1/32
-   ip ospf area 0.0.0.0
+   isis enable 10
 !
 interface Management1
 !
 ip routing
 !
-router ospf 10
-   passive-interface default
-   no passive-interface Ethernet1
-   no passive-interface Ethernet2
-   max-lsa 12000
-   router-id 22.22.22.22
+router isis 10
+   net 49.0001.0010.0100.2002.00
+   is-type level-1
+   log-adjacency-changes
+   authentication mode md5
+   authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
+   !
+   address-family ipv4 unicast
+      bfd all-interfaces
 !
 end
-leaf-2#
 leaf-2#
 ```
 
