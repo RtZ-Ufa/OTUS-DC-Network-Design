@@ -49,9 +49,8 @@
 **Коммутатор spine-1**
 
 ```
-spine-1#sh run
+spine-1#show run
 ...
-!
 hostname spine-1
 !
 spanning-tree mode mstp
@@ -117,9 +116,8 @@ spine-1#
 **Коммутатор spine-2**
 
 ```
-spine-2#sh run
+spine-2#show run
 ...
-!
 hostname spine-2
 !
 spanning-tree mode mstp
@@ -128,44 +126,55 @@ interface Ethernet1
    description -L- leaf-1
    no switchport
    ip address 172.18.2.0/31
-   ip ospf network point-to-point
-   ip ospf area 0.0.0.0
+   isis enable 10
+   isis bfd
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 interface Ethernet2
    description -L- leaf-2
    no switchport
    ip address 172.18.2.2/31
-   ip ospf network point-to-point
-   ip ospf area 0.0.0.0
+   isis enable 10
+   isis bfd
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 interface Ethernet3
    description -L- leaf-3
    no switchport
    ip address 172.18.2.4/31
-   ip ospf network point-to-point
-   ip ospf area 0.0.0.0
+   isis enable 10
+   isis bfd
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 ...
 !
 interface Loopback1
    ip address 172.16.102.1/32
-   ip ospf area 0.0.0.0
+   isis enable 10
 !
 interface Loopback2
    ip address 172.17.102.1/32
-   ip ospf area 0.0.0.0
+   isis enable 10
 !
 interface Management1
 !
 ip routing
 !
-router ospf 10
-   passive-interface default
-   no passive-interface Ethernet1
-   no passive-interface Ethernet2
-   no passive-interface Ethernet3
-   max-lsa 12000
-   router-id 12.12.12.12
+router isis 10
+   net 49.0001.0010.0100.1002.00
+   is-type level-1
+   log-adjacency-changes
+   authentication mode md5
+   authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
+   !
+   address-family ipv4 unicast
+      bfd all-interfaces
 !
 end
 spine-2#
