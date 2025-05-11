@@ -298,9 +298,8 @@ leaf-2#
 **Коммутатор leaf-3**
 
 ```
-leaf-3#sh run
+leaf-3#show run
 ...
-!
 hostname leaf-3
 !
 spanning-tree mode mstp
@@ -309,39 +308,47 @@ interface Ethernet1
    description -S- spine-1
    no switchport
    ip address 172.18.1.5/31
-   ip ospf network point-to-point
-   ip ospf area 0.0.0.0
+   isis enable 10
+   isis bfd
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 interface Ethernet2
    description -S- spine-2
    no switchport
    ip address 172.18.2.5/31
-   ip ospf network point-to-point
-   ip ospf area 0.0.0.0
+   isis enable 10
+   isis bfd
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 ...
 !
 interface Loopback1
    ip address 172.16.203.1/32
-   ip ospf area 0.0.0.0
+   isis enable 10
 !
 interface Loopback2
    ip address 172.17.203.1/32
-   ip ospf area 0.0.0.0
+   isis enable 10
 !
 interface Management1
 !
 ip routing
 !
-router ospf 10
-   passive-interface default
-   no passive-interface Ethernet1
-   no passive-interface Ethernet2
-   max-lsa 12000
-   router-id 23.23.23.23
+router isis 10
+   net 49.0001.0010.0100.2003.00
+   is-type level-1
+   log-adjacency-changes
+   authentication mode md5
+   authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
+   !
+   address-family ipv4 unicast
+      bfd all-interfaces
 !
 end
-leaf-3#
 leaf-3#
 ```
 
