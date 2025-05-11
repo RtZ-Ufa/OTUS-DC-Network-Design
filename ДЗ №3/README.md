@@ -49,222 +49,6 @@
 **Коммутатор spine-1**
 
 ```
-spine-1#show ip route
-
-VRF: default
-Codes: C - connected, S - static, K - kernel,
-       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
-       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
-       N2 - OSPF NSSA external type2, B - Other BGP Routes,
-       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
-       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
-       A O - OSPF Summary, NG - Nexthop Group Static Route,
-       V - VXLAN Control Service, M - Martian,
-       DH - DHCP client installed default route,
-       DP - Dynamic Policy Route, L - VRF Leaked,
-       G  - gRIBI, RC - Route Cache Route
-
-Gateway of last resort is not set
-
- C        172.16.101.1/32 is directly connected, Loopback1
- I L1     172.16.102.1/32 [115/30] via 172.18.1.1, Ethernet1
-                                   via 172.18.1.3, Ethernet2
-                                   via 172.18.1.5, Ethernet3
- I L1     172.16.201.1/32 [115/20] via 172.18.1.1, Ethernet1
- I L1     172.16.202.1/32 [115/20] via 172.18.1.3, Ethernet2
- I L1     172.16.203.1/32 [115/20] via 172.18.1.5, Ethernet3
- C        172.17.101.1/32 is directly connected, Loopback2
- I L1     172.17.102.1/32 [115/30] via 172.18.1.1, Ethernet1
-                                   via 172.18.1.3, Ethernet2
-                                   via 172.18.1.5, Ethernet3
- I L1     172.17.201.1/32 [115/20] via 172.18.1.1, Ethernet1
- I L1     172.17.202.1/32 [115/20] via 172.18.1.3, Ethernet2
- I L1     172.17.203.1/32 [115/20] via 172.18.1.5, Ethernet3
- C        172.18.1.0/31 is directly connected, Ethernet1
- C        172.18.1.2/31 is directly connected, Ethernet2
- C        172.18.1.4/31 is directly connected, Ethernet3
- I L1     172.18.2.0/31 [115/20] via 172.18.1.1, Ethernet1
- I L1     172.18.2.2/31 [115/20] via 172.18.1.3, Ethernet2
- I L1     172.18.2.4/31 [115/20] via 172.18.1.5, Ethernet3
-
-spine-1#
-```
-
-**Коммутатор spine-2**
-
-```
-spine-2#show ip route
-
-VRF: default
-Codes: C - connected, S - static, K - kernel,
-       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
-       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
-       N2 - OSPF NSSA external type2, B - Other BGP Routes,
-       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
-       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
-       A O - OSPF Summary, NG - Nexthop Group Static Route,
-       V - VXLAN Control Service, M - Martian,
-       DH - DHCP client installed default route,
-       DP - Dynamic Policy Route, L - VRF Leaked,
-       G  - gRIBI, RC - Route Cache Route
-
-Gateway of last resort is not set
-
- I L1     172.16.101.1/32 [115/30] via 172.18.2.1, Ethernet1
-                                   via 172.18.2.3, Ethernet2
-                                   via 172.18.2.5, Ethernet3
- C        172.16.102.1/32 is directly connected, Loopback1
- I L1     172.16.201.1/32 [115/20] via 172.18.2.1, Ethernet1
- I L1     172.16.202.1/32 [115/20] via 172.18.2.3, Ethernet2
- I L1     172.16.203.1/32 [115/20] via 172.18.2.5, Ethernet3
- I L1     172.17.101.1/32 [115/30] via 172.18.2.1, Ethernet1
-                                   via 172.18.2.3, Ethernet2
-                                   via 172.18.2.5, Ethernet3
- C        172.17.102.1/32 is directly connected, Loopback2
- I L1     172.17.201.1/32 [115/20] via 172.18.2.1, Ethernet1
- I L1     172.17.202.1/32 [115/20] via 172.18.2.3, Ethernet2
- I L1     172.17.203.1/32 [115/20] via 172.18.2.5, Ethernet3
- I L1     172.18.1.0/31 [115/20] via 172.18.2.1, Ethernet1
- I L1     172.18.1.2/31 [115/20] via 172.18.2.3, Ethernet2
- I L1     172.18.1.4/31 [115/20] via 172.18.2.5, Ethernet3
- C        172.18.2.0/31 is directly connected, Ethernet1
- C        172.18.2.2/31 is directly connected, Ethernet2
- C        172.18.2.4/31 is directly connected, Ethernet3
-spine-2#
-```
-
-**Коммутатор leaf-1**
-
-```
-leaf-1#show ip route
-
-VRF: default
-Codes: C - connected, S - static, K - kernel,
-       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
-       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
-       N2 - OSPF NSSA external type2, B - Other BGP Routes,
-       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
-       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
-       A O - OSPF Summary, NG - Nexthop Group Static Route,
-       V - VXLAN Control Service, M - Martian,
-       DH - DHCP client installed default route,
-       DP - Dynamic Policy Route, L - VRF Leaked,
-       G  - gRIBI, RC - Route Cache Route
-
-Gateway of last resort is not set
-
- I L1     172.16.101.1/32 [115/20] via 172.18.1.0, Ethernet1
- I L1     172.16.102.1/32 [115/20] via 172.18.2.0, Ethernet2
- C        172.16.201.1/32 is directly connected, Loopback1
- I L1     172.16.202.1/32 [115/30] via 172.18.1.0, Ethernet1
-                                   via 172.18.2.0, Ethernet2
- I L1     172.16.203.1/32 [115/30] via 172.18.1.0, Ethernet1
-                                   via 172.18.2.0, Ethernet2
- I L1     172.17.101.1/32 [115/20] via 172.18.1.0, Ethernet1
- I L1     172.17.102.1/32 [115/20] via 172.18.2.0, Ethernet2
- C        172.17.201.1/32 is directly connected, Loopback2
- I L1     172.17.202.1/32 [115/30] via 172.18.1.0, Ethernet1
-                                   via 172.18.2.0, Ethernet2
- I L1     172.17.203.1/32 [115/30] via 172.18.1.0, Ethernet1
-                                   via 172.18.2.0, Ethernet2
- C        172.18.1.0/31 is directly connected, Ethernet1
- I L1     172.18.1.2/31 [115/20] via 172.18.1.0, Ethernet1
- I L1     172.18.1.4/31 [115/20] via 172.18.1.0, Ethernet1
- C        172.18.2.0/31 is directly connected, Ethernet2
- I L1     172.18.2.2/31 [115/20] via 172.18.2.0, Ethernet2
- I L1     172.18.2.4/31 [115/20] via 172.18.2.0, Ethernet2
-leaf-1#
-```
-
-**Коммутатор leaf-2**
-
-```
-leaf-2#show ip route
-
-VRF: default
-Codes: C - connected, S - static, K - kernel,
-       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
-       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
-       N2 - OSPF NSSA external type2, B - Other BGP Routes,
-       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
-       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
-       A O - OSPF Summary, NG - Nexthop Group Static Route,
-       V - VXLAN Control Service, M - Martian,
-       DH - DHCP client installed default route,
-       DP - Dynamic Policy Route, L - VRF Leaked,
-       G  - gRIBI, RC - Route Cache Route
-
-Gateway of last resort is not set
-
- I L1     172.16.101.1/32 [115/20] via 172.18.1.2, Ethernet1
- I L1     172.16.102.1/32 [115/20] via 172.18.2.2, Ethernet2
- I L1     172.16.201.1/32 [115/30] via 172.18.1.2, Ethernet1
-                                   via 172.18.2.2, Ethernet2
- C        172.16.202.1/32 is directly connected, Loopback1
- I L1     172.16.203.1/32 [115/30] via 172.18.1.2, Ethernet1
-                                   via 172.18.2.2, Ethernet2
- I L1     172.17.101.1/32 [115/20] via 172.18.1.2, Ethernet1
- I L1     172.17.102.1/32 [115/20] via 172.18.2.2, Ethernet2
- I L1     172.17.201.1/32 [115/30] via 172.18.1.2, Ethernet1
-                                   via 172.18.2.2, Ethernet2
- C        172.17.202.1/32 is directly connected, Loopback2
- I L1     172.17.203.1/32 [115/30] via 172.18.1.2, Ethernet1
-                                   via 172.18.2.2, Ethernet2
- I L1     172.18.1.0/31 [115/20] via 172.18.1.2, Ethernet1
- C        172.18.1.2/31 is directly connected, Ethernet1
- I L1     172.18.1.4/31 [115/20] via 172.18.1.2, Ethernet1
- I L1     172.18.2.0/31 [115/20] via 172.18.2.2, Ethernet2
- C        172.18.2.2/31 is directly connected, Ethernet2
- I L1     172.18.2.4/31 [115/20] via 172.18.2.2, Ethernet2
-leaf-2#
-```
-
-**Коммутатор leaf-3**
-
-```
-leaf-3#sh ip route
-
-VRF: default
-Codes: C - connected, S - static, K - kernel,
-       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
-       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
-       N2 - OSPF NSSA external type2, B - Other BGP Routes,
-       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
-       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
-       A O - OSPF Summary, NG - Nexthop Group Static Route,
-       V - VXLAN Control Service, M - Martian,
-       DH - DHCP client installed default route,
-       DP - Dynamic Policy Route, L - VRF Leaked,
-       G  - gRIBI, RC - Route Cache Route
-
-Gateway of last resort is not set
-
- I L1     172.16.101.1/32 [115/20] via 172.18.1.4, Ethernet1
- I L1     172.16.102.1/32 [115/20] via 172.18.2.4, Ethernet2
- I L1     172.16.201.1/32 [115/30] via 172.18.1.4, Ethernet1
-                                   via 172.18.2.4, Ethernet2
- I L1     172.16.202.1/32 [115/30] via 172.18.1.4, Ethernet1
-                                   via 172.18.2.4, Ethernet2
- C        172.16.203.1/32 is directly connected, Loopback1
- I L1     172.17.101.1/32 [115/20] via 172.18.1.4, Ethernet1
- I L1     172.17.102.1/32 [115/20] via 172.18.2.4, Ethernet2
- I L1     172.17.201.1/32 [115/30] via 172.18.1.4, Ethernet1
-                                   via 172.18.2.4, Ethernet2
- I L1     172.17.202.1/32 [115/30] via 172.18.1.4, Ethernet1
-                                   via 172.18.2.4, Ethernet2
- C        172.17.203.1/32 is directly connected, Loopback2
- I L1     172.18.1.0/31 [115/20] via 172.18.1.4, Ethernet1
- I L1     172.18.1.2/31 [115/20] via 172.18.1.4, Ethernet1
- C        172.18.1.4/31 is directly connected, Ethernet1
- I L1     172.18.2.0/31 [115/20] via 172.18.2.4, Ethernet2
- I L1     172.18.2.2/31 [115/20] via 172.18.2.4, Ethernet2
- C        172.18.2.4/31 is directly connected, Ethernet2
-leaf-3#
-```
-4. Таблицы маршрутизации на коммутаторах:
-**Коммутатор spine-1**
-
-```
 spine-1#show run
 ...
 hostname spine-1
@@ -568,8 +352,223 @@ end
 leaf-3#
 ```
 
+4. Таблицы маршрутизации на коммутаторах:
 
+**Коммутатор spine-1**
 
+```
+spine-1#show ip route
+
+VRF: default
+Codes: C - connected, S - static, K - kernel,
+       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
+       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
+       N2 - OSPF NSSA external type2, B - Other BGP Routes,
+       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
+       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
+       A O - OSPF Summary, NG - Nexthop Group Static Route,
+       V - VXLAN Control Service, M - Martian,
+       DH - DHCP client installed default route,
+       DP - Dynamic Policy Route, L - VRF Leaked,
+       G  - gRIBI, RC - Route Cache Route
+
+Gateway of last resort is not set
+
+ C        172.16.101.1/32 is directly connected, Loopback1
+ I L1     172.16.102.1/32 [115/30] via 172.18.1.1, Ethernet1
+                                   via 172.18.1.3, Ethernet2
+                                   via 172.18.1.5, Ethernet3
+ I L1     172.16.201.1/32 [115/20] via 172.18.1.1, Ethernet1
+ I L1     172.16.202.1/32 [115/20] via 172.18.1.3, Ethernet2
+ I L1     172.16.203.1/32 [115/20] via 172.18.1.5, Ethernet3
+ C        172.17.101.1/32 is directly connected, Loopback2
+ I L1     172.17.102.1/32 [115/30] via 172.18.1.1, Ethernet1
+                                   via 172.18.1.3, Ethernet2
+                                   via 172.18.1.5, Ethernet3
+ I L1     172.17.201.1/32 [115/20] via 172.18.1.1, Ethernet1
+ I L1     172.17.202.1/32 [115/20] via 172.18.1.3, Ethernet2
+ I L1     172.17.203.1/32 [115/20] via 172.18.1.5, Ethernet3
+ C        172.18.1.0/31 is directly connected, Ethernet1
+ C        172.18.1.2/31 is directly connected, Ethernet2
+ C        172.18.1.4/31 is directly connected, Ethernet3
+ I L1     172.18.2.0/31 [115/20] via 172.18.1.1, Ethernet1
+ I L1     172.18.2.2/31 [115/20] via 172.18.1.3, Ethernet2
+ I L1     172.18.2.4/31 [115/20] via 172.18.1.5, Ethernet3
+
+spine-1#
+```
+
+**Коммутатор spine-2**
+
+```
+spine-2#show ip route
+
+VRF: default
+Codes: C - connected, S - static, K - kernel,
+       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
+       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
+       N2 - OSPF NSSA external type2, B - Other BGP Routes,
+       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
+       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
+       A O - OSPF Summary, NG - Nexthop Group Static Route,
+       V - VXLAN Control Service, M - Martian,
+       DH - DHCP client installed default route,
+       DP - Dynamic Policy Route, L - VRF Leaked,
+       G  - gRIBI, RC - Route Cache Route
+
+Gateway of last resort is not set
+
+ I L1     172.16.101.1/32 [115/30] via 172.18.2.1, Ethernet1
+                                   via 172.18.2.3, Ethernet2
+                                   via 172.18.2.5, Ethernet3
+ C        172.16.102.1/32 is directly connected, Loopback1
+ I L1     172.16.201.1/32 [115/20] via 172.18.2.1, Ethernet1
+ I L1     172.16.202.1/32 [115/20] via 172.18.2.3, Ethernet2
+ I L1     172.16.203.1/32 [115/20] via 172.18.2.5, Ethernet3
+ I L1     172.17.101.1/32 [115/30] via 172.18.2.1, Ethernet1
+                                   via 172.18.2.3, Ethernet2
+                                   via 172.18.2.5, Ethernet3
+ C        172.17.102.1/32 is directly connected, Loopback2
+ I L1     172.17.201.1/32 [115/20] via 172.18.2.1, Ethernet1
+ I L1     172.17.202.1/32 [115/20] via 172.18.2.3, Ethernet2
+ I L1     172.17.203.1/32 [115/20] via 172.18.2.5, Ethernet3
+ I L1     172.18.1.0/31 [115/20] via 172.18.2.1, Ethernet1
+ I L1     172.18.1.2/31 [115/20] via 172.18.2.3, Ethernet2
+ I L1     172.18.1.4/31 [115/20] via 172.18.2.5, Ethernet3
+ C        172.18.2.0/31 is directly connected, Ethernet1
+ C        172.18.2.2/31 is directly connected, Ethernet2
+ C        172.18.2.4/31 is directly connected, Ethernet3
+spine-2#
+```
+
+**Коммутатор leaf-1**
+
+```
+leaf-1#show ip route
+
+VRF: default
+Codes: C - connected, S - static, K - kernel,
+       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
+       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
+       N2 - OSPF NSSA external type2, B - Other BGP Routes,
+       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
+       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
+       A O - OSPF Summary, NG - Nexthop Group Static Route,
+       V - VXLAN Control Service, M - Martian,
+       DH - DHCP client installed default route,
+       DP - Dynamic Policy Route, L - VRF Leaked,
+       G  - gRIBI, RC - Route Cache Route
+
+Gateway of last resort is not set
+
+ I L1     172.16.101.1/32 [115/20] via 172.18.1.0, Ethernet1
+ I L1     172.16.102.1/32 [115/20] via 172.18.2.0, Ethernet2
+ C        172.16.201.1/32 is directly connected, Loopback1
+ I L1     172.16.202.1/32 [115/30] via 172.18.1.0, Ethernet1
+                                   via 172.18.2.0, Ethernet2
+ I L1     172.16.203.1/32 [115/30] via 172.18.1.0, Ethernet1
+                                   via 172.18.2.0, Ethernet2
+ I L1     172.17.101.1/32 [115/20] via 172.18.1.0, Ethernet1
+ I L1     172.17.102.1/32 [115/20] via 172.18.2.0, Ethernet2
+ C        172.17.201.1/32 is directly connected, Loopback2
+ I L1     172.17.202.1/32 [115/30] via 172.18.1.0, Ethernet1
+                                   via 172.18.2.0, Ethernet2
+ I L1     172.17.203.1/32 [115/30] via 172.18.1.0, Ethernet1
+                                   via 172.18.2.0, Ethernet2
+ C        172.18.1.0/31 is directly connected, Ethernet1
+ I L1     172.18.1.2/31 [115/20] via 172.18.1.0, Ethernet1
+ I L1     172.18.1.4/31 [115/20] via 172.18.1.0, Ethernet1
+ C        172.18.2.0/31 is directly connected, Ethernet2
+ I L1     172.18.2.2/31 [115/20] via 172.18.2.0, Ethernet2
+ I L1     172.18.2.4/31 [115/20] via 172.18.2.0, Ethernet2
+leaf-1#
+```
+
+**Коммутатор leaf-2**
+
+```
+leaf-2#show ip route
+
+VRF: default
+Codes: C - connected, S - static, K - kernel,
+       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
+       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
+       N2 - OSPF NSSA external type2, B - Other BGP Routes,
+       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
+       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
+       A O - OSPF Summary, NG - Nexthop Group Static Route,
+       V - VXLAN Control Service, M - Martian,
+       DH - DHCP client installed default route,
+       DP - Dynamic Policy Route, L - VRF Leaked,
+       G  - gRIBI, RC - Route Cache Route
+
+Gateway of last resort is not set
+
+ I L1     172.16.101.1/32 [115/20] via 172.18.1.2, Ethernet1
+ I L1     172.16.102.1/32 [115/20] via 172.18.2.2, Ethernet2
+ I L1     172.16.201.1/32 [115/30] via 172.18.1.2, Ethernet1
+                                   via 172.18.2.2, Ethernet2
+ C        172.16.202.1/32 is directly connected, Loopback1
+ I L1     172.16.203.1/32 [115/30] via 172.18.1.2, Ethernet1
+                                   via 172.18.2.2, Ethernet2
+ I L1     172.17.101.1/32 [115/20] via 172.18.1.2, Ethernet1
+ I L1     172.17.102.1/32 [115/20] via 172.18.2.2, Ethernet2
+ I L1     172.17.201.1/32 [115/30] via 172.18.1.2, Ethernet1
+                                   via 172.18.2.2, Ethernet2
+ C        172.17.202.1/32 is directly connected, Loopback2
+ I L1     172.17.203.1/32 [115/30] via 172.18.1.2, Ethernet1
+                                   via 172.18.2.2, Ethernet2
+ I L1     172.18.1.0/31 [115/20] via 172.18.1.2, Ethernet1
+ C        172.18.1.2/31 is directly connected, Ethernet1
+ I L1     172.18.1.4/31 [115/20] via 172.18.1.2, Ethernet1
+ I L1     172.18.2.0/31 [115/20] via 172.18.2.2, Ethernet2
+ C        172.18.2.2/31 is directly connected, Ethernet2
+ I L1     172.18.2.4/31 [115/20] via 172.18.2.2, Ethernet2
+leaf-2#
+```
+
+**Коммутатор leaf-3**
+
+```
+leaf-3#sh ip route
+
+VRF: default
+Codes: C - connected, S - static, K - kernel,
+       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
+       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
+       N2 - OSPF NSSA external type2, B - Other BGP Routes,
+       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
+       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
+       A O - OSPF Summary, NG - Nexthop Group Static Route,
+       V - VXLAN Control Service, M - Martian,
+       DH - DHCP client installed default route,
+       DP - Dynamic Policy Route, L - VRF Leaked,
+       G  - gRIBI, RC - Route Cache Route
+
+Gateway of last resort is not set
+
+ I L1     172.16.101.1/32 [115/20] via 172.18.1.4, Ethernet1
+ I L1     172.16.102.1/32 [115/20] via 172.18.2.4, Ethernet2
+ I L1     172.16.201.1/32 [115/30] via 172.18.1.4, Ethernet1
+                                   via 172.18.2.4, Ethernet2
+ I L1     172.16.202.1/32 [115/30] via 172.18.1.4, Ethernet1
+                                   via 172.18.2.4, Ethernet2
+ C        172.16.203.1/32 is directly connected, Loopback1
+ I L1     172.17.101.1/32 [115/20] via 172.18.1.4, Ethernet1
+ I L1     172.17.102.1/32 [115/20] via 172.18.2.4, Ethernet2
+ I L1     172.17.201.1/32 [115/30] via 172.18.1.4, Ethernet1
+                                   via 172.18.2.4, Ethernet2
+ I L1     172.17.202.1/32 [115/30] via 172.18.1.4, Ethernet1
+                                   via 172.18.2.4, Ethernet2
+ C        172.17.203.1/32 is directly connected, Loopback2
+ I L1     172.18.1.0/31 [115/20] via 172.18.1.4, Ethernet1
+ I L1     172.18.1.2/31 [115/20] via 172.18.1.4, Ethernet1
+ C        172.18.1.4/31 is directly connected, Ethernet1
+ I L1     172.18.2.0/31 [115/20] via 172.18.2.4, Ethernet2
+ I L1     172.18.2.2/31 [115/20] via 172.18.2.4, Ethernet2
+ C        172.18.2.4/31 is directly connected, Ethernet2
+leaf-3#
+```
 
 5. Проверка связности между устройствами в ISIS домене проводилась утилитой **ping**. Проверлась связность от текущего коммутатора до интерфейсов Loopback1 и Loopback2 других коммутаторов.
 
