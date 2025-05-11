@@ -460,100 +460,99 @@ spine-1#
 ```
 spine-2#ping 172.16.101.1
 PING 172.16.101.1 (172.16.101.1) 72(100) bytes of data.
-80 bytes from 172.16.101.1: icmp_seq=1 ttl=63 time=22.3 ms
-80 bytes from 172.16.101.1: icmp_seq=2 ttl=63 time=77.4 ms
-80 bytes from 172.16.101.1: icmp_seq=3 ttl=63 time=44.6 ms
-80 bytes from 172.16.101.1: icmp_seq=4 ttl=63 time=26.4 ms
-80 bytes from 172.16.101.1: icmp_seq=5 ttl=63 time=22.2 ms
+80 bytes from 172.16.101.1: icmp_seq=1 ttl=63 time=40.8 ms
+80 bytes from 172.16.101.1: icmp_seq=2 ttl=63 time=37.7 ms
+80 bytes from 172.16.101.1: icmp_seq=3 ttl=63 time=42.2 ms
+80 bytes from 172.16.101.1: icmp_seq=4 ttl=63 time=47.8 ms
+80 bytes from 172.16.101.1: icmp_seq=5 ttl=63 time=21.0 ms
 
 --- 172.16.101.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 138ms
-rtt min/avg/max/mdev = 22.244/38.637/77.469/21.094 ms, pipe 2, ipg/ewma 34.530/29.548 ms
+5 packets transmitted, 5 received, 0% packet loss, time 85ms
+rtt min/avg/max/mdev = 21.027/37.933/47.805/9.063 ms, pipe 4, ipg/ewma 21.265/39.009 ms
 spine-2#
 spine-2#ping 172.17.101.1
 PING 172.17.101.1 (172.17.101.1) 72(100) bytes of data.
-80 bytes from 172.17.101.1: icmp_seq=1 ttl=63 time=29.9 ms
-80 bytes from 172.17.101.1: icmp_seq=2 ttl=63 time=24.3 ms
-80 bytes from 172.17.101.1: icmp_seq=3 ttl=63 time=22.4 ms
-80 bytes from 172.17.101.1: icmp_seq=4 ttl=63 time=17.8 ms
-80 bytes from 172.17.101.1: icmp_seq=5 ttl=63 time=18.0 ms
+80 bytes from 172.17.101.1: icmp_seq=1 ttl=63 time=63.8 ms
+80 bytes from 172.17.101.1: icmp_seq=2 ttl=63 time=58.5 ms
+80 bytes from 172.17.101.1: icmp_seq=3 ttl=63 time=68.9 ms
+80 bytes from 172.17.101.1: icmp_seq=4 ttl=63 time=64.2 ms
+80 bytes from 172.17.101.1: icmp_seq=5 ttl=63 time=62.7 ms
 
 --- 172.17.101.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 84ms
-rtt min/avg/max/mdev = 17.893/22.522/29.916/4.465 ms, pipe 3, ipg/ewma 21.032/25.932 ms
+5 packets transmitted, 5 received, 0% packet loss, time 49ms
+rtt min/avg/max/mdev = 58.566/63.676/68.956/3.335 ms, pipe 5, ipg/ewma 12.486/63.800 ms
 spine-2#
 spine-2#ping 172.16.201.1
 PING 172.16.201.1 (172.16.201.1) 72(100) bytes of data.
-80 bytes from 172.16.201.1: icmp_seq=1 ttl=64 time=10.2 ms
-80 bytes from 172.16.201.1: icmp_seq=2 ttl=64 time=7.65 ms
-80 bytes from 172.16.201.1: icmp_seq=3 ttl=64 time=8.10 ms
-80 bytes from 172.16.201.1: icmp_seq=4 ttl=64 time=9.14 ms
-80 bytes from 172.16.201.1: icmp_seq=5 ttl=64 time=9.53 ms
+80 bytes from 172.16.201.1: icmp_seq=1 ttl=64 time=14.6 ms
+80 bytes from 172.16.201.1: icmp_seq=2 ttl=64 time=15.5 ms
+80 bytes from 172.16.201.1: icmp_seq=3 ttl=64 time=14.8 ms
+80 bytes from 172.16.201.1: icmp_seq=4 ttl=64 time=10.4 ms
+80 bytes from 172.16.201.1: icmp_seq=5 ttl=64 time=15.6 ms
 
 --- 172.16.201.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 56ms
-rtt min/avg/max/mdev = 7.652/8.947/10.297/0.961 ms, ipg/ewma 14.099/9.644 ms
+5 packets transmitted, 5 received, 0% packet loss, time 65ms
+rtt min/avg/max/mdev = 10.405/14.208/15.645/1.945 ms, pipe 2, ipg/ewma 16.445/14.384 ms
 spine-2#
 spine-2#ping 172.17.201.1
 PING 172.17.201.1 (172.17.201.1) 72(100) bytes of data.
-80 bytes from 172.17.201.1: icmp_seq=1 ttl=64 time=9.63 ms
-80 bytes from 172.17.201.1: icmp_seq=2 ttl=64 time=8.45 ms
-80 bytes from 172.17.201.1: icmp_seq=3 ttl=64 time=12.5 ms
-80 bytes from 172.17.201.1: icmp_seq=4 ttl=64 time=13.9 ms
-80 bytes from 172.17.201.1: icmp_seq=5 ttl=64 time=15.2 ms
+80 bytes from 172.17.201.1: icmp_seq=1 ttl=64 time=9.76 ms
+80 bytes from 172.17.201.1: icmp_seq=2 ttl=64 time=15.8 ms
+80 bytes from 172.17.201.1: icmp_seq=3 ttl=64 time=11.9 ms
+80 bytes from 172.17.201.1: icmp_seq=4 ttl=64 time=14.1 ms
+80 bytes from 172.17.201.1: icmp_seq=5 ttl=64 time=9.14 ms
 
 --- 172.17.201.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 48ms
-rtt min/avg/max/mdev = 8.454/11.975/15.278/2.567 ms, pipe 2, ipg/ewma 12.020/10.992 ms
+5 packets transmitted, 5 received, 0% packet loss, time 59ms
+rtt min/avg/max/mdev = 9.143/12.156/15.827/2.545 ms, pipe 2, ipg/ewma 14.946/10.876 ms
 spine-2#
 spine-2#ping 172.16.202.1
 PING 172.16.202.1 (172.16.202.1) 72(100) bytes of data.
-80 bytes from 172.16.202.1: icmp_seq=1 ttl=64 time=10.0 ms
-80 bytes from 172.16.202.1: icmp_seq=2 ttl=64 time=8.34 ms
-80 bytes from 172.16.202.1: icmp_seq=3 ttl=64 time=8.59 ms
-80 bytes from 172.16.202.1: icmp_seq=4 ttl=64 time=7.83 ms
-80 bytes from 172.16.202.1: icmp_seq=5 ttl=64 time=8.06 ms
+80 bytes from 172.16.202.1: icmp_seq=1 ttl=64 time=11.3 ms
+80 bytes from 172.16.202.1: icmp_seq=2 ttl=64 time=19.5 ms
+80 bytes from 172.16.202.1: icmp_seq=3 ttl=64 time=14.7 ms
+80 bytes from 172.16.202.1: icmp_seq=4 ttl=64 time=11.3 ms
+80 bytes from 172.16.202.1: icmp_seq=5 ttl=64 time=7.53 ms
 
 --- 172.16.202.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 61ms
-rtt min/avg/max/mdev = 7.831/8.574/10.038/0.780 ms, ipg/ewma 15.409/9.270 ms
+5 packets transmitted, 5 received, 0% packet loss, time 64ms
+rtt min/avg/max/mdev = 7.535/12.909/19.514/4.016 ms, pipe 2, ipg/ewma 16.004/11.902 ms
 spine-2#
 spine-2#ping 172.17.202.1
 PING 172.17.202.1 (172.17.202.1) 72(100) bytes of data.
-80 bytes from 172.17.202.1: icmp_seq=1 ttl=64 time=9.53 ms
-80 bytes from 172.17.202.1: icmp_seq=2 ttl=64 time=8.99 ms
-80 bytes from 172.17.202.1: icmp_seq=3 ttl=64 time=8.01 ms
-80 bytes from 172.17.202.1: icmp_seq=4 ttl=64 time=7.98 ms
-80 bytes from 172.17.202.1: icmp_seq=5 ttl=64 time=8.86 ms
+80 bytes from 172.17.202.1: icmp_seq=1 ttl=64 time=12.4 ms
+80 bytes from 172.17.202.1: icmp_seq=2 ttl=64 time=13.1 ms
+80 bytes from 172.17.202.1: icmp_seq=3 ttl=64 time=9.37 ms
+80 bytes from 172.17.202.1: icmp_seq=4 ttl=64 time=8.13 ms
+80 bytes from 172.17.202.1: icmp_seq=5 ttl=64 time=10.2 ms
 
 --- 172.17.202.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 48ms
-rtt min/avg/max/mdev = 7.986/8.679/9.539/0.607 ms, ipg/ewma 12.101/9.093 ms
+5 packets transmitted, 5 received, 0% packet loss, time 59ms
+rtt min/avg/max/mdev = 8.131/10.661/13.163/1.882 ms, pipe 2, ipg/ewma 14.762/11.452 ms
 spine-2#
 spine-2#ping 172.16.203.1
 PING 172.16.203.1 (172.16.203.1) 72(100) bytes of data.
-80 bytes from 172.16.203.1: icmp_seq=1 ttl=64 time=14.2 ms
-80 bytes from 172.16.203.1: icmp_seq=2 ttl=64 time=10.6 ms
-80 bytes from 172.16.203.1: icmp_seq=3 ttl=64 time=9.27 ms
-80 bytes from 172.16.203.1: icmp_seq=4 ttl=64 time=7.24 ms
-80 bytes from 172.16.203.1: icmp_seq=5 ttl=64 time=16.5 ms
+80 bytes from 172.16.203.1: icmp_seq=1 ttl=64 time=11.5 ms
+80 bytes from 172.16.203.1: icmp_seq=2 ttl=64 time=15.0 ms
+80 bytes from 172.16.203.1: icmp_seq=3 ttl=64 time=20.4 ms
+80 bytes from 172.16.203.1: icmp_seq=4 ttl=64 time=15.1 ms
+80 bytes from 172.16.203.1: icmp_seq=5 ttl=64 time=23.5 ms
 
 --- 172.16.203.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 64ms
-rtt min/avg/max/mdev = 7.245/11.599/16.525/3.370 ms, ipg/ewma 16.171/13.016 ms
+5 packets transmitted, 5 received, 0% packet loss, time 59ms
+rtt min/avg/max/mdev = 11.575/17.167/23.509/4.259 ms, pipe 2, ipg/ewma 14.792/14.608 ms
 spine-2#
 spine-2#ping 172.17.203.1
 PING 172.17.203.1 (172.17.203.1) 72(100) bytes of data.
-80 bytes from 172.17.203.1: icmp_seq=1 ttl=64 time=9.98 ms
-80 bytes from 172.17.203.1: icmp_seq=2 ttl=64 time=19.1 ms
-80 bytes from 172.17.203.1: icmp_seq=3 ttl=64 time=17.4 ms
-80 bytes from 172.17.203.1: icmp_seq=4 ttl=64 time=8.93 ms
-80 bytes from 172.17.203.1: icmp_seq=5 ttl=64 time=8.76 ms
+80 bytes from 172.17.203.1: icmp_seq=1 ttl=64 time=12.1 ms
+80 bytes from 172.17.203.1: icmp_seq=2 ttl=64 time=10.4 ms
+80 bytes from 172.17.203.1: icmp_seq=3 ttl=64 time=11.1 ms
+80 bytes from 172.17.203.1: icmp_seq=4 ttl=64 time=7.78 ms
+80 bytes from 172.17.203.1: icmp_seq=5 ttl=64 time=8.23 ms
 
 --- 172.17.203.1 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 58ms
-rtt min/avg/max/mdev = 8.767/12.870/19.188/4.514 ms, pipe 2, ipg/ewma 14.707/11.203 ms
-spine-2#
+5 packets transmitted, 5 received, 0% packet loss, time 60ms
+rtt min/avg/max/mdev = 7.780/9.943/12.121/1.678 ms, ipg/ewma 15.071/10.925 ms
 spine-2#
 ```
 
