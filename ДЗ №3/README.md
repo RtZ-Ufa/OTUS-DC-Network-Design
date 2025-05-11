@@ -530,7 +530,7 @@ leaf-2#
 **Коммутатор leaf-3**
 
 ```
-leaf-3#sh ip route
+leaf-3#show ip route
 
 VRF: default
 Codes: C - connected, S - static, K - kernel,
@@ -570,7 +570,70 @@ Gateway of last resort is not set
 leaf-3#
 ```
 
-5. Проверка связности между устройствами в ISIS домене проводилась утилитой **ping**. Проверлась связность от текущего коммутатора до интерфейсов Loopback1 и Loopback2 других коммутаторов.
+5. Таблицы соседства в ISIS:
+
+**Коммутатор spine-1**
+
+```
+spine-1#show isis neighbors
+
+Instance  VRF      System Id        Type Interface          SNPA              State Hold time   Circuit Id
+10        default  leaf-1           L1   Ethernet1          P2P               UP    26          0F
+10        default  leaf-2           L1   Ethernet2          P2P               UP    28          0F
+10        default  leaf-3           L1   Ethernet3          P2P               UP    26          0F
+spine-1# 
+```
+
+**Коммутатор spine-2**
+
+```
+spine-2#sh isis neighbors
+
+Instance  VRF      System Id        Type Interface          SNPA              State Hold time   Circuit Id
+10        default  leaf-1           L1   Ethernet1          P2P               UP    27          10
+10        default  leaf-2           L1   Ethernet2          P2P               UP    23          10
+10        default  leaf-3           L1   Ethernet3          P2P               UP    26          10
+spine-2#
+```
+
+**Коммутатор leaf-1**
+
+```
+leaf-1#show isis neighbors
+
+Instance  VRF      System Id        Type Interface          SNPA              State Hold time   Circuit Id
+10        default  spine-1          L1   Ethernet1          P2P               UP    27          0F
+10        default  spine-2          L1   Ethernet2          P2P               UP    25          0F
+leaf-1#
+```
+
+**Коммутатор leaf-2**
+
+```
+leaf-2#show isis neighbors
+
+Instance  VRF      System Id        Type Interface          SNPA              State Hold time   Circuit Id
+10        default  spine-1          L1   Ethernet1          P2P               UP    27          10
+10        default  spine-2          L1   Ethernet2          P2P               UP    26          10
+leaf-2#
+```
+
+**Коммутатор leaf-3**
+
+```
+leaf-3#show isis neighbors
+
+Instance  VRF      System Id        Type Interface          SNPA              State Hold time   Circuit Id
+10        default  spine-1          L1   Ethernet1          P2P               UP    29          11
+10        default  spine-2          L1   Ethernet2          P2P               UP    28          11
+leaf-3#
+```
+
+
+
+
+
+6. Проверка связности между устройствами в ISIS домене проводилась утилитой **ping**. Проверлась связность от текущего коммутатора до интерфейсов Loopback1 и Loopback2 других коммутаторов.
 
 **Коммутатор spine-1**
 
