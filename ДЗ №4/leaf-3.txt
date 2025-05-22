@@ -1,0 +1,17 @@
+conf t
+router bgp 65003
+router-id 23.23.23.23
+timers bgp 3 9
+neighbor SPINES remote-as 65000
+neighbor SPINES bfd
+neighbor SPINES password secret
+neighbor 172.18.1.4 peer group SPINES
+neighbor 172.18.2.4 peer group SPINES
+redistribute connected route-map RM_REDIS_CON
+
+route-map RM_REDIS_CON permit 10
+match ip address prefix-list LOOPBACKS
+
+ip prefix-list LOOPBACKS
+seq 10 permit 172.16.203.1/32
+seq 20 permit 172.17.203.1/32
