@@ -44,14 +44,24 @@
 |leaf-3    |L01        |172.16.203.1/32 |              |
 |leaf-3    |L02        |172.17.203.1/32|              |
 
-Для коммутаторов spine выбрана AS 65000, для коммутаторов leaf - соответственно по их номерам 650001, 65002, 65003. При добавлениии новых leaf нумерация будет продолжаться.
-3. Настройки BGP приложены в файлах leaf-x.txt и spine-x.txt (базовые настройки приведены в ДЗ №1). Далее выборочно приведены настройки оборудования:
+Для коммутаторов spine выбрана AS 65000, для коммутаторов leaf - соответственно по их номерам 650001, 65002, 65003. 
+3. Далее приведены настройки оборудования:
 
 **Коммутатор spine-1**
 
 ```
 spine-1#show run
-...
+! Command: show running-config
+! device: spine-1 (vEOS-lab, EOS-4.29.2F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model ribd
+!
 hostname spine-1
 !
 spanning-tree mode mstp
@@ -60,65 +70,77 @@ interface Ethernet1
    description -L- leaf-1
    no switchport
    ip address 172.18.1.0/31
-   isis enable 10
-   isis bfd
-   isis network point-to-point
-   isis authentication mode md5
-   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 interface Ethernet2
    description -L- leaf-2
    no switchport
    ip address 172.18.1.2/31
-   isis enable 10
-   isis bfd
-   isis network point-to-point
-   isis authentication mode md5
-   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 interface Ethernet3
    description -L- leaf-3
    no switchport
    ip address 172.18.1.4/31
-   isis enable 10
-   isis bfd
-   isis network point-to-point
-   isis authentication mode md5
-   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
-...
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+!
+interface Ethernet8
 !
 interface Loopback1
    ip address 172.16.101.1/32
-   isis enable 10
 !
 interface Loopback2
    ip address 172.17.101.1/32
-   isis enable 10
 !
 interface Management1
 !
 ip routing
 !
-router isis 10
-   net 49.0001.0010.0100.1001.00
-   is-type level-1
-   log-adjacency-changes
-   authentication mode md5
-   authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
-   !
-   address-family ipv4 unicast
-      bfd all-interfaces
+ip prefix-list CONN
+   seq 10 permit 172.16.101.1/32
+   seq 20 permit 172.17.101.1/32
+!
+route-map RM_REDIS_CON permit 10
+   match ip address prefix-list CONN
+!
+peer-filter LEAFS
+   10 match as-range 65001-65003 result accept
+!
+router bgp 65000
+   router-id 172.16.101.1
+   timers bgp 3 9
+   maximum-paths 10 ecmp 10
+   bgp listen range 172.18.1.0/29 peer-group LEAFS peer-filter LEAFS
+   neighbor LEAFS peer group
+   neighbor LEAFS bfd
+   neighbor LEAFS rib-in pre-policy retain all
+   neighbor LEAFS password 7 skKfl6dln+E/VW/K6tgrNw==
+   neighbor LEAFS send-community
+   redistribute connected route-map RM_REDIS_CON
 !
 end
-spine-1#
 ```
 
 **Коммутатор spine-2**
 
 ```
 spine-2#show run
-...
+! Command: show running-config
+! device: spine-2 (vEOS-lab, EOS-4.29.2F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model ribd
+!
 hostname spine-2
 !
 spanning-tree mode mstp
@@ -127,58 +149,60 @@ interface Ethernet1
    description -L- leaf-1
    no switchport
    ip address 172.18.2.0/31
-   isis enable 10
-   isis bfd
-   isis network point-to-point
-   isis authentication mode md5
-   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 interface Ethernet2
    description -L- leaf-2
    no switchport
    ip address 172.18.2.2/31
-   isis enable 10
-   isis bfd
-   isis network point-to-point
-   isis authentication mode md5
-   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 interface Ethernet3
    description -L- leaf-3
    no switchport
    ip address 172.18.2.4/31
-   isis enable 10
-   isis bfd
-   isis network point-to-point
-   isis authentication mode md5
-   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
-...
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+!
+interface Ethernet8
 !
 interface Loopback1
    ip address 172.16.102.1/32
-   isis enable 10
 !
 interface Loopback2
    ip address 172.17.102.1/32
-   isis enable 10
 !
 interface Management1
 !
 ip routing
 !
-router isis 10
-   net 49.0001.0010.0100.1002.00
-   is-type level-1
-   log-adjacency-changes
-   authentication mode md5
-   authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
-   !
-   address-family ipv4 unicast
-      bfd all-interfaces
+ip prefix-list CONN
+   seq 10 permit 172.16.102.1/32
+   seq 20 permit 172.17.102.1/32
+!
+route-map RM_REDIS_CON permit 10
+   match ip address prefix-list CONN
+!
+peer-filter LEAFS
+   10 match as-range 65001-65003 result accept
+!
+router bgp 65000
+   router-id 172.16.102.1
+   timers bgp 3 9
+   maximum-paths 10 ecmp 10
+   bgp listen range 172.18.2.0/29 peer-group LEAFS peer-filter LEAFS
+   neighbor LEAFS peer group
+   neighbor LEAFS bfd
+   neighbor LEAFS rib-in pre-policy retain all
+   neighbor LEAFS password 7 skKfl6dln+E/VW/K6tgrNw==
+   neighbor LEAFS send-community
+   redistribute connected route-map RM_REDIS_CON
 !
 end
-spine-2#
 ```
 
 **Коммутатор leaf-1**
@@ -186,7 +210,17 @@ spine-2#
 ```
 leaf-1#
 leaf-1#show run
-...
+! Command: show running-config
+! device: leaf-1 (vEOS-lab, EOS-4.29.2F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model ribd
+!
 hostname leaf-1
 !
 spanning-tree mode mstp
@@ -195,55 +229,72 @@ interface Ethernet1
    description -S- spine-1
    no switchport
    ip address 172.18.1.1/31
-   isis enable 10
-   isis bfd
-   isis network point-to-point
-   isis authentication mode md5
-   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 interface Ethernet2
    description -S- spine-2
    no switchport
    ip address 172.18.2.1/31
-   isis enable 10
-   isis bfd
-   isis network point-to-point
-   isis authentication mode md5
-   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
-...
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+!
+interface Ethernet8
 !
 interface Loopback1
    ip address 172.16.201.1/32
-   isis enable 10
 !
 interface Loopback2
    ip address 172.17.201.1/32
-   isis enable 10
 !
 interface Management1
 !
 ip routing
 !
-router isis 10
-   net 49.0001.0010.0100.2001.00
-   is-type level-1
-   log-adjacency-changes
-   authentication mode md5
-   authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
-   !
-   address-family ipv4 unicast
-      bfd all-interfaces
+ip prefix-list CONN
+   seq 10 permit 172.16.201.1/32
+   seq 20 permit 172.17.201.1/32
+!
+route-map RM_REDIS_CON permit 10
+   match ip address prefix-list CONN
+!
+router bgp 65001
+   router-id 172.16.201.1
+   timers bgp 3 9
+   neighbor SPINES peer group
+   neighbor SPINES remote-as 65000
+   neighbor SPINES bfd
+   neighbor SPINES rib-in pre-policy retain all
+   neighbor SPINES password 7 UOrcqiCh5kkkfKGYimEUfw==
+   neighbor SPINES send-community
+   neighbor 172.18.1.0 peer group SPINES
+   neighbor 172.18.2.0 peer group SPINES
+   redistribute connected route-map RM_REDIS_CON
 !
 end
-leaf-1#
 ```
 
 **Коммутатор leaf-2**
 
 ```
 leaf-2#show run
-...
+! Command: show running-config
+! device: leaf-2 (vEOS-lab, EOS-4.29.2F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model ribd
+!
 hostname leaf-2
 !
 spanning-tree mode mstp
@@ -252,55 +303,72 @@ interface Ethernet1
    description -S- spine-1
    no switchport
    ip address 172.18.1.3/31
-   isis enable 10
-   isis bfd
-   isis network point-to-point
-   isis authentication mode md5
-   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 interface Ethernet2
    description -S- spine-2
    no switchport
    ip address 172.18.2.3/31
-   isis enable 10
-   isis bfd
-   isis network point-to-point
-   isis authentication mode md5
-   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
-...
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+!
+interface Ethernet8
 !
 interface Loopback1
    ip address 172.16.202.1/32
-   isis enable 10
 !
 interface Loopback2
    ip address 172.17.202.1/32
-   isis enable 10
 !
 interface Management1
 !
 ip routing
 !
-router isis 10
-   net 49.0001.0010.0100.2002.00
-   is-type level-1
-   log-adjacency-changes
-   authentication mode md5
-   authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
-   !
-   address-family ipv4 unicast
-      bfd all-interfaces
+ip prefix-list CONN
+   seq 10 permit 172.16.202.1/32
+   seq 20 permit 172.17.202.1/32
+!
+route-map RM_REDIS_CON permit 10
+   match ip address prefix-list CONN
+!
+router bgp 65002
+   router-id 172.16.202.1
+   timers bgp 3 9
+   neighbor SPINES peer group
+   neighbor SPINES remote-as 65000
+   neighbor SPINES bfd
+   neighbor SPINES rib-in pre-policy retain all
+   neighbor SPINES password 7 UOrcqiCh5kkkfKGYimEUfw==
+   neighbor SPINES send-community
+   neighbor 172.18.1.2 peer group SPINES
+   neighbor 172.18.2.2 peer group SPINES
+   redistribute connected route-map RM_REDIS_CON
 !
 end
-leaf-2#
 ```
 
 **Коммутатор leaf-3**
 
 ```
 leaf-3#show run
-...
+! Command: show running-config
+! device: leaf-3 (vEOS-lab, EOS-4.29.2F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model ribd
+!
 hostname leaf-3
 !
 spanning-tree mode mstp
@@ -309,48 +377,55 @@ interface Ethernet1
    description -S- spine-1
    no switchport
    ip address 172.18.1.5/31
-   isis enable 10
-   isis bfd
-   isis network point-to-point
-   isis authentication mode md5
-   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
 interface Ethernet2
    description -S- spine-2
    no switchport
    ip address 172.18.2.5/31
-   isis enable 10
-   isis bfd
-   isis network point-to-point
-   isis authentication mode md5
-   isis authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
 !
-...
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+!
+interface Ethernet8
 !
 interface Loopback1
    ip address 172.16.203.1/32
-   isis enable 10
 !
 interface Loopback2
    ip address 172.17.203.1/32
-   isis enable 10
 !
 interface Management1
 !
 ip routing
 !
-router isis 10
-   net 49.0001.0010.0100.2003.00
-   is-type level-1
-   log-adjacency-changes
-   authentication mode md5
-   authentication key 7 bMtaY5EaFQ/hSDpSm56UHg==
-   !
-   address-family ipv4 unicast
-      bfd all-interfaces
+ip prefix-list CONN
+   seq 10 permit 172.16.203.1/32
+   seq 20 permit 172.17.203.1/32
+!
+route-map RM_REDIS_CON permit 10
+   match ip address prefix-list CONN
+!
+router bgp 65003
+   router-id 172.16.203.1
+   timers bgp 3 9
+   neighbor SPINES peer group
+   neighbor SPINES remote-as 65000
+   neighbor SPINES bfd
+   neighbor SPINES rib-in pre-policy retain all
+   neighbor SPINES password 7 UOrcqiCh5kkkfKGYimEUfw==
+   neighbor SPINES send-community
+   neighbor 172.18.1.4 peer group SPINES
+   neighbor 172.18.2.4 peer group SPINES
+   redistribute connected route-map RM_REDIS_CON
 !
 end
-leaf-3#
 ```
 
 4. Таблицы маршрутизации на коммутаторах:
