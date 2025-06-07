@@ -433,7 +433,7 @@ end
 **Коммутатор spine-1**
 
 ```
-spine-1#show ip route
+spine-1#show  ip route
 
 VRF: default
 Codes: C - connected, S - static, K - kernel,
@@ -451,25 +451,16 @@ Codes: C - connected, S - static, K - kernel,
 Gateway of last resort is not set
 
  C        172.16.101.1/32 is directly connected, Loopback1
- I L1     172.16.102.1/32 [115/30] via 172.18.1.1, Ethernet1
-                                   via 172.18.1.3, Ethernet2
-                                   via 172.18.1.5, Ethernet3
- I L1     172.16.201.1/32 [115/20] via 172.18.1.1, Ethernet1
- I L1     172.16.202.1/32 [115/20] via 172.18.1.3, Ethernet2
- I L1     172.16.203.1/32 [115/20] via 172.18.1.5, Ethernet3
+ B E      172.16.201.1/32 [200/0] via 172.18.1.1, Ethernet1
+ B E      172.16.202.1/32 [200/0] via 172.18.1.3, Ethernet2
+ B E      172.16.203.1/32 [200/0] via 172.18.1.5, Ethernet3
  C        172.17.101.1/32 is directly connected, Loopback2
- I L1     172.17.102.1/32 [115/30] via 172.18.1.1, Ethernet1
-                                   via 172.18.1.3, Ethernet2
-                                   via 172.18.1.5, Ethernet3
- I L1     172.17.201.1/32 [115/20] via 172.18.1.1, Ethernet1
- I L1     172.17.202.1/32 [115/20] via 172.18.1.3, Ethernet2
- I L1     172.17.203.1/32 [115/20] via 172.18.1.5, Ethernet3
+ B E      172.17.201.1/32 [200/0] via 172.18.1.1, Ethernet1
+ B E      172.17.202.1/32 [200/0] via 172.18.1.3, Ethernet2
+ B E      172.17.203.1/32 [200/0] via 172.18.1.5, Ethernet3
  C        172.18.1.0/31 is directly connected, Ethernet1
  C        172.18.1.2/31 is directly connected, Ethernet2
  C        172.18.1.4/31 is directly connected, Ethernet3
- I L1     172.18.2.0/31 [115/20] via 172.18.1.1, Ethernet1
- I L1     172.18.2.2/31 [115/20] via 172.18.1.3, Ethernet2
- I L1     172.18.2.4/31 [115/20] via 172.18.1.5, Ethernet3
 
 spine-1#
 ```
@@ -477,7 +468,7 @@ spine-1#
 **Коммутатор spine-2**
 
 ```
-spine-2#show ip route
+spine-2#sh ip route
 
 VRF: default
 Codes: C - connected, S - static, K - kernel,
@@ -494,26 +485,18 @@ Codes: C - connected, S - static, K - kernel,
 
 Gateway of last resort is not set
 
- I L1     172.16.101.1/32 [115/30] via 172.18.2.1, Ethernet1
-                                   via 172.18.2.3, Ethernet2
-                                   via 172.18.2.5, Ethernet3
  C        172.16.102.1/32 is directly connected, Loopback1
- I L1     172.16.201.1/32 [115/20] via 172.18.2.1, Ethernet1
- I L1     172.16.202.1/32 [115/20] via 172.18.2.3, Ethernet2
- I L1     172.16.203.1/32 [115/20] via 172.18.2.5, Ethernet3
- I L1     172.17.101.1/32 [115/30] via 172.18.2.1, Ethernet1
-                                   via 172.18.2.3, Ethernet2
-                                   via 172.18.2.5, Ethernet3
+ B E      172.16.201.1/32 [200/0] via 172.18.2.1, Ethernet1
+ B E      172.16.202.1/32 [200/0] via 172.18.2.3, Ethernet2
+ B E      172.16.203.1/32 [200/0] via 172.18.2.5, Ethernet3
  C        172.17.102.1/32 is directly connected, Loopback2
- I L1     172.17.201.1/32 [115/20] via 172.18.2.1, Ethernet1
- I L1     172.17.202.1/32 [115/20] via 172.18.2.3, Ethernet2
- I L1     172.17.203.1/32 [115/20] via 172.18.2.5, Ethernet3
- I L1     172.18.1.0/31 [115/20] via 172.18.2.1, Ethernet1
- I L1     172.18.1.2/31 [115/20] via 172.18.2.3, Ethernet2
- I L1     172.18.1.4/31 [115/20] via 172.18.2.5, Ethernet3
+ B E      172.17.201.1/32 [200/0] via 172.18.2.1, Ethernet1
+ B E      172.17.202.1/32 [200/0] via 172.18.2.3, Ethernet2
+ B E      172.17.203.1/32 [200/0] via 172.18.2.5, Ethernet3
  C        172.18.2.0/31 is directly connected, Ethernet1
  C        172.18.2.2/31 is directly connected, Ethernet2
  C        172.18.2.4/31 is directly connected, Ethernet3
+
 spine-2#
 ```
 
@@ -537,33 +520,26 @@ Codes: C - connected, S - static, K - kernel,
 
 Gateway of last resort is not set
 
- I L1     172.16.101.1/32 [115/20] via 172.18.1.0, Ethernet1
- I L1     172.16.102.1/32 [115/20] via 172.18.2.0, Ethernet2
+ B E      172.16.101.1/32 [200/0] via 172.18.1.0, Ethernet1
+ B E      172.16.102.1/32 [200/0] via 172.18.2.0, Ethernet2
  C        172.16.201.1/32 is directly connected, Loopback1
- I L1     172.16.202.1/32 [115/30] via 172.18.1.0, Ethernet1
-                                   via 172.18.2.0, Ethernet2
- I L1     172.16.203.1/32 [115/30] via 172.18.1.0, Ethernet1
-                                   via 172.18.2.0, Ethernet2
- I L1     172.17.101.1/32 [115/20] via 172.18.1.0, Ethernet1
- I L1     172.17.102.1/32 [115/20] via 172.18.2.0, Ethernet2
+ B E      172.16.202.1/32 [200/0] via 172.18.1.0, Ethernet1
+ B E      172.16.203.1/32 [200/0] via 172.18.1.0, Ethernet1
+ B E      172.17.101.1/32 [200/0] via 172.18.1.0, Ethernet1
+ B E      172.17.102.1/32 [200/0] via 172.18.2.0, Ethernet2
  C        172.17.201.1/32 is directly connected, Loopback2
- I L1     172.17.202.1/32 [115/30] via 172.18.1.0, Ethernet1
-                                   via 172.18.2.0, Ethernet2
- I L1     172.17.203.1/32 [115/30] via 172.18.1.0, Ethernet1
-                                   via 172.18.2.0, Ethernet2
+ B E      172.17.202.1/32 [200/0] via 172.18.1.0, Ethernet1
+ B E      172.17.203.1/32 [200/0] via 172.18.1.0, Ethernet1
  C        172.18.1.0/31 is directly connected, Ethernet1
- I L1     172.18.1.2/31 [115/20] via 172.18.1.0, Ethernet1
- I L1     172.18.1.4/31 [115/20] via 172.18.1.0, Ethernet1
  C        172.18.2.0/31 is directly connected, Ethernet2
- I L1     172.18.2.2/31 [115/20] via 172.18.2.0, Ethernet2
- I L1     172.18.2.4/31 [115/20] via 172.18.2.0, Ethernet2
+
 leaf-1#
 ```
 
 **Коммутатор leaf-2**
 
 ```
-leaf-2#show ip route
+leaf-2#sh ip route
 
 VRF: default
 Codes: C - connected, S - static, K - kernel,
@@ -580,26 +556,19 @@ Codes: C - connected, S - static, K - kernel,
 
 Gateway of last resort is not set
 
- I L1     172.16.101.1/32 [115/20] via 172.18.1.2, Ethernet1
- I L1     172.16.102.1/32 [115/20] via 172.18.2.2, Ethernet2
- I L1     172.16.201.1/32 [115/30] via 172.18.1.2, Ethernet1
-                                   via 172.18.2.2, Ethernet2
+ B E      172.16.101.1/32 [200/0] via 172.18.1.2, Ethernet1
+ B E      172.16.102.1/32 [200/0] via 172.18.2.2, Ethernet2
+ B E      172.16.201.1/32 [200/0] via 172.18.1.2, Ethernet1
  C        172.16.202.1/32 is directly connected, Loopback1
- I L1     172.16.203.1/32 [115/30] via 172.18.1.2, Ethernet1
-                                   via 172.18.2.2, Ethernet2
- I L1     172.17.101.1/32 [115/20] via 172.18.1.2, Ethernet1
- I L1     172.17.102.1/32 [115/20] via 172.18.2.2, Ethernet2
- I L1     172.17.201.1/32 [115/30] via 172.18.1.2, Ethernet1
-                                   via 172.18.2.2, Ethernet2
+ B E      172.16.203.1/32 [200/0] via 172.18.1.2, Ethernet1
+ B E      172.17.101.1/32 [200/0] via 172.18.1.2, Ethernet1
+ B E      172.17.102.1/32 [200/0] via 172.18.2.2, Ethernet2
+ B E      172.17.201.1/32 [200/0] via 172.18.1.2, Ethernet1
  C        172.17.202.1/32 is directly connected, Loopback2
- I L1     172.17.203.1/32 [115/30] via 172.18.1.2, Ethernet1
-                                   via 172.18.2.2, Ethernet2
- I L1     172.18.1.0/31 [115/20] via 172.18.1.2, Ethernet1
+ B E      172.17.203.1/32 [200/0] via 172.18.1.2, Ethernet1
  C        172.18.1.2/31 is directly connected, Ethernet1
- I L1     172.18.1.4/31 [115/20] via 172.18.1.2, Ethernet1
- I L1     172.18.2.0/31 [115/20] via 172.18.2.2, Ethernet2
  C        172.18.2.2/31 is directly connected, Ethernet2
- I L1     172.18.2.4/31 [115/20] via 172.18.2.2, Ethernet2
+
 leaf-2#
 ```
 
@@ -623,172 +592,23 @@ Codes: C - connected, S - static, K - kernel,
 
 Gateway of last resort is not set
 
- I L1     172.16.101.1/32 [115/20] via 172.18.1.4, Ethernet1
- I L1     172.16.102.1/32 [115/20] via 172.18.2.4, Ethernet2
- I L1     172.16.201.1/32 [115/30] via 172.18.1.4, Ethernet1
-                                   via 172.18.2.4, Ethernet2
- I L1     172.16.202.1/32 [115/30] via 172.18.1.4, Ethernet1
-                                   via 172.18.2.4, Ethernet2
+ B E      172.16.101.1/32 [200/0] via 172.18.1.4, Ethernet1
+ B E      172.16.102.1/32 [200/0] via 172.18.2.4, Ethernet2
+ B E      172.16.201.1/32 [200/0] via 172.18.1.4, Ethernet1
+ B E      172.16.202.1/32 [200/0] via 172.18.1.4, Ethernet1
  C        172.16.203.1/32 is directly connected, Loopback1
- I L1     172.17.101.1/32 [115/20] via 172.18.1.4, Ethernet1
- I L1     172.17.102.1/32 [115/20] via 172.18.2.4, Ethernet2
- I L1     172.17.201.1/32 [115/30] via 172.18.1.4, Ethernet1
-                                   via 172.18.2.4, Ethernet2
- I L1     172.17.202.1/32 [115/30] via 172.18.1.4, Ethernet1
-                                   via 172.18.2.4, Ethernet2
+ B E      172.17.101.1/32 [200/0] via 172.18.1.4, Ethernet1
+ B E      172.17.102.1/32 [200/0] via 172.18.2.4, Ethernet2
+ B E      172.17.201.1/32 [200/0] via 172.18.1.4, Ethernet1
+ B E      172.17.202.1/32 [200/0] via 172.18.1.4, Ethernet1
  C        172.17.203.1/32 is directly connected, Loopback2
- I L1     172.18.1.0/31 [115/20] via 172.18.1.4, Ethernet1
- I L1     172.18.1.2/31 [115/20] via 172.18.1.4, Ethernet1
  C        172.18.1.4/31 is directly connected, Ethernet1
- I L1     172.18.2.0/31 [115/20] via 172.18.2.4, Ethernet2
- I L1     172.18.2.2/31 [115/20] via 172.18.2.4, Ethernet2
  C        172.18.2.4/31 is directly connected, Ethernet2
+
 leaf-3#
 ```
 
-5. Таблицы соседства в ISIS:
-
-**Коммутатор spine-1**
-
-```
-spine-1#show isis neighbors
-
-Instance  VRF      System Id        Type Interface          SNPA              State Hold time   Circuit Id
-10        default  leaf-1           L1   Ethernet1          P2P               UP    26          0F
-10        default  leaf-2           L1   Ethernet2          P2P               UP    28          0F
-10        default  leaf-3           L1   Ethernet3          P2P               UP    26          0F
-spine-1# 
-```
-
-**Коммутатор spine-2**
-
-```
-spine-2#sh isis neighbors
-
-Instance  VRF      System Id        Type Interface          SNPA              State Hold time   Circuit Id
-10        default  leaf-1           L1   Ethernet1          P2P               UP    27          10
-10        default  leaf-2           L1   Ethernet2          P2P               UP    23          10
-10        default  leaf-3           L1   Ethernet3          P2P               UP    26          10
-spine-2#
-```
-
-**Коммутатор leaf-1**
-
-```
-leaf-1#show isis neighbors
-
-Instance  VRF      System Id        Type Interface          SNPA              State Hold time   Circuit Id
-10        default  spine-1          L1   Ethernet1          P2P               UP    27          0F
-10        default  spine-2          L1   Ethernet2          P2P               UP    25          0F
-leaf-1#
-```
-
-**Коммутатор leaf-2**
-
-```
-leaf-2#show isis neighbors
-
-Instance  VRF      System Id        Type Interface          SNPA              State Hold time   Circuit Id
-10        default  spine-1          L1   Ethernet1          P2P               UP    27          10
-10        default  spine-2          L1   Ethernet2          P2P               UP    26          10
-leaf-2#
-```
-
-**Коммутатор leaf-3**
-
-```
-leaf-3#show isis neighbors
-
-Instance  VRF      System Id        Type Interface          SNPA              State Hold time   Circuit Id
-10        default  spine-1          L1   Ethernet1          P2P               UP    29          11
-10        default  spine-2          L1   Ethernet2          P2P               UP    28          11
-leaf-3#
-```
-
-6. IS-IS Level 1 Link State Database
-
-**Коммутатор spine-1**
-
-```
-spine-1#show isis database
-
-IS-IS Instance: 10 VRF: default
-  IS-IS Level 1 Link State Database
-    LSPID                   Seq Num  Cksum  Life Length IS Flags
-    spine-1.00-00                19   6384   642    179 L1 <>
-    spine-2.00-00                19  16930   606    179 L1 <>
-    leaf-1.00-00                 17  30980   849    154 L1 <>
-    leaf-2.00-00                 17  61916   528    154 L1 <>
-    leaf-3.00-00                 16  41578   769    154 L1 <>
-spine-1#
-```
-
-**Коммутатор spine-2**
-
-```
-spine-2#show isis database
-
-IS-IS Instance: 10 VRF: default
-  IS-IS Level 1 Link State Database
-    LSPID                   Seq Num  Cksum  Life Length IS Flags
-    spine-1.00-00                19   6384   586    179 L1 <>
-    spine-2.00-00                19  16930   549    179 L1 <>
-    leaf-1.00-00                 17  30980   792    154 L1 <>
-    leaf-2.00-00                 18  61959  1172    154 L1 <>
-    leaf-3.00-00                 16  41578   712    154 L1 <>
-spine-2#
-```
-
-**Коммутатор leaf-1**
-
-```
-leaf-1#
-leaf-1#show isis database
-
-IS-IS Instance: 10 VRF: default
-  IS-IS Level 1 Link State Database
-    LSPID                   Seq Num  Cksum  Life Length IS Flags
-    spine-1.00-00                19   6384   554    179 L1 <>
-    spine-2.00-00                19  16930   517    179 L1 <>
-    leaf-1.00-00                 17  30980   760    154 L1 <>
-    leaf-2.00-00                 18  61959  1140    154 L1 <>
-    leaf-3.00-00                 16  41578   680    154 L1 <>
-leaf-1#
-```
-
-**Коммутатор leaf-2**
-
-```
-leaf-2#show isis database
-
-IS-IS Instance: 10 VRF: default
-  IS-IS Level 1 Link State Database
-    LSPID                   Seq Num  Cksum  Life Length IS Flags
-    spine-1.00-00                19   6384   530    179 L1 <>
-    spine-2.00-00                20  19213  1198    179 L1 <>
-    leaf-1.00-00                 17  30980   737    154 L1 <>
-    leaf-2.00-00                 18  61959  1116    154 L1 <>
-    leaf-3.00-00                 16  41578   657    154 L1 <>
-leaf-2#
-```
-
-**Коммутатор leaf-3**
-
-```
-leaf-3#show isis database
-
-IS-IS Instance: 10 VRF: default
-  IS-IS Level 1 Link State Database
-    LSPID                   Seq Num  Cksum  Life Length IS Flags
-    spine-1.00-00                20  53436  1166    179 L1 <>
-    spine-2.00-00                20  19213  1155    179 L1 <>
-    leaf-1.00-00                 17  30980   694    154 L1 <>
-    leaf-2.00-00                 18  61959  1074    154 L1 <>
-    leaf-3.00-00                 16  41578   614    154 L1 <>
-leaf-3#
-```
-
-7. Проверка связности между устройствами в ISIS домене проводилась утилитой **ping**. Проверлась связность от текущего коммутатора до интерфейсов Loopback1 и Loopback2 других коммутаторов.
+5. Проверка связности между устройствами в ISIS домене проводилась утилитой **ping**. Проверлась связность от текущего коммутатора до интерфейсов Loopback1 и Loopback2 других коммутаторов.
 
 **Коммутатор spine-1**
 
