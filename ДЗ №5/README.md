@@ -303,7 +303,301 @@ Gateway of last resort is not set
 leaf-3#
 ```
 
-5. Проверка связности между клиентскими устройствами утилитой **ping**.
+5. Проверка дополнительных настроек BGP и EVPN
+
+**Коммутатор spine-1**
+
+```
+spine-1#show bgp evpn route-type mac-ip
+BGP routing table information for VRF default
+Router identifier 172.16.101.1, local AS number 65000
+Route status codes: * - valid, > - active, S - Stale, E - ECMP head, e - ECMP
+                    c - Contributing to ECMP, % - Pending BGP convergence
+Origin codes: i - IGP, e - EGP, ? - incomplete
+AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
+
+          Network                Next Hop              Metric  LocPref Weight  Path
+ * >      RD: 65001:10010 mac-ip 0050.7966.6806
+                                 172.17.201.1          -       100     0       65001 i
+ * >      RD: 65001:10010 mac-ip 0050.7966.6807
+                                 172.17.202.1          -       100     0       65002 i
+ * >      RD: 65001:10010 mac-ip 0050.7966.6808
+                                 172.17.203.1          -       100     0       65003 i
+ * >      RD: 65001:10010 mac-ip 0050.7966.6809
+                                 172.17.203.1          -       100     0       65003 i
+
+spine-1#show bgp evpn summary
+BGP summary information for VRF default
+Router identifier 172.16.101.1, local AS number 65000
+Neighbor Status Codes: m - Under maintenance
+  Neighbor     V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
+  172.16.201.1 4 65001            509       509    0    0 00:21:10 Estab   2      2
+  172.16.202.1 4 65002            502       501    0    0 00:20:52 Estab   2      2
+  172.16.203.1 4 65003            500       497    0   19 00:20:41 Estab   3      3
+
+spine-1#show ip bgp summary
+BGP summary information for VRF default
+Router identifier 172.16.101.1, local AS number 65000
+Neighbor Status Codes: m - Under maintenance
+  Neighbor     V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
+  172.16.201.1 4 65001            509       509    0    0 00:21:10 Estab   2      2
+  172.16.202.1 4 65002            502       501    0    0 00:20:52 Estab   2      2
+  172.16.203.1 4 65003            501       497    0    0 00:20:41 Estab   2      2
+  172.18.1.1   4 65001            501       504    0    0 00:21:12 Estab   6      2
+  172.18.1.3   4 65002            492       496    0    0 00:20:53 Estab   6      2
+  172.18.1.5   4 65003            491       492    0    0 00:20:43 Estab   8      2
+spine-1#
+```
+
+**Коммутатор spine-2**
+
+```
+spine-2#show bgp evpn route-type mac-ip
+BGP routing table information for VRF default
+Router identifier 172.16.102.1, local AS number 65000
+Route status codes: * - valid, > - active, S - Stale, E - ECMP head, e - ECMP
+                    c - Contributing to ECMP, % - Pending BGP convergence
+Origin codes: i - IGP, e - EGP, ? - incomplete
+AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
+
+          Network                Next Hop              Metric  LocPref Weight  Path
+ * >      RD: 65001:10010 mac-ip 0050.7966.6806
+                                 172.17.201.1          -       100     0       65001 i
+ * >      RD: 65001:10010 mac-ip 0050.7966.6807
+                                 172.17.202.1          -       100     0       65002 i
+ * >      RD: 65001:10010 mac-ip 0050.7966.6808
+                                 172.17.203.1          -       100     0       65003 i
+ * >      RD: 65001:10010 mac-ip 0050.7966.6809
+                                 172.17.203.1          -       100     0       65003 i
+
+spine-2#show bgp evpn summary
+BGP summary information for VRF default
+Router identifier 172.16.102.1, local AS number 65000
+Neighbor Status Codes: m - Under maintenance
+  Neighbor     V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
+  172.16.201.1 4 65001            534       539    0    0 00:22:15 Estab   2      2
+  172.16.202.1 4 65002            532       527    0    0 00:21:58 Estab   2      2
+  172.16.203.1 4 65003            529       521    0    0 00:21:45 Estab   3      3
+spine-2#
+spine-2#show ip bgp summary
+BGP summary information for VRF default
+Router identifier 172.16.102.1, local AS number 65000
+Neighbor Status Codes: m - Under maintenance
+  Neighbor     V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
+  172.16.201.1 4 65001            534       539    0    0 00:22:16 Estab   2      2
+  172.16.202.1 4 65002            532       527    0    0 00:21:58 Estab   2      2
+  172.16.203.1 4 65003            529       521    0    0 00:21:45 Estab   2      2
+  172.18.2.1   4 65001            532       529    0    0 00:22:19 Estab   6      2
+  172.18.2.3   4 65002            522       520    0    0 00:22:01 Estab   6      2
+  172.18.2.5   4 65003            521       517    0    0 00:21:51 Estab   4      2
+spine-2#
+```
+
+**Коммутатор leaf-1**
+
+```
+leaf-1#show bgp evpn route-type mac-ip
+BGP routing table information for VRF default
+Router identifier 172.16.201.1, local AS number 65001
+Route status codes: * - valid, > - active, S - Stale, E - ECMP head, e - ECMP
+                    c - Contributing to ECMP, % - Pending BGP convergence
+Origin codes: i - IGP, e - EGP, ? - incomplete
+AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
+
+          Network                Next Hop              Metric  LocPref Weight  Path
+ * >      RD: 65001:10010 mac-ip 0050.7966.6806
+                                 -                     -       -       0       i
+ * >Ec    RD: 65001:10010 mac-ip 0050.7966.6807
+                                 172.17.202.1          -       100     0       65000 65002 i
+ *  ec    RD: 65001:10010 mac-ip 0050.7966.6807
+                                 172.17.202.1          -       100     0       65000 65002 i
+ * >Ec    RD: 65001:10010 mac-ip 0050.7966.6808
+                                 172.17.203.1          -       100     0       65000 65003 i
+ *  ec    RD: 65001:10010 mac-ip 0050.7966.6808
+                                 172.17.203.1          -       100     0       65000 65003 i
+ * >Ec    RD: 65001:10010 mac-ip 0050.7966.6809
+                                 172.17.203.1          -       100     0       65000 65003 i
+ *  ec    RD: 65001:10010 mac-ip 0050.7966.6809
+                                 172.17.203.1          -       100     0       65000 65003 i
+
+leaf-1#show vxlan address-table
+          Vxlan Mac Address Table
+----------------------------------------------------------------------
+
+VLAN  Mac Address     Type      Prt  VTEP             Moves   Last Move
+----  -----------     ----      ---  ----             -----   ---------
+  10  0050.7966.6807  EVPN      Vx1  172.17.202.1     1       0:02:33 ago
+  10  0050.7966.6808  EVPN      Vx1  172.17.203.1     1       0:02:14 ago
+  10  0050.7966.6809  EVPN      Vx1  172.17.203.1     1       0:01:59 ago
+Total Remote Mac Addresses for this criterion: 3
+
+
+leaf-1#show bgp evpn summary
+BGP summary information for VRF default
+Router identifier 172.16.201.1, local AS number 65001
+Neighbor Status Codes: m - Under maintenance
+  Neighbor     V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
+  172.16.101.1 4 65000            539       539    0    0 00:22:26 Estab   5      5
+  172.16.102.1 4 65000            542       538    0    0 00:22:24 Estab   5      5
+leaf-1#
+leaf-1#show ip bgp summary
+BGP summary information for VRF default
+Router identifier 172.16.201.1, local AS number 65001
+Neighbor Status Codes: m - Under maintenance
+  Neighbor     V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
+  172.16.101.1 4 65000            539       539    0    0 00:22:26 Estab   6      6
+  172.16.102.1 4 65000            542       538    0    0 00:22:24 Estab   6      6
+  172.18.1.0   4 65000            533       530    0    0 00:22:28 Estab   6      6
+  172.18.2.0   4 65000            532       535    0    0 00:22:27 Estab   6      6
+
+leaf-1#show vxlan vtep
+Remote VTEPS for Vxlan1:
+
+VTEP               Tunnel Type(s)
+------------------ --------------
+172.17.202.1       flood, unicast
+172.17.203.1       flood, unicast
+
+Total number of remote VTEPS:  2
+leaf-1#
+```
+
+**Коммутатор leaf-2**
+
+```
+leaf-2#show bgp evpn route-type mac-ip
+BGP routing table information for VRF default
+Router identifier 172.16.202.1, local AS number 65002
+Route status codes: * - valid, > - active, S - Stale, E - ECMP head, e - ECMP
+                    c - Contributing to ECMP, % - Pending BGP convergence
+Origin codes: i - IGP, e - EGP, ? - incomplete
+AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
+
+          Network                Next Hop              Metric  LocPref Weight  Path
+ * >Ec    RD: 65001:10010 mac-ip 0050.7966.6806
+                                 172.17.201.1          -       100     0       65000 65001 i
+ *  ec    RD: 65001:10010 mac-ip 0050.7966.6806
+                                 172.17.201.1          -       100     0       65000 65001 i
+ * >      RD: 65001:10010 mac-ip 0050.7966.6807
+                                 -                     -       -       0       i
+ * >Ec    RD: 65001:10010 mac-ip 0050.7966.6808
+                                 172.17.203.1          -       100     0       65000 65003 i
+ *  ec    RD: 65001:10010 mac-ip 0050.7966.6808
+                                 172.17.203.1          -       100     0       65000 65003 i
+ * >Ec    RD: 65001:10010 mac-ip 0050.7966.6809
+                                 172.17.203.1          -       100     0       65000 65003 i
+ *  ec    RD: 65001:10010 mac-ip 0050.7966.6809
+                                 172.17.203.1          -       100     0       65000 65003 i
+
+leaf-2#show vxlan address-table
+          Vxlan Mac Address Table
+----------------------------------------------------------------------
+
+VLAN  Mac Address     Type      Prt  VTEP             Moves   Last Move
+----  -----------     ----      ---  ----             -----   ---------
+  10  0050.7966.6806  EVPN      Vx1  172.17.201.1     1       0:03:00 ago
+  10  0050.7966.6808  EVPN      Vx1  172.17.203.1     1       0:02:42 ago
+  10  0050.7966.6809  EVPN      Vx1  172.17.203.1     1       0:02:27 ago
+Total Remote Mac Addresses for this criterion: 3
+
+leaf-2#show bgp evpn summary
+BGP summary information for VRF default
+Router identifier 172.16.202.1, local AS number 65002
+Neighbor Status Codes: m - Under maintenance
+  Neighbor     V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
+  172.16.101.1 4 65000            542       541    0    0 00:22:35 Estab   5      5
+  172.16.102.1 4 65000            540       546    0    0 00:22:34 Estab   5      5
+
+leaf-2#show ip bgp summary
+BGP summary information for VRF default
+Router identifier 172.16.202.1, local AS number 65002
+Neighbor Status Codes: m - Under maintenance
+  Neighbor     V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
+  172.16.101.1 4 65000            542       541    0    0 00:22:35 Estab   6      6
+  172.16.102.1 4 65000            540       546    0    0 00:22:34 Estab   6      6
+  172.18.1.2   4 65000            534       532    0    0 00:22:37 Estab   6      6
+  172.18.2.2   4 65000            535       536    0    0 00:22:36 Estab   6      6
+
+leaf-2#show vxlan vtep
+Remote VTEPS for Vxlan1:
+
+VTEP               Tunnel Type(s)
+------------------ --------------
+172.17.201.1       flood, unicast
+172.17.203.1       flood, unicast
+
+Total number of remote VTEPS:  2
+leaf-2#
+```
+
+**Коммутатор leaf-3**
+
+```
+leaf-3#show bgp evpn route-type mac-ip
+BGP routing table information for VRF default
+Router identifier 172.16.203.1, local AS number 65003
+Route status codes: * - valid, > - active, S - Stale, E - ECMP head, e - ECMP
+                    c - Contributing to ECMP, % - Pending BGP convergence
+Origin codes: i - IGP, e - EGP, ? - incomplete
+AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
+
+          Network                Next Hop              Metric  LocPref Weight  Path
+ * >Ec    RD: 65001:10010 mac-ip 0050.7966.6806
+                                 172.17.201.1          -       100     0       65000 65001 i
+ *  ec    RD: 65001:10010 mac-ip 0050.7966.6806
+                                 172.17.201.1          -       100     0       65000 65001 i
+ * >Ec    RD: 65001:10010 mac-ip 0050.7966.6807
+                                 172.17.202.1          -       100     0       65000 65002 i
+ *  ec    RD: 65001:10010 mac-ip 0050.7966.6807
+                                 172.17.202.1          -       100     0       65000 65002 i
+ * >      RD: 65001:10010 mac-ip 0050.7966.6808
+                                 -                     -       -       0       i
+ * >      RD: 65001:10010 mac-ip 0050.7966.6809
+                                 -                     -       -       0       i
+
+leaf-3#show vxlan address-table
+          Vxlan Mac Address Table
+----------------------------------------------------------------------
+
+VLAN  Mac Address     Type      Prt  VTEP             Moves   Last Move
+----  -----------     ----      ---  ----             -----   ---------
+  10  0050.7966.6806  EVPN      Vx1  172.17.201.1     1       0:03:10 ago
+  10  0050.7966.6807  EVPN      Vx1  172.17.202.1     1       0:03:10 ago
+Total Remote Mac Addresses for this criterion: 2
+
+leaf-3#show bgp evpn summary
+BGP summary information for VRF default
+Router identifier 172.16.203.1, local AS number 65003
+Neighbor Status Codes: m - Under maintenance
+  Neighbor     V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
+  172.16.101.1 4 65000            541       545    0    0 00:22:34 Estab   4      4
+  172.16.102.1 4 65000            538       547    0    0 00:22:31 Estab   4      4
+
+leaf-3#show ip bgp summary
+BGP summary information for VRF default
+Router identifier 172.16.203.1, local AS number 65003
+Neighbor Status Codes: m - Under maintenance
+  Neighbor     V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
+  172.16.101.1 4 65000            542       545    0    0 00:22:35 Estab   6      6
+  172.16.102.1 4 65000            539       547    0    0 00:22:31 Estab   6      6
+  172.18.1.4   4 65000            535       535    0    0 00:22:37 Estab   6      6
+  172.18.2.4   4 65000            535       539    0    0 00:22:37 Estab   6      6
+
+leaf-3#show vxlan vtep
+Remote VTEPS for Vxlan1:
+
+VTEP               Tunnel Type(s)
+------------------ --------------
+172.17.201.1       flood, unicast
+172.17.202.1       flood, unicast
+
+Total number of remote VTEPS:  2
+leaf-3#
+```
+
+
+
+7. Проверка связности между клиентскими устройствами утилитой **ping**.
 
 **client-1**
 
