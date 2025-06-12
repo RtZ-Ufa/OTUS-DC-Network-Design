@@ -57,7 +57,7 @@
 |client-3   |Eth        |192.168.0.3/24|              |
 |client-4   |Eth        |192.168.1.3/24|              |
 
-Для коммутаторов spine выбрана AS 65000, для коммутаторов leaf - соответственно по их номерам 650001, 65002, 65003.
+Для коммутаторов spine выбрана AS 65000, для коммутаторов leaf - соответственно по их номерам 65001, 65002, 65003.
 
 3. Настройки оборудования приведены в соотвествующих текстовых файлах в этом каталоге (настройки коммутаторов spine остались неизменными с позапрошлой лабы), настройки клиентов приведены ниже:
 
@@ -113,10 +113,11 @@ Codes: C - connected, S - static, K - kernel,
 
 Gateway of last resort is not set
 
+ B E      192.168.0.2/32 [200/0] via VTEP 172.17.202.1 VNI 20000 router-mac 50:00:00:03:37:66 local-interface Vxlan1
+ B E      192.168.0.3/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
  C        192.168.0.0/24 is directly connected, Vlan10
- B E      192.168.1.1/32 [200/0] via VTEP 172.17.202.1 VNI 20000 router-mac 50:00:00:03:37:66 local-interface Vxlan1
- B E      192.168.2.1/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
- B E      192.168.2.2/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
+ B E      192.168.1.3/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
+ C        192.168.1.0/24 is directly connected, Vlan11
 
 leaf-1#
 ```
@@ -141,12 +142,10 @@ Codes: C - connected, S - static, K - kernel,
 
 Gateway of last resort is not set
 
- B E      192.168.0.1/32 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ B E      192.168.0.3/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
+ C        192.168.0.0/24 is directly connected, Vlan10
+ B E      192.168.1.3/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
  C        192.168.1.0/24 is directly connected, Vlan11
- B E      192.168.2.1/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
- B E      192.168.2.2/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
-
-leaf-2#
 ```
 
 **Коммутатор leaf-3**
@@ -169,9 +168,9 @@ Codes: C - connected, S - static, K - kernel,
 
 Gateway of last resort is not set
 
- B E      192.168.0.1/32 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
- B E      192.168.1.1/32 [200/0] via VTEP 172.17.202.1 VNI 20000 router-mac 50:00:00:03:37:66 local-interface Vxlan1
- C        192.168.2.0/24 is directly connected, Vlan12
+ B E      192.168.0.2/32 [200/0] via VTEP 172.17.202.1 VNI 20000 router-mac 50:00:00:03:37:66 local-interface Vxlan1
+ C        192.168.0.0/24 is directly connected, Vlan10
+ C        192.168.1.0/24 is directly connected, Vlan11
 
 leaf-3#
 ```
