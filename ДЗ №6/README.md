@@ -118,82 +118,12 @@ MTU         : 1500
 
 4. Таблицы маршрутизации на коммутаторах:
 
-**Коммутатор spine-1**
-
-```
-spine-1#show ip route
-
-VRF: default
-Codes: C - connected, S - static, K - kernel,
-       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
-       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
-       N2 - OSPF NSSA external type2, B - Other BGP Routes,
-       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
-       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
-       A O - OSPF Summary, NG - Nexthop Group Static Route,
-       V - VXLAN Control Service, M - Martian,
-       DH - DHCP client installed default route,
-       DP - Dynamic Policy Route, L - VRF Leaked,
-       G  - gRIBI, RC - Route Cache Route
-
-Gateway of last resort is not set
-
- C        172.16.101.1/32 is directly connected, Loopback1
- B E      172.16.201.1/32 [200/0] via 172.18.1.1, Ethernet1
- B E      172.16.202.1/32 [200/0] via 172.18.1.3, Ethernet2
- B E      172.16.203.1/32 [200/0] via 172.18.1.5, Ethernet3
- C        172.17.101.1/32 is directly connected, Loopback2
- B E      172.17.201.1/32 [200/0] via 172.18.1.1, Ethernet1
- B E      172.17.202.1/32 [200/0] via 172.18.1.3, Ethernet2
- B E      172.17.203.1/32 [200/0] via 172.18.1.5, Ethernet3
- C        172.18.1.0/31 is directly connected, Ethernet1
- C        172.18.1.2/31 is directly connected, Ethernet2
- C        172.18.1.4/31 is directly connected, Ethernet3
-
-spine-1#
-```
-
-**Коммутатор spine-2**
-
-```
-spine-2#show ip route
-
-VRF: default
-Codes: C - connected, S - static, K - kernel,
-       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
-       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
-       N2 - OSPF NSSA external type2, B - Other BGP Routes,
-       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
-       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
-       A O - OSPF Summary, NG - Nexthop Group Static Route,
-       V - VXLAN Control Service, M - Martian,
-       DH - DHCP client installed default route,
-       DP - Dynamic Policy Route, L - VRF Leaked,
-       G  - gRIBI, RC - Route Cache Route
-
-Gateway of last resort is not set
-
- C        172.16.102.1/32 is directly connected, Loopback1
- B E      172.16.201.1/32 [200/0] via 172.18.2.1, Ethernet1
- B E      172.16.202.1/32 [200/0] via 172.18.2.3, Ethernet2
- B E      172.16.203.1/32 [200/0] via 172.18.2.5, Ethernet3
- C        172.17.102.1/32 is directly connected, Loopback2
- B E      172.17.201.1/32 [200/0] via 172.18.2.1, Ethernet1
- B E      172.17.202.1/32 [200/0] via 172.18.2.3, Ethernet2
- B E      172.17.203.1/32 [200/0] via 172.18.2.5, Ethernet3
- C        172.18.2.0/31 is directly connected, Ethernet1
- C        172.18.2.2/31 is directly connected, Ethernet2
- C        172.18.2.4/31 is directly connected, Ethernet3
-
-spine-2#
-```
-
 **Коммутатор leaf-1**
 
 ```
-leaf-1#show ip route
+leaf-1#show ip route vrf OTUS
 
-VRF: default
+VRF: OTUS
 Codes: C - connected, S - static, K - kernel,
        O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
        E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
@@ -208,22 +138,10 @@ Codes: C - connected, S - static, K - kernel,
 
 Gateway of last resort is not set
 
- B E      172.16.101.1/32 [200/0] via 172.18.1.0, Ethernet1
- B E      172.16.102.1/32 [200/0] via 172.18.2.0, Ethernet2
- C        172.16.201.1/32 is directly connected, Loopback1
- B E      172.16.202.1/32 [200/0] via 172.18.1.0, Ethernet1
-                                  via 172.18.2.0, Ethernet2
- B E      172.16.203.1/32 [200/0] via 172.18.1.0, Ethernet1
-                                  via 172.18.2.0, Ethernet2
- B E      172.17.101.1/32 [200/0] via 172.18.1.0, Ethernet1
- B E      172.17.102.1/32 [200/0] via 172.18.2.0, Ethernet2
- C        172.17.201.1/32 is directly connected, Loopback2
- B E      172.17.202.1/32 [200/0] via 172.18.1.0, Ethernet1
-                                  via 172.18.2.0, Ethernet2
- B E      172.17.203.1/32 [200/0] via 172.18.1.0, Ethernet1
-                                  via 172.18.2.0, Ethernet2
- C        172.18.1.0/31 is directly connected, Ethernet1
- C        172.18.2.0/31 is directly connected, Ethernet2
+ C        192.168.0.0/24 is directly connected, Vlan10
+ B E      192.168.1.1/32 [200/0] via VTEP 172.17.202.1 VNI 20000 router-mac 50:00:00:03:37:66 local-interface Vxlan1
+ B E      192.168.2.1/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
+ B E      192.168.2.2/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
 
 leaf-1#
 ```
@@ -231,9 +149,9 @@ leaf-1#
 **Коммутатор leaf-2**
 
 ```
-leaf-2#show ip route
+leaf-2#show ip route vrf OTUS
 
-VRF: default
+VRF: OTUS
 Codes: C - connected, S - static, K - kernel,
        O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
        E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
@@ -248,22 +166,10 @@ Codes: C - connected, S - static, K - kernel,
 
 Gateway of last resort is not set
 
- B E      172.16.101.1/32 [200/0] via 172.18.1.2, Ethernet1
- B E      172.16.102.1/32 [200/0] via 172.18.2.2, Ethernet2
- B E      172.16.201.1/32 [200/0] via 172.18.1.2, Ethernet1
-                                  via 172.18.2.2, Ethernet2
- C        172.16.202.1/32 is directly connected, Loopback1
- B E      172.16.203.1/32 [200/0] via 172.18.1.2, Ethernet1
-                                  via 172.18.2.2, Ethernet2
- B E      172.17.101.1/32 [200/0] via 172.18.1.2, Ethernet1
- B E      172.17.102.1/32 [200/0] via 172.18.2.2, Ethernet2
- B E      172.17.201.1/32 [200/0] via 172.18.1.2, Ethernet1
-                                  via 172.18.2.2, Ethernet2
- C        172.17.202.1/32 is directly connected, Loopback2
- B E      172.17.203.1/32 [200/0] via 172.18.1.2, Ethernet1
-                                  via 172.18.2.2, Ethernet2
- C        172.18.1.2/31 is directly connected, Ethernet1
- C        172.18.2.2/31 is directly connected, Ethernet2
+ B E      192.168.0.1/32 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ C        192.168.1.0/24 is directly connected, Vlan11
+ B E      192.168.2.1/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
+ B E      192.168.2.2/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
 
 leaf-2#
 ```
@@ -271,9 +177,9 @@ leaf-2#
 **Коммутатор leaf-3**
 
 ```
-leaf-3#show ip route
+leaf-3#show ip route vrf OTUS
 
-VRF: default
+VRF: OTUS
 Codes: C - connected, S - static, K - kernel,
        O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
        E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
@@ -288,22 +194,9 @@ Codes: C - connected, S - static, K - kernel,
 
 Gateway of last resort is not set
 
- B E      172.16.101.1/32 [200/0] via 172.18.1.4, Ethernet1
- B E      172.16.102.1/32 [200/0] via 172.18.2.4, Ethernet2
- B E      172.16.201.1/32 [200/0] via 172.18.1.4, Ethernet1
-                                  via 172.18.2.4, Ethernet2
- B E      172.16.202.1/32 [200/0] via 172.18.1.4, Ethernet1
-                                  via 172.18.2.4, Ethernet2
- C        172.16.203.1/32 is directly connected, Loopback1
- B E      172.17.101.1/32 [200/0] via 172.18.1.4, Ethernet1
- B E      172.17.102.1/32 [200/0] via 172.18.2.4, Ethernet2
- B E      172.17.201.1/32 [200/0] via 172.18.1.4, Ethernet1
-                                  via 172.18.2.4, Ethernet2
- B E      172.17.202.1/32 [200/0] via 172.18.1.4, Ethernet1
-                                  via 172.18.2.4, Ethernet2
- C        172.17.203.1/32 is directly connected, Loopback2
- C        172.18.1.4/31 is directly connected, Ethernet1
- C        172.18.2.4/31 is directly connected, Ethernet2
+ B E      192.168.0.1/32 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ B E      192.168.1.1/32 [200/0] via VTEP 172.17.202.1 VNI 20000 router-mac 50:00:00:03:37:66 local-interface Vxlan1
+ C        192.168.2.0/24 is directly connected, Vlan12
 
 leaf-3#
 ```
