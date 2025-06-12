@@ -1,0 +1,151 @@
+! Command: show running-config
+! device: leaf-1 (vEOS-lab, EOS-4.29.2F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname leaf-1
+!
+spanning-tree mode mstp
+no spanning-tree vlan-id 50
+!
+vlan 10-11
+!
+vlan 50
+   trunk group mlagpeer
+!
+vrf instance OTUS
+!
+interface Port-Channel10
+   description mlag_srv-1
+   switchport access vlan 10
+   switchport trunk allowed vlan 10-11
+   switchport mode trunk
+   mlag 1
+!
+interface Port-Channel50
+   description mlag_leaf1-2
+   switchport mode trunk
+   switchport trunk group mlagpeer
+!
+interface Ethernet1
+   description -S- spine-1
+   no switchport
+   ip address 172.18.1.1/31
+!
+interface Ethernet2
+   description -S- spine-2
+   no switchport
+   ip address 172.18.2.1/31
+!
+interface Ethernet3
+!
+interface Ethernet4
+   description to_leaf-2
+   channel-group 50 mode active
+!
+interface Ethernet5
+   description to_leaf-2
+   channel-group 50 mode active
+!
+interface Ethernet6
+   description to_srv-1
+   switchport access vlan 10
+   channel-group 10 mode active
+!
+interface Ethernet7
+!
+interface Ethernet8
+!
+interface Loopback1
+   ip address 172.16.201.1/32
+!
+interface Loopback2
+   description VXLAN Loopback
+   ip address 172.17.201.1/32
+!
+interface Management1
+!
+interface Vlan10
+   vrf OTUS
+   ip address virtual 192.168.0.254/24
+!
+interface Vlan11
+   vrf OTUS
+   ip address virtual 192.168.1.254/24
+!
+interface Vlan50
+   ip address 10.50.50.0/31
+!
+interface Vxlan1
+   vxlan source-interface Loopback2
+   vxlan udp-port 4789
+   vxlan vlan 10 vni 10010
+   vxlan vlan 11 vni 10011
+   vxlan vrf OTUS vni 20000
+   vxlan virtual-vtep local-interface Loopback1
+!
+ip virtual-router mac-address 00:00:00:00:00:01
+!
+ip routing
+ip routing vrf OTUS
+!
+ip prefix-list CONN
+   seq 10 permit 172.16.201.1/32
+   seq 20 permit 172.17.201.1/32
+!
+mlag configuration
+   domain-id mlag50
+   local-interface Vlan50
+   peer-address 10.50.50.1
+   peer-link Port-Channel50
+!
+route-map RM_REDIS_CON permit 10
+   match ip address prefix-list CONN
+!
+router bgp 65001
+   router-id 172.16.201.1
+   timers bgp 3 9
+   maximum-paths 10 ecmp 10
+   neighbor EVPN peer group
+   neighbor EVPN remote-as 65000
+   neighbor EVPN update-source Loopback1
+   neighbor EVPN ebgp-multihop 3
+   neighbor EVPN send-community extended
+   neighbor SPINES peer group
+   neighbor SPINES remote-as 65000
+   neighbor SPINES bfd
+   neighbor SPINES rib-in pre-policy retain all
+   neighbor SPINES password 7 UOrcqiCh5kkkfKGYimEUfw==
+   neighbor SPINES send-community
+   neighbor 172.16.101.1 peer group EVPN
+   neighbor 172.16.102.1 peer group EVPN
+   neighbor 172.18.1.0 peer group SPINES
+   neighbor 172.18.2.0 peer group SPINES
+   redistribute connected route-map RM_REDIS_CON
+   !
+   vlan 10
+      rd 65001:10010
+      route-target both 10:10010
+      redistribute learned
+   !
+   vlan 11
+      rd 65001:10011
+      route-target both 11:10011
+      redistribute learned
+   !
+   address-family evpn
+      neighbor EVPN activate
+   !
+   vrf OTUS
+      rd 65001:20000
+      route-target import evpn 20000:20000
+      route-target export evpn 20000:20000
+      redistribute connected
+!
+end
