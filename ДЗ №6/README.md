@@ -29,18 +29,23 @@
 |spine-2   |Eth1     |172.18.2.0/31  |-L- leaf-1    |
 |spine-2   |Eth2     |172.18.2.2/31  |-L- leaf-2    |
 |spine-2   |Eth3     |172.18.2.4/31  |-L- leaf-3    |
+|spine-2   |Eth7     |               |-L- client-2  |
 |spine-2   |L01        |172.16.102.1/32  |              |
 |spine-2   |L02        |172.17.102.1/32|              |
 |leaf-1    |Eth1     |172.18.1.1/31  |-L- spine-1    |
 |leaf-1    |Eth2     |172.18.2.1/31  |-L- spine-2    |
+|leaf-1   |Eth7     |               |-L- client-1  |
 |leaf-1    |L01        |172.16.201.1/32 |              |
 |leaf-1    |L02        |172.17.201.1/32|              |
 |leaf-2    |Eth1     |172.18.1.3/31  |-L- spine-1    |
 |leaf-2    |Eth2     |172.18.2.3/31  |-L- spine-2    |
+|leaf-2   |Eth7     |               |-L- client-2  |
 |leaf-2    |L01        |172.16.202.1/32 |              |
 |leaf-2    |L02        |172.17.202.1/32|              |
 |leaf-3    |Eth1     |172.18.1.5/31  |-L- spine-1    |
 |leaf-3    |Eth2     |172.18.2.5/31  |-L- spine-2    |
+|leaf-3   |Eth7     |               |-L- client-3  |
+|leaf-3   |Eth8     |               |-L- client-4  |
 |leaf-3    |L01        |172.16.203.1/32 |              |
 |leaf-3    |L02        |172.17.203.1/32|              |
 |client-1   |Eth        |192.168.0.1/24|              |
