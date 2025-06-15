@@ -160,6 +160,7 @@ MTU         : 1500
 **Коммутатор leaf-1**
 
 ```
+leaf-1#
 leaf-1#show ip route vrf OTUS
 
 VRF: OTUS
@@ -175,13 +176,37 @@ Codes: C - connected, S - static, K - kernel,
        DP - Dynamic Policy Route, L - VRF Leaked,
        G  - gRIBI, RC - Route Cache Route
 
-Gateway of last resort is not set
+Gateway of last resort:
+ B E      0.0.0.0/0 [200/0] via 100.100.100.99, Vlan100
 
- B E      192.168.0.2/32 [200/0] via VTEP 172.17.202.1 VNI 20000 router-mac 50:00:00:03:37:66 local-interface Vxlan1
- B E      192.168.0.3/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
- C        192.168.0.0/24 is directly connected, Vlan10
- B E      192.168.1.3/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
- C        192.168.1.0/24 is directly connected, Vlan11
+ B E      5.5.5.5/32 [200/0] via 100.100.100.99, Vlan100
+ C        100.100.100.0/24 is directly connected, Vlan100
+ B E      101.101.101.0/24 [200/0] via 100.100.100.99, Vlan100
+ B E      192.168.0.0/24 [200/0] via VTEP 172.17.202.1 VNI 20000 router-mac 50:00:00:03:37:66 local-interface Vxlan1
+ C        192.168.10.0/24 is directly connected, Vlan10
+ C        192.168.11.0/24 is directly connected, Vlan11
+
+leaf-1#show ip route vrf OTUS2
+
+VRF: OTUS2
+Codes: C - connected, S - static, K - kernel,
+       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
+       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
+       N2 - OSPF NSSA external type2, B - Other BGP Routes,
+       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
+       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
+       A O - OSPF Summary, NG - Nexthop Group Static Route,
+       V - VXLAN Control Service, M - Martian,
+       DH - DHCP client installed default route,
+       DP - Dynamic Policy Route, L - VRF Leaked,
+       G  - gRIBI, RC - Route Cache Route
+
+Gateway of last resort:
+ B E      0.0.0.0/0 [200/0] via 101.101.101.100, Vlan101
+
+ B E      5.5.5.5/32 [200/0] via 101.101.101.100, Vlan101
+ B E      100.100.100.0/24 [200/0] via 101.101.101.100, Vlan101
+ C        101.101.101.0/24 is directly connected, Vlan101
 
 leaf-1#
 ```
@@ -204,12 +229,19 @@ Codes: C - connected, S - static, K - kernel,
        DP - Dynamic Policy Route, L - VRF Leaked,
        G  - gRIBI, RC - Route Cache Route
 
-Gateway of last resort is not set
+Gateway of last resort:
+ B E      0.0.0.0/0 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
 
- B E      192.168.0.3/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
+ B E      5.5.5.5/32 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ B E      100.100.100.0/24 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ B E      101.101.101.0/24 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
  C        192.168.0.0/24 is directly connected, Vlan10
- B E      192.168.1.3/32 [200/0] via VTEP 172.17.203.1 VNI 20000 router-mac 50:00:00:15:f4:e8 local-interface Vxlan1
- C        192.168.1.0/24 is directly connected, Vlan11
+ B E      192.168.10.1/32 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ B E      192.168.10.0/24 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ B E      192.168.11.1/32 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ B E      192.168.11.0/24 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+
+leaf-2#
 ```
 
 **Коммутатор leaf-3**
@@ -230,13 +262,50 @@ Codes: C - connected, S - static, K - kernel,
        DP - Dynamic Policy Route, L - VRF Leaked,
        G  - gRIBI, RC - Route Cache Route
 
-Gateway of last resort is not set
+Gateway of last resort:
+ B E      0.0.0.0/0 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
 
- B E      192.168.0.2/32 [200/0] via VTEP 172.17.202.1 VNI 20000 router-mac 50:00:00:03:37:66 local-interface Vxlan1
- C        192.168.0.0/24 is directly connected, Vlan10
- C        192.168.1.0/24 is directly connected, Vlan11
+ B E      5.5.5.5/32 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ B E      100.100.100.0/24 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ B E      101.101.101.0/24 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ B E      192.168.0.0/24 [200/0] via VTEP 172.17.202.1 VNI 20000 router-mac 50:00:00:03:37:66 local-interface Vxlan1
+ B E      192.168.10.1/32 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ B E      192.168.10.0/24 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ B E      192.168.11.1/32 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+ B E      192.168.11.0/24 [200/0] via VTEP 172.17.201.1 VNI 20000 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
 
 leaf-3#
+```
+
+**Коммутатор ext**
+
+```
+ext#sh ip route
+
+VRF: default
+Codes: C - connected, S - static, K - kernel,
+       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
+       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
+       N2 - OSPF NSSA external type2, B - Other BGP Routes,
+       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
+       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
+       A O - OSPF Summary, NG - Nexthop Group Static Route,
+       V - VXLAN Control Service, M - Martian,
+       DH - DHCP client installed default route,
+       DP - Dynamic Policy Route, L - VRF Leaked,
+       G  - gRIBI, RC - Route Cache Route
+
+Gateway of last resort:
+ S        0.0.0.0/0 is directly connected, Null0
+
+ C        5.5.5.5/32 is directly connected, Loopback1
+ C        100.100.100.0/24 is directly connected, Vlan100
+ C        101.101.101.0/24 is directly connected, Vlan101
+ B E      192.168.0.0/24 [200/0] via 100.100.100.100, Vlan100
+ B E      192.168.10.0/24 [200/0] via 100.100.100.100, Vlan100
+ B E      192.168.11.0/24 [200/0] via 100.100.100.100, Vlan100
+
+ext#
 ```
 
 5. Проверка дополнительных настроек BGP и EVPN, наличия маршрутов, MLAG'ов, настройки интерфейса Vxlan1
