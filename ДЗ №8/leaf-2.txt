@@ -56,7 +56,6 @@ interface Management1
 !
 interface Vlan10
    vrf OTUS
-   ip address virtual 192.168.0.254/24
 !
 interface Vlan101
    vrf OTUS2
