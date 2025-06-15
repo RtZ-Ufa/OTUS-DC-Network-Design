@@ -65,14 +65,44 @@
 
 3. Настройки оборудования приведены в соотвествующих текстовых файлах в этом каталоге, настройки клиентов приведены ниже:
 
+**client-1**
+
+```
+client-1> show ip
+
+NAME        : client-1[1]
+IP/MASK     : 192.168.10.1/24
+GATEWAY     : 192.168.10.254
+DNS         :
+MAC         : 00:50:79:66:68:06
+LPORT       : 20000
+RHOST:PORT  : 127.0.0.1:30000
+MTU         : 1500
+```
+
+**client-2**
+
+```
+client-2> show ip
+
+NAME        : client-2[1]
+IP/MASK     : 192.168.11.1/24
+GATEWAY     : 192.168.11.254
+DNS         :
+MAC         : 00:50:79:66:68:07
+LPORT       : 20000
+RHOST:PORT  : 127.0.0.1:30000
+MTU         : 1500
+```
+
 **client-3**
 
 ```
 client-3> show ip
 
 NAME        : client-3[1]
-IP/MASK     : 192.168.0.3/24
-GATEWAY     : 192.168.0.254
+IP/MASK     : 192.168.10.2/24
+GATEWAY     : 192.168.10.254
 DNS         :
 MAC         : 00:50:79:66:68:08
 LPORT       : 20000
@@ -86,10 +116,40 @@ MTU         : 1500
 client-4> show ip
 
 NAME        : client-4[1]
-IP/MASK     : 192.168.1.3/24
-GATEWAY     : 192.168.1.254
+IP/MASK     : 101.101.101.1/24
+GATEWAY     : 101.101.101.101
 DNS         :
 MAC         : 00:50:79:66:68:09
+LPORT       : 20000
+RHOST:PORT  : 127.0.0.1:30000
+MTU         : 1500
+```
+
+**client-5**
+
+```
+clent-5> show ip
+
+NAME        : clent-5[1]
+IP/MASK     : 192.168.10.3/24
+GATEWAY     : 192.168.10.254
+DNS         :
+MAC         : 00:50:79:66:68:0b
+LPORT       : 20000
+RHOST:PORT  : 127.0.0.1:30000
+MTU         : 1500
+```
+
+**client-6**
+
+```
+client-6> show ip
+
+NAME        : client-6[1]
+IP/MASK     : 192.168.11.2/24
+GATEWAY     : 192.168.11.254
+DNS         :
+MAC         : 00:50:79:66:68:0c
 LPORT       : 20000
 RHOST:PORT  : 127.0.0.1:30000
 MTU         : 1500
