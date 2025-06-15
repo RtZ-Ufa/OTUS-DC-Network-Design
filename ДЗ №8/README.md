@@ -308,54 +308,12 @@ Gateway of last resort:
 ext#
 ```
 
-5. Проверка дополнительных настроек BGP и EVPN, наличия маршрутов, MLAG'ов, настройки интерфейса Vxlan1
+5. Проверка дополнительных настроек BGP и EVPN
 
 **Коммутатор leaf-1**
 
 ```
-leaf-1#show mlag
-MLAG Configuration:
-domain-id                          :              mlag50
-local-interface                    :              Vlan50
-peer-address                       :          10.50.50.1
-peer-link                          :      Port-Channel50
-peer-config                        :        inconsistent
-
-MLAG Status:
-state                              :              Active
-negotiation status                 :           Connected
-peer-link status                   :                  Up
-local-int status                   :                  Up
-system-id                          :   52:00:00:03:37:66
-dual-primary detection             :            Disabled
-dual-primary interface errdisabled :               False
-
-MLAG Ports:
-Disabled                           :                   0
-Configured                         :                   0
-Inactive                           :                   0
-Active-partial                     :                   0
-Active-full                        :                   1
-
-
-leaf-1#show mlag interfaces detail
-                                        local/remote
- mlag         state   local   remote    oper    config    last change   changes
------- ------------- ------- -------- ------- ---------- -------------- -------
-    1   active-full    Po10     Po10   up/up   ena/ena    0:52:47 ago         5
-leaf-1#
-leaf-1#show port-channel 10 detailed
-Port Channel Port-Channel10 (Fallback State: Unconfigured):
-Minimum links: unconfigured
-Minimum speed: unconfigured
-Current weight/Max weight: 1/16
-  Active Ports:
-      Port               Time Became Active      Protocol      Mode      Weight
-    ------------------ ----------------------- ------------- ----------- ------
-      Ethernet6          17:34:36                LACP          Active      1
-      PeerEthernet6      17:34:37                LACP          Active      0
-
-leaf-1#show bgp evpn
+leaf-1#show bgp evpn route-type ip-prefix ipv4
 BGP routing table information for VRF default
 Router identifier 172.16.201.1, local AS number 65001
 Route status codes: * - valid, > - active, S - Stale, E - ECMP head, e - ECMP
@@ -364,202 +322,41 @@ Origin codes: i - IGP, e - EGP, ? - incomplete
 AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
 
           Network                Next Hop              Metric  LocPref Weight  Path
- * >      RD: 65001:10010 mac-ip 0000.0000.0001
-                                 172.16.201.1          -       -       0       i
- * >      RD: 65001:10011 mac-ip 0000.0000.0001
-                                 172.16.201.1          -       -       0       i
- * >Ec    RD: 65001:10010 mac-ip 0000.0000.0002
-                                 172.16.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65001:10010 mac-ip 0000.0000.0002
-                                 172.16.202.1          -       100     0       65000 65002 i
- * >Ec    RD: 65001:10011 mac-ip 0000.0000.0002
-                                 172.16.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10011 mac-ip 0000.0000.0002
-                                 172.16.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65002:10011 mac-ip 0000.0000.0002
-                                 172.16.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65002:10011 mac-ip 0000.0000.0002
-                                 172.16.202.1          -       100     0       65000 65002 i
- * >Ec    RD: 65001:10010 mac-ip 0050.7966.6808
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10010 mac-ip 0050.7966.6808
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65001:10010 mac-ip 0050.7966.6808 192.168.0.3
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10010 mac-ip 0050.7966.6808 192.168.0.3
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65001:10011 mac-ip 0050.7966.6809
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10011 mac-ip 0050.7966.6809
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65001:10011 mac-ip 0050.7966.6809 192.168.1.3
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10011 mac-ip 0050.7966.6809 192.168.1.3
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >      RD: 65001:10010 mac-ip 5000.00af.d3f6
+ * >      RD: 65001:101 ip-prefix 0.0.0.0/0
+                                 -                     -       100     0       65050 ?
+ * >      RD: 65001:20000 ip-prefix 0.0.0.0/0
+                                 -                     -       100     0       65050 ?
+ * >      RD: 65001:101 ip-prefix 5.5.5.5/32
+                                 -                     -       100     0       65050 i
+ * >      RD: 65001:20000 ip-prefix 5.5.5.5/32
+                                 -                     -       100     0       65050 i
+ * >      RD: 65001:101 ip-prefix 100.100.100.0/24
+                                 -                     -       100     0       65050 i
+ * >      RD: 65001:20000 ip-prefix 100.100.100.0/24
                                  -                     -       -       0       i
- * >      RD: 65001:10011 mac-ip 5000.00af.d3f6
+ *        RD: 65001:20000 ip-prefix 100.100.100.0/24
+                                 -                     -       100     0       65050 i
+ * >      RD: 65001:101 ip-prefix 101.101.101.0/24
                                  -                     -       -       0       i
- * >Ec    RD: 65002:10011 mac-ip 5000.00af.d3f6
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65002:10011 mac-ip 5000.00af.d3f6
-                                 172.17.202.1          -       100     0       65000 65002 i
- * >Ec    RD: 65001:10010 mac-ip 5000.00af.d3f6 192.168.0.2
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65001:10010 mac-ip 5000.00af.d3f6 192.168.0.2
-                                 172.17.202.1          -       100     0       65000 65002 i
- * >      RD: 65001:10010 imet 172.16.201.1
-                                 -                     -       -       0       i
- * >      RD: 65001:10011 imet 172.16.201.1
-                                 -                     -       -       0       i
- * >Ec    RD: 65001:10010 imet 172.16.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65001:10010 imet 172.16.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- * >Ec    RD: 65002:10011 imet 172.16.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65002:10011 imet 172.16.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- * >Ec    RD: 65001:10010 imet 172.16.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10010 imet 172.16.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65001:10011 imet 172.16.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10011 imet 172.16.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >      RD: 65001:10010 imet 172.17.201.1
-                                 -                     -       -       0       i
- * >      RD: 65001:10011 imet 172.17.201.1
-                                 -                     -       -       0       i
- * >Ec    RD: 65001:10010 imet 172.17.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65001:10010 imet 172.17.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- * >Ec    RD: 65002:10011 imet 172.17.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65002:10011 imet 172.17.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- * >Ec    RD: 65001:10010 imet 172.17.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10010 imet 172.17.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65001:10011 imet 172.17.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10011 imet 172.17.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >      RD: 65001:20000 ip-prefix 192.168.0.0/24
-                                 -                     -       -       0       i
+ *        RD: 65001:101 ip-prefix 101.101.101.0/24
+                                 -                     -       100     0       65050 i
+ * >      RD: 65001:20000 ip-prefix 101.101.101.0/24
+                                 -                     -       100     0       65050 i
  * >Ec    RD: 65002:20000 ip-prefix 192.168.0.0/24
                                  172.17.202.1          -       100     0       65000 65002 i
  *  ec    RD: 65002:20000 ip-prefix 192.168.0.0/24
                                  172.17.202.1          -       100     0       65000 65002 i
- * >      RD: 65001:20000 ip-prefix 192.168.1.0/24
+ * >      RD: 65001:20000 ip-prefix 192.168.10.0/24
                                  -                     -       -       0       i
- * >Ec    RD: 65002:20000 ip-prefix 192.168.1.0/24
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65002:20000 ip-prefix 192.168.1.0/24
-                                 172.17.202.1          -       100     0       65000 65002 i
-
-leaf-1#show vxlan address-table
-          Vxlan Mac Address Table
-----------------------------------------------------------------------
-
-VLAN  Mac Address     Type      Prt  VTEP             Moves   Last Move
-----  -----------     ----      ---  ----             -----   ---------
-  10  0000.0000.0002  STATIC    Vx1  172.16.202.1
-  10  0050.7966.6808  EVPN      Vx1  172.17.203.1     1       0:03:59 ago
-  11  0000.0000.0002  STATIC    Vx1  172.16.202.1
-  11  0050.7966.6809  EVPN      Vx1  172.17.203.1     1       0:04:07 ago
-4094  5000.0003.3766  EVPN      Vx1  172.17.202.1     2       0:52:48 ago
-4094  5000.0015.f4e8  EVPN      Vx1  172.17.203.1     1       0:04:08 ago
-Total Remote Mac Addresses for this criterion: 6
-
-leaf-1#show interface vxlan1
-Vxlan1 is up, line protocol is up (connected)
-  Hardware is Vxlan
-  Source interface is Loopback2 and is active with 172.17.201.1
-  Listening on UDP port 4789
-  Virtual VTEP source interface is 'Loopback1'
-  Virtual VTEP IP address is 172.16.201.1
-  Replication/Flood Mode is headend with Flood List Source: EVPN
-  Remote MAC learning via EVPN
-  VNI mapping to VLANs
-  Static VLAN to VNI mapping is
-    [10, 10010]       [11, 10011]
-  Dynamic VLAN to VNI mapping for 'evpn' is
-    [4094, 20000]
-  Note: All Dynamic VLANs used by VCS are internal VLANs.
-        Use 'show vxlan vni' for details.
-  Static VRF to VNI mapping is
-   [OTUS, 20000]
-  Headend replication flood vtep list is:
-    10 172.16.202.1    172.17.202.1    172.16.203.1    172.17.203.1
-    11 172.16.202.1    172.17.202.1    172.16.203.1    172.17.203.1
-  MLAG Shared Router MAC is 0000.0000.0000
-
-leaf-1#show vxlan vni
-VNI to VLAN Mapping for Vxlan1
-VNI         VLAN       Source       Interface            802.1Q Tag
------------ ---------- ------------ -------------------- ----------
-10010       10         static       Ethernet6            untagged
-                                    Port-Channel10       10
-                                    Vxlan1               10
-10011       11         static       Port-Channel10       11
-                                    Vxlan1               11
-
-VNI to dynamic VLAN Mapping for Vxlan1
-VNI         VLAN       VRF        Source
------------ ---------- ---------- ------------
-20000       4094       OTUS       evpn
-
+ * >      RD: 65001:20000 ip-prefix 192.168.11.0/24
+                                 -                     -       -       0       i
+leaf-1#
 ```
 
 **Коммутатор leaf-2**
 
 ```
-leaf-2#show mlag
-MLAG Configuration:
-domain-id                          :              mlag50
-local-interface                    :              Vlan50
-peer-address                       :          10.50.50.0
-peer-link                          :      Port-Channel50
-peer-config                        :        inconsistent
-
-MLAG Status:
-state                              :              Active
-negotiation status                 :           Connected
-peer-link status                   :                  Up
-local-int status                   :                  Up
-system-id                          :   52:00:00:03:37:66
-dual-primary detection             :            Disabled
-dual-primary interface errdisabled :               False
-
-MLAG Ports:
-Disabled                           :                   0
-Configured                         :                   0
-Inactive                           :                   0
-Active-partial                     :                   0
-Active-full                        :                   1
-
-leaf-2#show mlag interfaces detail
-                                        local/remote
- mlag         state   local   remote    oper    config    last change   changes
------- ------------- ------- -------- ------- ---------- -------------- -------
-    1   active-full    Po10     Po10   up/up   ena/ena    0:52:55 ago         5
-
-leaf-2#show port-channel 10 detailed
-Port Channel Port-Channel10 (Fallback State: Unconfigured):
-Minimum links: unconfigured
-Minimum speed: unconfigured
-Current weight/Max weight: 1/16
-  Active Ports:
-      Port               Time Became Active      Protocol      Mode      Weight
-    ------------------ ----------------------- ------------- ----------- ------
-      Ethernet6          17:34:37                LACP          Active      1
-      PeerEthernet6      17:34:36                LACP          Active      0
-
-leaf-2#show bgp evpn
+leaf-2#show bgp evpn route-type ip-prefix ipv4
 BGP routing table information for VRF default
 Router identifier 172.16.202.1, local AS number 65002
 Route status codes: * - valid, > - active, S - Stale, E - ECMP head, e - ECMP
@@ -568,161 +365,56 @@ Origin codes: i - IGP, e - EGP, ? - incomplete
 AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
 
           Network                Next Hop              Metric  LocPref Weight  Path
- * >Ec    RD: 65001:10010 mac-ip 0000.0000.0001
-                                 172.16.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10010 mac-ip 0000.0000.0001
-                                 172.16.201.1          -       100     0       65000 65001 i
- * >Ec    RD: 65001:10011 mac-ip 0000.0000.0001
-                                 172.16.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10011 mac-ip 0000.0000.0001
-                                 172.16.201.1          -       100     0       65000 65001 i
- * >      RD: 65001:10010 mac-ip 0000.0000.0002
-                                 172.16.202.1          -       -       0       i
- * >Ec    RD: 65001:10011 mac-ip 0000.0000.0002
-                                 172.16.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10011 mac-ip 0000.0000.0002
-                                 172.16.203.1          -       100     0       65000 65003 i
- * >      RD: 65002:10011 mac-ip 0000.0000.0002
-                                 172.16.202.1          -       -       0       i
- * >Ec    RD: 65001:10010 mac-ip 0050.7966.6808
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10010 mac-ip 0050.7966.6808
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65001:10010 mac-ip 0050.7966.6808 192.168.0.3
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10010 mac-ip 0050.7966.6808 192.168.0.3
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65001:10011 mac-ip 0050.7966.6809
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10011 mac-ip 0050.7966.6809
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65001:10011 mac-ip 0050.7966.6809 192.168.1.3
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10011 mac-ip 0050.7966.6809 192.168.1.3
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65001:10010 mac-ip 5000.00af.d3f6
+ * >Ec    RD: 65001:101 ip-prefix 0.0.0.0/0
+                                 172.17.201.1          -       100     0       65000 65001 65050 ?
+ *  ec    RD: 65001:101 ip-prefix 0.0.0.0/0
+                                 172.17.201.1          -       100     0       65000 65001 65050 ?
+ * >Ec    RD: 65001:20000 ip-prefix 0.0.0.0/0
+                                 172.17.201.1          -       100     0       65000 65001 65050 ?
+ *  ec    RD: 65001:20000 ip-prefix 0.0.0.0/0
+                                 172.17.201.1          -       100     0       65000 65001 65050 ?
+ * >Ec    RD: 65001:101 ip-prefix 5.5.5.5/32
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ *  ec    RD: 65001:101 ip-prefix 5.5.5.5/32
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ * >Ec    RD: 65001:20000 ip-prefix 5.5.5.5/32
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ *  ec    RD: 65001:20000 ip-prefix 5.5.5.5/32
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ * >Ec    RD: 65001:101 ip-prefix 100.100.100.0/24
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ *  ec    RD: 65001:101 ip-prefix 100.100.100.0/24
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ * >Ec    RD: 65001:20000 ip-prefix 100.100.100.0/24
                                  172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10010 mac-ip 5000.00af.d3f6
+ *  ec    RD: 65001:20000 ip-prefix 100.100.100.0/24
                                  172.17.201.1          -       100     0       65000 65001 i
- *        RD: 65001:10010 mac-ip 5000.00af.d3f6
-                                 -                     -       -       0       i
- * >Ec    RD: 65001:10011 mac-ip 5000.00af.d3f6
+ * >Ec    RD: 65001:101 ip-prefix 101.101.101.0/24
                                  172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10011 mac-ip 5000.00af.d3f6
+ *  ec    RD: 65001:101 ip-prefix 101.101.101.0/24
                                  172.17.201.1          -       100     0       65000 65001 i
- * >      RD: 65002:10011 mac-ip 5000.00af.d3f6
-                                 -                     -       -       0       i
- * >      RD: 65001:10010 mac-ip 5000.00af.d3f6 192.168.0.2
-                                 -                     -       -       0       i
- * >Ec    RD: 65001:10010 imet 172.16.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10010 imet 172.16.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- * >Ec    RD: 65001:10011 imet 172.16.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10011 imet 172.16.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- * >      RD: 65001:10010 imet 172.16.202.1
-                                 -                     -       -       0       i
- * >      RD: 65002:10011 imet 172.16.202.1
-                                 -                     -       -       0       i
- * >Ec    RD: 65001:10010 imet 172.16.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10010 imet 172.16.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65001:10011 imet 172.16.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10011 imet 172.16.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65001:10010 imet 172.17.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10010 imet 172.17.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- * >Ec    RD: 65001:10011 imet 172.17.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10011 imet 172.17.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- * >      RD: 65001:10010 imet 172.17.202.1
-                                 -                     -       -       0       i
- * >      RD: 65002:10011 imet 172.17.202.1
-                                 -                     -       -       0       i
- * >Ec    RD: 65001:10010 imet 172.17.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10010 imet 172.17.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65001:10011 imet 172.17.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- *  ec    RD: 65001:10011 imet 172.17.203.1
-                                 172.17.203.1          -       100     0       65000 65003 i
- * >Ec    RD: 65001:20000 ip-prefix 192.168.0.0/24
-                                 172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:20000 ip-prefix 192.168.0.0/24
-                                 172.17.201.1          -       100     0       65000 65001 i
+ * >Ec    RD: 65001:20000 ip-prefix 101.101.101.0/24
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ *  ec    RD: 65001:20000 ip-prefix 101.101.101.0/24
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
  * >      RD: 65002:20000 ip-prefix 192.168.0.0/24
                                  -                     -       -       0       i
- * >Ec    RD: 65001:20000 ip-prefix 192.168.1.0/24
+ * >Ec    RD: 65001:20000 ip-prefix 192.168.10.0/24
                                  172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:20000 ip-prefix 192.168.1.0/24
+ *  ec    RD: 65001:20000 ip-prefix 192.168.10.0/24
                                  172.17.201.1          -       100     0       65000 65001 i
- * >      RD: 65002:20000 ip-prefix 192.168.1.0/24
-                                 -                     -       -       0       i
-leaf-2#show vxlan address-table
-          Vxlan Mac Address Table
-----------------------------------------------------------------------
-
-VLAN  Mac Address     Type      Prt  VTEP             Moves   Last Move
-----  -----------     ----      ---  ----             -----   ---------
-  10  0000.0000.0001  STATIC    Vx1  172.16.201.1
-  10  0050.7966.6808  EVPN      Vx1  172.17.203.1     1       0:04:08 ago
-  11  0000.0000.0001  STATIC    Vx1  172.16.201.1
-  11  0050.7966.6809  EVPN      Vx1  172.17.203.1     1       0:04:16 ago
-4094  5000.0015.f4e8  EVPN      Vx1  172.17.203.1     1       0:04:17 ago
-Total Remote Mac Addresses for this criterion: 5
-
-leaf-2#show interface vxlan1
-Vxlan1 is up, line protocol is up (connected)
-  Hardware is Vxlan
-  Source interface is Loopback2 and is active with 172.17.202.1
-  Listening on UDP port 4789
-  Virtual VTEP source interface is 'Loopback1'
-  Virtual VTEP IP address is 172.16.202.1
-  Replication/Flood Mode is headend with Flood List Source: EVPN
-  Remote MAC learning via EVPN
-  VNI mapping to VLANs
-  Static VLAN to VNI mapping is
-    [10, 10010]       [11, 10011]
-  Dynamic VLAN to VNI mapping for 'evpn' is
-    [4094, 20000]
-  Note: All Dynamic VLANs used by VCS are internal VLANs.
-        Use 'show vxlan vni' for details.
-  Static VRF to VNI mapping is
-   [OTUS, 20000]
-  Headend replication flood vtep list is:
-    10 172.16.201.1    172.16.203.1    172.17.203.1    172.17.201.1
-    11 172.16.201.1    172.16.203.1    172.17.203.1    172.17.201.1
-  MLAG Shared Router MAC is 0000.0000.0000
-
-leaf-2#show vxlan vni
-VNI to VLAN Mapping for Vxlan1
-VNI         VLAN       Source       Interface            802.1Q Tag
------------ ---------- ------------ -------------------- ----------
-10010       10         static       Port-Channel10       10
-                                    Vxlan1               10
-10011       11         static       Ethernet6            untagged
-                                    Port-Channel10       11
-                                    Vxlan1               11
-
-VNI to dynamic VLAN Mapping for Vxlan1
-VNI         VLAN       VRF        Source
------------ ---------- ---------- ------------
-20000       4094       OTUS       evpn
-
+ * >Ec    RD: 65001:20000 ip-prefix 192.168.11.0/24
+                                 172.17.201.1          -       100     0       65000 65001 i
+ *  ec    RD: 65001:20000 ip-prefix 192.168.11.0/24
+                                 172.17.201.1          -       100     0       65000 65001 i
+leaf-2#
 ```
 
 **Коммутатор leaf-3**
 
 ```
-leaf-3#show bgp evpn
+leaf-3#
+leaf-3#show bgp evpn route-type ip-prefix ipv4
 BGP routing table information for VRF default
 Router identifier 172.16.203.1, local AS number 65003
 Route status codes: * - valid, > - active, S - Stale, E - ECMP head, e - ECMP
@@ -731,158 +423,51 @@ Origin codes: i - IGP, e - EGP, ? - incomplete
 AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
 
           Network                Next Hop              Metric  LocPref Weight  Path
- * >Ec    RD: 65001:10010 mac-ip 0000.0000.0001
-                                 172.16.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10010 mac-ip 0000.0000.0001
-                                 172.16.201.1          -       100     0       65000 65001 i
- * >Ec    RD: 65001:10011 mac-ip 0000.0000.0001
-                                 172.16.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10011 mac-ip 0000.0000.0001
-                                 172.16.201.1          -       100     0       65000 65001 i
- * >Ec    RD: 65001:10010 mac-ip 0000.0000.0002
-                                 172.16.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65001:10010 mac-ip 0000.0000.0002
-                                 172.16.202.1          -       100     0       65000 65002 i
- *        RD: 65001:10010 mac-ip 0000.0000.0002
-                                 172.16.203.1          -       -       0       i
- * >      RD: 65001:10011 mac-ip 0000.0000.0002
-                                 172.16.203.1          -       -       0       i
- * >Ec    RD: 65002:10011 mac-ip 0000.0000.0002
-                                 172.16.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65002:10011 mac-ip 0000.0000.0002
-                                 172.16.202.1          -       100     0       65000 65002 i
- * >      RD: 65001:10010 mac-ip 0050.7966.6808
-                                 -                     -       -       0       i
- * >      RD: 65001:10010 mac-ip 0050.7966.6808 192.168.0.3
-                                 -                     -       -       0       i
- * >      RD: 65001:10011 mac-ip 0050.7966.6809
-                                 -                     -       -       0       i
- * >      RD: 65001:10011 mac-ip 0050.7966.6809 192.168.1.3
-                                 -                     -       -       0       i
- * >Ec    RD: 65001:10010 mac-ip 5000.00af.d3f6
+ * >Ec    RD: 65001:101 ip-prefix 0.0.0.0/0
+                                 172.17.201.1          -       100     0       65000 65001 65050 ?
+ *  ec    RD: 65001:101 ip-prefix 0.0.0.0/0
+                                 172.17.201.1          -       100     0       65000 65001 65050 ?
+ * >Ec    RD: 65001:20000 ip-prefix 0.0.0.0/0
+                                 172.17.201.1          -       100     0       65000 65001 65050 ?
+ *  ec    RD: 65001:20000 ip-prefix 0.0.0.0/0
+                                 172.17.201.1          -       100     0       65000 65001 65050 ?
+ * >Ec    RD: 65001:101 ip-prefix 5.5.5.5/32
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ *  ec    RD: 65001:101 ip-prefix 5.5.5.5/32
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ * >Ec    RD: 65001:20000 ip-prefix 5.5.5.5/32
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ *  ec    RD: 65001:20000 ip-prefix 5.5.5.5/32
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ * >Ec    RD: 65001:101 ip-prefix 100.100.100.0/24
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ *  ec    RD: 65001:101 ip-prefix 100.100.100.0/24
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ * >Ec    RD: 65001:20000 ip-prefix 100.100.100.0/24
                                  172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10010 mac-ip 5000.00af.d3f6
+ *  ec    RD: 65001:20000 ip-prefix 100.100.100.0/24
                                  172.17.201.1          -       100     0       65000 65001 i
- * >Ec    RD: 65001:10011 mac-ip 5000.00af.d3f6
+ * >Ec    RD: 65001:101 ip-prefix 101.101.101.0/24
                                  172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10011 mac-ip 5000.00af.d3f6
+ *  ec    RD: 65001:101 ip-prefix 101.101.101.0/24
                                  172.17.201.1          -       100     0       65000 65001 i
- * >Ec    RD: 65002:10011 mac-ip 5000.00af.d3f6
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65002:10011 mac-ip 5000.00af.d3f6
-                                 172.17.202.1          -       100     0       65000 65002 i
- * >Ec    RD: 65001:10010 mac-ip 5000.00af.d3f6 192.168.0.2
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65001:10010 mac-ip 5000.00af.d3f6 192.168.0.2
-                                 172.17.202.1          -       100     0       65000 65002 i
- * >Ec    RD: 65001:10010 imet 172.16.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10010 imet 172.16.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- * >Ec    RD: 65001:10011 imet 172.16.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10011 imet 172.16.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- * >Ec    RD: 65001:10010 imet 172.16.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65001:10010 imet 172.16.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- * >Ec    RD: 65002:10011 imet 172.16.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65002:10011 imet 172.16.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- * >      RD: 65001:10010 imet 172.16.203.1
-                                 -                     -       -       0       i
- * >      RD: 65001:10011 imet 172.16.203.1
-                                 -                     -       -       0       i
- * >Ec    RD: 65001:10010 imet 172.17.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10010 imet 172.17.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- * >Ec    RD: 65001:10011 imet 172.17.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:10011 imet 172.17.201.1
-                                 172.17.201.1          -       100     0       65000 65001 i
- * >Ec    RD: 65001:10010 imet 172.17.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65001:10010 imet 172.17.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- * >Ec    RD: 65002:10011 imet 172.17.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65002:10011 imet 172.17.202.1
-                                 172.17.202.1          -       100     0       65000 65002 i
- * >      RD: 65001:10010 imet 172.17.203.1
-                                 -                     -       -       0       i
- * >      RD: 65001:10011 imet 172.17.203.1
-                                 -                     -       -       0       i
- * >Ec    RD: 65001:20000 ip-prefix 192.168.0.0/24
-                                 172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:20000 ip-prefix 192.168.0.0/24
-                                 172.17.201.1          -       100     0       65000 65001 i
+ * >Ec    RD: 65001:20000 ip-prefix 101.101.101.0/24
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
+ *  ec    RD: 65001:20000 ip-prefix 101.101.101.0/24
+                                 172.17.201.1          -       100     0       65000 65001 65050 i
  * >Ec    RD: 65002:20000 ip-prefix 192.168.0.0/24
                                  172.17.202.1          -       100     0       65000 65002 i
  *  ec    RD: 65002:20000 ip-prefix 192.168.0.0/24
                                  172.17.202.1          -       100     0       65000 65002 i
- * >Ec    RD: 65001:20000 ip-prefix 192.168.1.0/24
+ * >Ec    RD: 65001:20000 ip-prefix 192.168.10.0/24
                                  172.17.201.1          -       100     0       65000 65001 i
- *  ec    RD: 65001:20000 ip-prefix 192.168.1.0/24
+ *  ec    RD: 65001:20000 ip-prefix 192.168.10.0/24
                                  172.17.201.1          -       100     0       65000 65001 i
- * >Ec    RD: 65002:20000 ip-prefix 192.168.1.0/24
-                                 172.17.202.1          -       100     0       65000 65002 i
- *  ec    RD: 65002:20000 ip-prefix 192.168.1.0/24
-                                 172.17.202.1          -       100     0       65000 65002 i
-
-leaf-3#show vxlan address-table
-          Vxlan Mac Address Table
-----------------------------------------------------------------------
-
-VLAN  Mac Address     Type      Prt  VTEP             Moves   Last Move
-----  -----------     ----      ---  ----             -----   ---------
-  10  0000.0000.0001  STATIC    Vx1  172.16.201.1
-  10  5000.00af.d3f6  EVPN      Vx1  172.17.201.1     1       0:04:17 ago
-  11  0000.0000.0001  STATIC    Vx1  172.16.201.1
-  11  5000.00af.d3f6  EVPN      Vx1  172.17.201.1     2       0:04:25 ago
-4094  5000.0003.3766  EVPN      Vx1  172.17.202.1     1       0:53:06 ago
-4094  5000.00d5.5dc0  EVPN      Vx1  172.17.201.1     1       0:53:08 ago
-Total Remote Mac Addresses for this criterion: 6
-
-leaf-3#show interface vxlan1
-Vxlan1 is up, line protocol is up (connected)
-  Hardware is Vxlan
-  Source interface is Loopback2 and is active with 172.17.203.1
-  Listening on UDP port 4789
-  Virtual VTEP source interface is 'Loopback1'
-  Virtual VTEP IP address is 172.16.203.1
-  Replication/Flood Mode is headend with Flood List Source: EVPN
-  Remote MAC learning via EVPN
-  VNI mapping to VLANs
-  Static VLAN to VNI mapping is
-    [10, 10010]       [11, 10011]
-  Dynamic VLAN to VNI mapping for 'evpn' is
-    [4094, 20000]
-  Note: All Dynamic VLANs used by VCS are internal VLANs.
-        Use 'show vxlan vni' for details.
-  Static VRF to VNI mapping is
-   [OTUS, 20000]
-  Headend replication flood vtep list is:
-    10 172.16.202.1    172.17.202.1    172.16.201.1    172.17.201.1
-    11 172.16.202.1    172.17.202.1    172.16.201.1    172.17.201.1
-  Shared Router MAC is 0000.0000.0000
-
-leaf-3#show vxlan vni
-VNI to VLAN Mapping for Vxlan1
-VNI         VLAN       Source       Interface       802.1Q Tag
------------ ---------- ------------ --------------- ----------
-10010       10         static       Ethernet6       untagged
-                                    Vxlan1          10
-10011       11         static       Ethernet7       untagged
-                                    Vxlan1          11
-
-VNI to dynamic VLAN Mapping for Vxlan1
-VNI         VLAN       VRF        Source
------------ ---------- ---------- ------------
-20000       4094       OTUS       evpn
-
+ * >Ec    RD: 65001:20000 ip-prefix 192.168.11.0/24
+                                 172.17.201.1          -       100     0       65000 65001 i
+ *  ec    RD: 65001:20000 ip-prefix 192.168.11.0/24
+                                 172.17.201.1          -       100     0       65000 65001 i
+leaf-3#
 ```
 
 
