@@ -1353,227 +1353,229 @@ leaf-3#
 ```
 client-1> ping 192.168.10.2
 
-84 bytes from 192.168.10.2 icmp_seq=1 ttl=64 time=128.449 ms
-84 bytes from 192.168.10.2 icmp_seq=2 ttl=64 time=43.009 ms
-84 bytes from 192.168.10.2 icmp_seq=3 ttl=64 time=53.335 ms
-84 bytes from 192.168.10.2 icmp_seq=4 ttl=64 time=46.140 ms
-84 bytes from 192.168.10.2 icmp_seq=5 ttl=64 time=37.781 ms
+84 bytes from 192.168.10.2 icmp_seq=1 ttl=64 time=388.442 ms
+84 bytes from 192.168.10.2 icmp_seq=2 ttl=64 time=44.840 ms
+84 bytes from 192.168.10.2 icmp_seq=3 ttl=64 time=43.758 ms
+84 bytes from 192.168.10.2 icmp_seq=4 ttl=64 time=32.877 ms
+84 bytes from 192.168.10.2 icmp_seq=5 ttl=64 time=120.265 ms
 
-client-1> ping 192.168.11.2
+client-1> ping 192.168.11.1
 
-84 bytes from 192.168.11.2 icmp_seq=1 ttl=63 time=321.179 ms
-84 bytes from 192.168.11.2 icmp_seq=2 ttl=63 time=40.331 ms
-84 bytes from 192.168.11.2 icmp_seq=3 ttl=63 time=46.955 ms
-84 bytes from 192.168.11.2 icmp_seq=4 ttl=63 time=47.515 ms
-84 bytes from 192.168.11.2 icmp_seq=5 ttl=63 time=39.039 ms
+84 bytes from 192.168.11.1 icmp_seq=1 ttl=63 time=317.791 ms
+84 bytes from 192.168.11.1 icmp_seq=2 ttl=63 time=61.564 ms
+84 bytes from 192.168.11.1 icmp_seq=3 ttl=63 time=47.321 ms
+84 bytes from 192.168.11.1 icmp_seq=4 ttl=63 time=39.922 ms
+84 bytes from 192.168.11.1 icmp_seq=5 ttl=63 time=47.904 ms
 
-client-1> ping 5.5.5.5
+client-1> ping 192.168.10.10
 
-84 bytes from 5.5.5.5 icmp_seq=1 ttl=63 time=21.825 ms
-84 bytes from 5.5.5.5 icmp_seq=2 ttl=63 time=22.343 ms
-84 bytes from 5.5.5.5 icmp_seq=3 ttl=63 time=93.787 ms
-84 bytes from 5.5.5.5 icmp_seq=4 ttl=63 time=22.074 ms
-84 bytes from 5.5.5.5 icmp_seq=5 ttl=63 time=26.787 ms
+84 bytes from 192.168.10.10 icmp_seq=1 ttl=64 time=106.006 ms
+84 bytes from 192.168.10.10 icmp_seq=2 ttl=64 time=37.521 ms
+84 bytes from 192.168.10.10 icmp_seq=3 ttl=64 time=20.514 ms
+84 bytes from 192.168.10.10 icmp_seq=4 ttl=64 time=19.356 ms
+84 bytes from 192.168.10.10 icmp_seq=5 ttl=64 time=18.753 ms
+
+client-1> ping 192.168.11.11
+
+84 bytes from 192.168.11.11 icmp_seq=1 ttl=64 time=95.707 ms
+84 bytes from 192.168.11.11 icmp_seq=2 ttl=64 time=24.498 ms
+84 bytes from 192.168.11.11 icmp_seq=3 ttl=64 time=28.905 ms
+84 bytes from 192.168.11.11 icmp_seq=4 ttl=64 time=42.718 ms
+84 bytes from 192.168.11.11 icmp_seq=5 ttl=64 time=25.076 ms
 
 client-1> ping 101.101.101.1
 
-84 bytes from 101.101.101.1 icmp_seq=1 ttl=61 time=344.589 ms
-84 bytes from 101.101.101.1 icmp_seq=2 ttl=61 time=126.751 ms
-84 bytes from 101.101.101.1 icmp_seq=3 ttl=61 time=92.038 ms
-84 bytes from 101.101.101.1 icmp_seq=4 ttl=61 time=93.718 ms
-84 bytes from 101.101.101.1 icmp_seq=5 ttl=61 time=84.826 ms
+84 bytes from 101.101.101.1 icmp_seq=1 ttl=61 time=319.602 ms
+84 bytes from 101.101.101.1 icmp_seq=2 ttl=61 time=210.943 ms
+84 bytes from 101.101.101.1 icmp_seq=3 ttl=61 time=65.325 ms
+84 bytes from 101.101.101.1 icmp_seq=4 ttl=61 time=78.160 ms
+84 bytes from 101.101.101.1 icmp_seq=5 ttl=61 time=67.629 ms
+
+client-1> ping 5.5.5.5
+
+84 bytes from 5.5.5.5 icmp_seq=1 ttl=63 time=30.463 ms
+84 bytes from 5.5.5.5 icmp_seq=2 ttl=63 time=118.851 ms
+84 bytes from 5.5.5.5 icmp_seq=3 ttl=63 time=23.894 ms
+84 bytes from 5.5.5.5 icmp_seq=4 ttl=63 time=28.943 ms
+84 bytes from 5.5.5.5 icmp_seq=5 ttl=63 time=21.839 ms
 
 ```
 
 **client-2**
 
 ```
-client-2> ping 192.168.10.2
+lient-2> ping 192.168.10.2
 
-84 bytes from 192.168.10.2 icmp_seq=1 ttl=63 time=89.288 ms
-84 bytes from 192.168.10.2 icmp_seq=2 ttl=63 time=40.961 ms
-84 bytes from 192.168.10.2 icmp_seq=3 ttl=63 time=42.908 ms
-84 bytes from 192.168.10.2 icmp_seq=4 ttl=63 time=46.524 ms
-84 bytes from 192.168.10.2 icmp_seq=5 ttl=63 time=50.921 ms
+84 bytes from 192.168.10.2 icmp_seq=1 ttl=62 time=318.347 ms
+84 bytes from 192.168.10.2 icmp_seq=2 ttl=62 time=138.225 ms
+84 bytes from 192.168.10.2 icmp_seq=3 ttl=62 time=134.960 ms
+84 bytes from 192.168.10.2 icmp_seq=4 ttl=62 time=165.742 ms
+84 bytes from 192.168.10.2 icmp_seq=5 ttl=62 time=181.071 ms
 
-client-2> ping 192.168.11.2
+client-2> ping 192.168.11.1
 
-84 bytes from 192.168.11.2 icmp_seq=1 ttl=64 time=41.235 ms
-84 bytes from 192.168.11.2 icmp_seq=2 ttl=64 time=36.537 ms
-84 bytes from 192.168.11.2 icmp_seq=3 ttl=64 time=35.640 ms
-84 bytes from 192.168.11.2 icmp_seq=4 ttl=64 time=37.156 ms
-84 bytes from 192.168.11.2 icmp_seq=5 ttl=64 time=39.860 ms
+84 bytes from 192.168.11.1 icmp_seq=1 ttl=62 time=278.964 ms
+84 bytes from 192.168.11.1 icmp_seq=2 ttl=62 time=103.900 ms
+84 bytes from 192.168.11.1 icmp_seq=3 ttl=62 time=97.676 ms
+84 bytes from 192.168.11.1 icmp_seq=4 ttl=62 time=129.918 ms
+84 bytes from 192.168.11.1 icmp_seq=5 ttl=62 time=105.770 ms
+ping 192.168.10.10
+client-2> ping 192.168.10.10
+
+84 bytes from 192.168.10.10 icmp_seq=1 ttl=62 time=97.967 ms
+84 bytes from 192.168.10.10 icmp_seq=2 ttl=62 time=92.838 ms
+84 bytes from 192.168.10.10 icmp_seq=3 ttl=62 time=132.653 ms
+84 bytes from 192.168.10.10 icmp_seq=4 ttl=62 time=86.372 ms
+84 bytes from 192.168.10.10 icmp_seq=5 ttl=62 time=138.247 ms
+
+client-2> ping 192.168.11.11
+
+84 bytes from 192.168.11.11 icmp_seq=1 ttl=62 time=99.131 ms
+84 bytes from 192.168.11.11 icmp_seq=2 ttl=62 time=82.082 ms
+84 bytes from 192.168.11.11 icmp_seq=3 ttl=62 time=88.682 ms
+84 bytes from 192.168.11.11 icmp_seq=4 ttl=62 time=102.215 ms
+84 bytes from 192.168.11.11 icmp_seq=5 ttl=62 time=70.492 ms
 
 client-2> ping 5.5.5.5
 
-84 bytes from 5.5.5.5 icmp_seq=1 ttl=63 time=23.969 ms
-84 bytes from 5.5.5.5 icmp_seq=2 ttl=63 time=22.882 ms
-84 bytes from 5.5.5.5 icmp_seq=3 ttl=63 time=28.189 ms
-84 bytes from 5.5.5.5 icmp_seq=4 ttl=63 time=24.478 ms
-84 bytes from 5.5.5.5 icmp_seq=5 ttl=63 time=25.430 ms
-
-client-2> ping 101.101.101.1
-
-84 bytes from 101.101.101.1 icmp_seq=1 ttl=61 time=143.324 ms
-84 bytes from 101.101.101.1 icmp_seq=2 ttl=61 time=82.939 ms
-84 bytes from 101.101.101.1 icmp_seq=3 ttl=61 time=137.996 ms
-84 bytes from 101.101.101.1 icmp_seq=4 ttl=61 time=85.307 ms
-84 bytes from 101.101.101.1 icmp_seq=5 ttl=61 time=182.875 ms
+84 bytes from 5.5.5.5 icmp_seq=1 ttl=64 time=47.056 ms
+84 bytes from 5.5.5.5 icmp_seq=2 ttl=64 time=44.897 ms
+84 bytes from 5.5.5.5 icmp_seq=3 ttl=64 time=35.440 ms
+84 bytes from 5.5.5.5 icmp_seq=4 ttl=64 time=35.668 ms
+84 bytes from 5.5.5.5 icmp_seq=5 ttl=64 time=90.157 ms
 ```
 
 **client-3**
 
 ```
-client-3> ping 192.168.10.3
+client-3> ping 192.168.10.1
 
-84 bytes from 192.168.10.3 icmp_seq=1 ttl=64 time=96.300 ms
-84 bytes from 192.168.10.3 icmp_seq=2 ttl=64 time=45.095 ms
-84 bytes from 192.168.10.3 icmp_seq=3 ttl=64 time=37.219 ms
-84 bytes from 192.168.10.3 icmp_seq=4 ttl=64 time=49.294 ms
-84 bytes from 192.168.10.3 icmp_seq=5 ttl=64 time=33.837 ms
+84 bytes from 192.168.10.1 icmp_seq=1 ttl=64 time=44.742 ms
+84 bytes from 192.168.10.1 icmp_seq=2 ttl=64 time=32.655 ms
+84 bytes from 192.168.10.1 icmp_seq=3 ttl=64 time=39.804 ms
+84 bytes from 192.168.10.1 icmp_seq=4 ttl=64 time=40.469 ms
+84 bytes from 192.168.10.1 icmp_seq=5 ttl=64 time=43.768 ms
 
-client-3> ping 192.168.11.2
+client-3> ping 192.168.11.1
 
-84 bytes from 192.168.11.2 icmp_seq=1 ttl=63 time=88.089 ms
-84 bytes from 192.168.11.2 icmp_seq=2 ttl=63 time=87.915 ms
-84 bytes from 192.168.11.2 icmp_seq=3 ttl=63 time=81.080 ms
-84 bytes from 192.168.11.2 icmp_seq=4 ttl=63 time=80.821 ms
-ping 5.5.5.584 bytes from 192.168.11.2 icmp_seq=5 ttl=63 time=129.122 ms
+84 bytes from 192.168.11.1 icmp_seq=1 ttl=63 time=84.595 ms
+84 bytes from 192.168.11.1 icmp_seq=2 ttl=63 time=61.758 ms
+84 bytes from 192.168.11.1 icmp_seq=3 ttl=63 time=74.567 ms
+84 bytes from 192.168.11.1 icmp_seq=4 ttl=63 time=192.917 ms
+84 bytes from 192.168.11.1 icmp_seq=5 ttl=63 time=77.765 ms
 
-client-3> ping 5.5.5.5
+client-3> ping 192.168.10.10
 
-84 bytes from 5.5.5.5 icmp_seq=1 ttl=63 time=58.265 ms
-84 bytes from 5.5.5.5 icmp_seq=2 ttl=63 time=56.097 ms
-84 bytes from 5.5.5.5 icmp_seq=3 ttl=63 time=54.977 ms
-84 bytes from 5.5.5.5 icmp_seq=4 ttl=63 time=115.954 ms
-84 bytes from 5.5.5.5 icmp_seq=5 ttl=63 time=69.292 ms
+84 bytes from 192.168.10.10 icmp_seq=1 ttl=64 time=54.927 ms
+84 bytes from 192.168.10.10 icmp_seq=2 ttl=64 time=116.644 ms
+84 bytes from 192.168.10.10 icmp_seq=3 ttl=64 time=41.858 ms
+84 bytes from 192.168.10.10 icmp_seq=4 ttl=64 time=53.906 ms
+84 bytes from 192.168.10.10 icmp_seq=5 ttl=64 time=61.810 ms
 
-client-3> ping 101.101.101.1
+client-3> ping 192.168.11.11
 
-84 bytes from 101.101.101.1 icmp_seq=1 ttl=61 time=122.201 ms
-84 bytes from 101.101.101.1 icmp_seq=2 ttl=61 time=112.823 ms
-84 bytes from 101.101.101.1 icmp_seq=3 ttl=61 time=114.820 ms
-84 bytes from 101.101.101.1 icmp_seq=4 ttl=61 time=129.017 ms
-84 bytes from 101.101.101.1 icmp_seq=5 ttl=61 time=121.256 ms
+84 bytes from 192.168.11.11 icmp_seq=1 ttl=64 time=55.511 ms
+84 bytes from 192.168.11.11 icmp_seq=2 ttl=64 time=43.924 ms
+84 bytes from 192.168.11.11 icmp_seq=3 ttl=64 time=46.339 ms
+84 bytes from 192.168.11.11 icmp_seq=4 ttl=64 time=45.592 ms
+84 bytes from 192.168.11.11 icmp_seq=5 ttl=64 time=162.343 ms
 ```
 
 **client-4**
 
 ```
-client-4> ping 101.101.101.101
+client-4> ping 192.168.10.1
 
-84 bytes from 101.101.101.101 icmp_seq=1 ttl=64 time=52.109 ms
-84 bytes from 101.101.101.101 icmp_seq=2 ttl=64 time=125.567 ms
-84 bytes from 101.101.101.101 icmp_seq=3 ttl=64 time=39.705 ms
-84 bytes from 101.101.101.101 icmp_seq=4 ttl=64 time=68.944 ms
-84 bytes from 101.101.101.101 icmp_seq=5 ttl=64 time=41.061 ms
+84 bytes from 192.168.10.1 icmp_seq=1 ttl=63 time=69.558 ms
+84 bytes from 192.168.10.1 icmp_seq=2 ttl=63 time=50.862 ms
+84 bytes from 192.168.10.1 icmp_seq=3 ttl=63 time=39.300 ms
+84 bytes from 192.168.10.1 icmp_seq=4 ttl=63 time=47.733 ms
+84 bytes from 192.168.10.1 icmp_seq=5 ttl=63 time=41.803 ms
 
-client-4> ping 192.168.10.2
+client-4> ping 192.168.10.10
 
-84 bytes from 192.168.10.2 icmp_seq=1 ttl=62 time=210.934 ms
-84 bytes from 192.168.10.2 icmp_seq=2 ttl=62 time=104.015 ms
-84 bytes from 192.168.10.2 icmp_seq=3 ttl=62 time=113.820 ms
-84 bytes from 192.168.10.2 icmp_seq=4 ttl=62 time=110.704 ms
-84 bytes from 192.168.10.2 icmp_seq=5 ttl=62 time=155.407 ms
+84 bytes from 192.168.10.10 icmp_seq=1 ttl=64 time=82.617 ms
+84 bytes from 192.168.10.10 icmp_seq=2 ttl=64 time=74.239 ms
+84 bytes from 192.168.10.10 icmp_seq=3 ttl=64 time=50.125 ms
+84 bytes from 192.168.10.10 icmp_seq=4 ttl=64 time=51.404 ms
+84 bytes from 192.168.10.10 icmp_seq=5 ttl=64 time=44.686 ms
 
-client-4> ping 192.168.11.2
+client-4> ping 192.168.11.11
 
-84 bytes from 192.168.11.2 icmp_seq=1 ttl=62 time=149.332 ms
-84 bytes from 192.168.11.2 icmp_seq=2 ttl=62 time=105.208 ms
-84 bytes from 192.168.11.2 icmp_seq=3 ttl=62 time=111.496 ms
-84 bytes from 192.168.11.2 icmp_seq=4 ttl=62 time=126.589 ms
-84 bytes from 192.168.11.2 icmp_seq=5 ttl=62 time=108.573 ms
+84 bytes from 192.168.11.11 icmp_seq=1 ttl=64 time=67.708 ms
+84 bytes from 192.168.11.11 icmp_seq=2 ttl=64 time=45.223 ms
+84 bytes from 192.168.11.11 icmp_seq=3 ttl=64 time=46.963 ms
+84 bytes from 192.168.11.11 icmp_seq=4 ttl=64 time=49.455 ms
+84 bytes from 192.168.11.11 icmp_seq=5 ttl=64 time=46.103 ms
+
+client-4> ping 101.101.101.1
+
+84 bytes from 101.101.101.1 icmp_seq=1 ttl=61 time=182.338 ms
+84 bytes from 101.101.101.1 icmp_seq=2 ttl=61 time=94.718 ms
+84 bytes from 101.101.101.1 icmp_seq=3 ttl=61 time=105.471 ms
+84 bytes from 101.101.101.1 icmp_seq=4 ttl=61 time=92.539 ms
+84 bytes from 101.101.101.1 icmp_seq=5 ttl=61 time=86.847 ms
 
 client-4> ping 5.5.5.5
 
-84 bytes from 5.5.5.5 icmp_seq=1 ttl=64 time=51.885 ms
-84 bytes from 5.5.5.5 icmp_seq=2 ttl=64 time=106.926 ms
-84 bytes from 5.5.5.5 icmp_seq=3 ttl=64 time=70.683 ms
-84 bytes from 5.5.5.5 icmp_seq=4 ttl=64 time=66.786 ms
-84 bytes from 5.5.5.5 icmp_seq=5 ttl=64 time=100.387 ms
+84 bytes from 5.5.5.5 icmp_seq=1 ttl=63 time=47.910 ms
+84 bytes from 5.5.5.5 icmp_seq=2 ttl=63 time=48.374 ms
+84 bytes from 5.5.5.5 icmp_seq=3 ttl=63 time=49.341 ms
+84 bytes from 5.5.5.5 icmp_seq=4 ttl=63 time=50.939 ms
+84 bytes from 5.5.5.5 icmp_seq=5 ttl=63 time=71.259 ms
 ```
 
-**client-5**
+**srv**
 
 ```
-clent-5> ping 192.168.10.254
+srv(config)#ping 192.168.10.1
+PING 192.168.10.1 (192.168.10.1) 72(100) bytes of data.
+80 bytes from 192.168.10.1: icmp_seq=1 ttl=64 time=50.8 ms
+80 bytes from 192.168.10.1: icmp_seq=2 ttl=64 time=44.4 ms
+80 bytes from 192.168.10.1: icmp_seq=3 ttl=64 time=46.3 ms
+80 bytes from 192.168.10.1: icmp_seq=4 ttl=64 time=46.4 ms
+80 bytes from 192.168.10.1: icmp_seq=5 ttl=64 time=46.0 ms
 
-84 bytes from 192.168.10.254 icmp_seq=1 ttl=64 time=51.532 ms
-84 bytes from 192.168.10.254 icmp_seq=2 ttl=64 time=145.344 ms
-84 bytes from 192.168.10.254 icmp_seq=3 ttl=64 time=116.709 ms
-84 bytes from 192.168.10.254 icmp_seq=4 ttl=64 time=47.053 ms
-84 bytes from 192.168.10.254 icmp_seq=5 ttl=64 time=51.308 ms
+--- 192.168.10.1 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 47ms
+rtt min/avg/max/mdev = 44.466/46.825/50.831/2.131 ms, pipe 5, ipg/ewma 11.956/48.790 ms
+srv(config)#
+srv(config)#ping 192.168.11.1
+PING 192.168.11.1 (192.168.11.1) 72(100) bytes of data.
+80 bytes from 192.168.11.1: icmp_seq=1 ttl=64 time=754 ms
+80 bytes from 192.168.11.1: icmp_seq=2 ttl=64 time=746 ms
+80 bytes from 192.168.11.1: icmp_seq=3 ttl=64 time=745 ms
+80 bytes from 192.168.11.1: icmp_seq=4 ttl=64 time=798 ms
+80 bytes from 192.168.11.1: icmp_seq=5 ttl=64 time=796 ms
 
-clent-5> ping 192.168.10.1
+--- 192.168.11.1 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 49ms
+rtt min/avg/max/mdev = 745.842/768.380/798.676/24.063 ms, pipe 5, ipg/ewma 12.324/763.146 ms
+srv(config)#
+srv(config)#ping 101.101.101.1
+PING 101.101.101.1 (101.101.101.1) 72(100) bytes of data.
+80 bytes from 101.101.101.1: icmp_seq=1 ttl=61 time=178 ms
+80 bytes from 101.101.101.1: icmp_seq=2 ttl=61 time=190 ms
+80 bytes from 101.101.101.1: icmp_seq=3 ttl=61 time=199 ms
+80 bytes from 101.101.101.1: icmp_seq=4 ttl=61 time=214 ms
+80 bytes from 101.101.101.1: icmp_seq=5 ttl=61 time=222 ms
 
+--- 101.101.101.1 ping statistics ---
+5 packets transmitted, 5 received, +3 duplicates, 0% packet loss, time 47ms
+rtt min/avg/max/mdev = 178.070/207.193/234.752/17.568 ms, pipe 5, ipg/ewma 11.913/200.306 ms
+srv(config)#
+srv(config)#ping 5.5.5.5
+PING 5.5.5.5 (5.5.5.5) 72(100) bytes of data.
+80 bytes from 5.5.5.5: icmp_seq=1 ttl=63 time=55.4 ms
+80 bytes from 5.5.5.5: icmp_seq=2 ttl=63 time=64.2 ms
+80 bytes from 5.5.5.5: icmp_seq=3 ttl=63 time=102 ms
+80 bytes from 5.5.5.5: icmp_seq=4 ttl=63 time=172 ms
+80 bytes from 5.5.5.5: icmp_seq=5 ttl=63 time=176 ms
 
-
-84 bytes from 192.168.10.1 icmp_seq=1 ttl=64 time=54.164 ms
-84 bytes from 192.168.10.1 icmp_seq=2 ttl=64 time=75.336 ms
-84 bytes from 192.168.10.1 icmp_seq=3 ttl=64 time=38.442 ms
-84 bytes from 192.168.10.1 icmp_seq=4 ttl=64 time=43.296 ms
-84 bytes from 192.168.10.1 icmp_seq=5 ttl=64 time=41.963 ms
-
-clent-5>
-clent-5> ping 192.168.11.1
-
-84 bytes from 192.168.11.1 icmp_seq=1 ttl=63 time=84.256 ms
-84 bytes from 192.168.11.1 icmp_seq=2 ttl=63 time=53.493 ms
-84 bytes from 192.168.11.1 icmp_seq=3 ttl=63 time=90.046 ms
-84 bytes from 192.168.11.1 icmp_seq=4 ttl=63 time=50.994 ms
-84 bytes from 192.168.11.1 icmp_seq=5 ttl=63 time=47.232 ms
-
-clent-5> ping 5.5.5.5
-
-84 bytes from 5.5.5.5 icmp_seq=1 ttl=63 time=70.723 ms
-84 bytes from 5.5.5.5 icmp_seq=2 ttl=63 time=63.974 ms
-84 bytes from 5.5.5.5 icmp_seq=3 ttl=63 time=57.037 ms
-84 bytes from 5.5.5.5 icmp_seq=4 ttl=63 time=49.426 ms
-84 bytes from 5.5.5.5 icmp_seq=5 ttl=63 time=56.605 ms
-
-clent-5> ping 101.101.101.1
-
-84 bytes from 101.101.101.1 icmp_seq=1 ttl=61 time=110.936 ms
-84 bytes from 101.101.101.1 icmp_seq=2 ttl=61 time=125.289 ms
-84 bytes from 101.101.101.1 icmp_seq=3 ttl=61 time=109.060 ms
-84 bytes from 101.101.101.1 icmp_seq=4 ttl=61 time=158.277 ms
-84 bytes from 101.101.101.1 icmp_seq=5 ttl=61 time=113.546 ms
-```
-
-**client-6**
-
-```
-lient-6> ping 192.168.10.1
-
-84 bytes from 192.168.10.1 icmp_seq=1 ttl=63 time=86.113 ms
-84 bytes from 192.168.10.1 icmp_seq=2 ttl=63 time=49.919 ms
-84 bytes from 192.168.10.1 icmp_seq=3 ttl=63 time=44.691 ms
-84 bytes from 192.168.10.1 icmp_seq=4 ttl=63 time=77.067 ms
-84 bytes from 192.168.10.1 icmp_seq=5 ttl=63 time=61.084 ms
-
-client-6> ping 192.168.11.1
-
-84 bytes from 192.168.11.1 icmp_seq=1 ttl=64 time=43.108 ms
-84 bytes from 192.168.11.1 icmp_seq=2 ttl=64 time=42.707 ms
-84 bytes from 192.168.11.1 icmp_seq=3 ttl=64 time=33.764 ms
-84 bytes from 192.168.11.1 icmp_seq=4 ttl=64 time=40.617 ms
-84 bytes from 192.168.11.1 icmp_seq=5 ttl=64 time=44.344 ms
-
-client-6> ping 5.5.5.5
-
-84 bytes from 5.5.5.5 icmp_seq=1 ttl=63 time=52.862 ms
-84 bytes from 5.5.5.5 icmp_seq=2 ttl=63 time=83.196 ms
-84 bytes from 5.5.5.5 icmp_seq=3 ttl=63 time=98.754 ms
-84 bytes from 5.5.5.5 icmp_seq=4 ttl=63 time=59.503 ms
-84 bytes from 5.5.5.5 icmp_seq=5 ttl=63 time=62.931 ms
-
-client-6> ping 101.101.101.1
-
-84 bytes from 101.101.101.1 icmp_seq=1 ttl=61 time=157.467 ms
-84 bytes from 101.101.101.1 icmp_seq=2 ttl=61 time=178.901 ms
-84 bytes from 101.101.101.1 icmp_seq=3 ttl=61 time=138.351 ms
-84 bytes from 101.101.101.1 icmp_seq=4 ttl=61 time=241.528 ms
-84 bytes from 101.101.101.1 icmp_seq=5 ttl=61 time=125.836 ms
+--- 5.5.5.5 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 51ms
+rtt min/avg/max/mdev = 55.475/114.303/176.907/51.724 ms, pipe 5, ipg/ewma 12.969/88.674 ms
+srv(config)#
 ```
 
 
